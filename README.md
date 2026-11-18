@@ -90,8 +90,8 @@ nanoGate.Modbus*  게이트웨이 3종 (각각 GatewaySettings + Profile + WebUi
 
 ### 준비물
 
-- Visual Studio 2022 이상과 [.NET nanoFramework Visual Studio 확장](https://github.com/nanoframework/nsbuild-vsix) (이 문서의 빌드·배포는 Visual Studio 2026에서 검증)
-- [nanoff](https://github.com/nanoframework/nanoff)(`dotnet tool install -g nanoff`)
+- Visual Studio 2022 이상과 [.NET nanoFramework Visual Studio 확장](https://marketplace.visualstudio.com/items?itemName=nanoframework.nanoframework-vs2022-extension) (이 문서의 빌드·배포는 Visual Studio 2026에서 검증)
+- [nanoff](https://www.nuget.org/packages/nanoff)(`dotnet tool install -g nanoff`)
 - ESP32 보드와 USB 케이블, RS-485 트랜시버(MAX3485 등) 또는 자동 방향 모듈
 
 ### 1. 보드 펌웨어 설치
