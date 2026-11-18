@@ -1,0 +1,23 @@
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: #080c10ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  text-align: center;
+  padding: 20px;
+}
+#overlay[hidden] {
+  display: none;
+}
+#overlay wui-spinner {
+  display: block;
+  margin: 0 auto 16px;
+}
+#overlay a {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 600;
+}

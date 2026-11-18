@@ -1,0 +1,1555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Korean translation source. Pairs with texts.resx by name. Build-tool file only - never embedded. -->
+  <data name="gate.cc.count" xml:space="preserve">
+    <value>{n}개</value>
+  </data>
+  <data name="gate.cc.countOf" xml:space="preserve">
+    <value>{a} / {b}개</value>
+  </data>
+  <data name="gate.cc.empty" xml:space="preserve">
+    <value>캐시된 포인트가 없습니다.</value>
+  </data>
+  <data name="gate.cc.emptyPts" xml:space="preserve">
+    <value>캐시된 포인트가 없습니다. 포인트 매핑 탭에서 포인트를 등록하세요.</value>
+  </data>
+  <data name="gate.cc.id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="gate.cc.qual" xml:space="preserve">
+    <value>품질</value>
+  </data>
+  <data name="gate.cc.readFail" xml:space="preserve">
+    <value>포인트 캐시를 읽지 못했습니다: {m}</value>
+  </data>
+  <data name="gate.cc.rule" xml:space="preserve">
+    <value>규칙</value>
+  </data>
+  <data name="gate.cc.searchCols" xml:space="preserve">
+    <value>{h} 검색</value>
+  </data>
+  <data name="gate.cc.searchId" xml:space="preserve">
+    <value>ID 검색</value>
+  </data>
+  <data name="gate.cc.topic" xml:space="preserve">
+    <value>토픽</value>
+  </data>
+  <data name="gate.cc.val" xml:space="preserve">
+    <value>값</value>
+  </data>
+  <data name="gate.iot.badBaud" xml:space="preserve">
+    <value>지원하지 않는 통신 속도입니다.</value>
+  </data>
+  <data name="gate.iot.exportText" xml:space="preserve">
+    <value>통신 설정을 JSON 파일로 내보내거나 되돌립니다. Wi-Fi와 IP 설정은 포함하지 않습니다.</value>
+  </data>
+  <data name="gate.iot.gwNotStarted" xml:space="preserve">
+    <value>게이트웨이가 시작되지 않았습니다: {m}</value>
+  </data>
+  <data name="gate.iot.mdNote" xml:space="preserve">
+    <value>RS-485 멀티드롭 · Unit 1~247 요청을 버스 해당 장치로 전달합니다 · 확인된 장치: {u}</value>
+  </data>
+  <data name="gate.iot.miniNote" xml:space="preserve">
+    <value> Geekble Mini(ESP32-C3)는 TX 6 / RX 7이 RS-485 트랜시버에 연결되어 있습니다.</value>
+  </data>
+  <data name="gate.iot.noErrors" xml:space="preserve">
+    <value>기록된 오류가 없습니다.</value>
+  </data>
+  <data name="gate.iot.passAll" xml:space="preserve">
+    <value>모든 Unit 전달 · 응답 대기 {ms} ms</value>
+  </data>
+  <data name="gate.iot.pick12" xml:space="preserve">
+    <value>1 또는 2를 선택하세요.</value>
+  </data>
+  <data name="gate.iot.pick78" xml:space="preserve">
+    <value>7 또는 8비트를 선택하세요.</value>
+  </data>
+  <data name="gate.iot.pickParity" xml:space="preserve">
+    <value>패리티를 선택하세요.</value>
+  </data>
+  <data name="gate.iot.pickProto" xml:space="preserve">
+    <value>RTU 또는 ASCII를 선택하세요.</value>
+  </data>
+  <data name="gate.iot.pinDiff" xml:space="preserve">
+    <value>TX와 다른 핀을 선택하세요.</value>
+  </data>
+  <data name="gate.iot.pinHint" xml:space="preserve">
+    <value>이 보드({b})에서 사용할 수 있는 GPIO: {g}.</value>
+  </data>
+  <data name="gate.iot.pinUnavail" xml:space="preserve">
+    <value>이 보드에서 사용할 수 없는 핀입니다.</value>
+  </data>
+  <data name="gate.iot.portMgmt" xml:space="preserve">
+    <value>관리 화면 포트 {p}와 같을 수 없습니다.</value>
+  </data>
+  <data name="gate.iot.portTaken" xml:space="preserve">
+    <value>표준 포트는 502입니다. 관리 화면이 쓰는 {p} 포트는 사용할 수 없습니다.</value>
+  </data>
+  <data name="gate.iot.pvBits" xml:space="preserve">
+    <value>문자당 {b}비트({ms} ms)</value>
+  </data>
+  <data name="gate.iot.pvGap" xml:space="preserve">
+    <value> · 프레임 간격 {ms} ms</value>
+  </data>
+  <data name="gate.iot.pvMax" xml:space="preserve">
+    <value> · 최대 길이 응답 수신 약 {ms} ms</value>
+  </data>
+  <data name="gate.iot.pvSep" xml:space="preserve">
+    <value> · 프레임 구분 ":" ~ CR LF</value>
+  </data>
+  <data name="gate.iot.pvWarn" xml:space="preserve">
+    <value> — 응답 대기 시간이 최대 길이 응답의 수신 시간보다 짧아 긴 응답이 잘릴 수 있습니다.</value>
+  </data>
+  <data name="gate.iot.relayStop" xml:space="preserve">
+    <value>중계 중지</value>
+  </data>
+  <data name="gate.iot.relaying" xml:space="preserve">
+    <value>PDU 중계 중</value>
+  </data>
+  <data name="gate.iot.resetStatText" xml:space="preserve">
+    <value>요청·성공·오류 카운터, 확인된 장치 목록과 최근 오류 기록을 지웁니다.</value>
+  </data>
+  <data name="gate.iot.resetStatTtl" xml:space="preserve">
+    <value>통신 통계를 초기화할까요?</value>
+  </data>
+  <data name="gate.iot.rtu8" xml:space="preserve">
+    <value>RTU는 8비트만 지원합니다.</value>
+  </data>
+  <data name="gate.iot.saveText" xml:space="preserve">
+    <value>저장하면 장치가 재부팅되며 Modbus 통신이 20초 정도 중단됩니다.</value>
+  </data>
+  <data name="gate.iot.saveTtl" xml:space="preserve">
+    <value>설정을 저장할까요?</value>
+  </data>
+  <data name="gate.iot.savedReboot" xml:space="preserve">
+    <value>설정을 저장했습니다. 장치를 재부팅하는 중입니다.</value>
+  </data>
+  <data name="gate.iot.settingsErrUse" xml:space="preserve">
+    <value>설정 파일 오류로 기본값을 사용 중입니다: {m}</value>
+  </data>
+  <data name="gate.iot.statReset" xml:space="preserve">
+    <value>통계를 초기화했습니다.</value>
+  </data>
+  <data name="gate.iot.unitsSeen" xml:space="preserve">
+    <value>장치 {n}개 확인</value>
+  </data>
+  <data name="gate.lbl.activeConn" xml:space="preserve">
+    <value>활성 연결</value>
+  </data>
+  <data name="gate.lbl.alloc" xml:space="preserve">
+    <value>주소 할당</value>
+  </data>
+  <data name="gate.lbl.ap" xml:space="preserve">
+    <value>설정 AP</value>
+  </data>
+  <data name="gate.lbl.apPw" xml:space="preserve">
+    <value>설정 AP 암호</value>
+  </data>
+  <data name="gate.lbl.board" xml:space="preserve">
+    <value>보드</value>
+  </data>
+  <data name="gate.lbl.dataTopic" xml:space="preserve">
+    <value>데이터 토픽</value>
+  </data>
+  <data name="gate.lbl.devException" xml:space="preserve">
+    <value>장치 예외</value>
+  </data>
+  <data name="gate.lbl.deviceId" xml:space="preserve">
+    <value>장치 ID</value>
+  </data>
+  <data name="gate.lbl.dns1" xml:space="preserve">
+    <value>기본 DNS</value>
+  </data>
+  <data name="gate.lbl.dns2" xml:space="preserve">
+    <value>보조 DNS</value>
+  </data>
+  <data name="gate.lbl.evtOverflow" xml:space="preserve">
+    <value>이벤트 오버플로</value>
+  </data>
+  <data name="gate.lbl.firmware" xml:space="preserve">
+    <value>펌웨어</value>
+  </data>
+  <data name="gate.lbl.freeMem" xml:space="preserve">
+    <value>여유 메모리</value>
+  </data>
+  <data name="gate.lbl.gw" xml:space="preserve">
+    <value>기본 게이트웨이</value>
+  </data>
+  <data name="gate.lbl.ip" xml:space="preserve">
+    <value>IP 주소</value>
+  </data>
+  <data name="gate.lbl.mConnect" xml:space="preserve">
+    <value>연결</value>
+  </data>
+  <data name="gate.lbl.mac" xml:space="preserve">
+    <value>MAC 주소</value>
+  </data>
+  <data name="gate.lbl.mapPts" xml:space="preserve">
+    <value>매핑 포인트</value>
+  </data>
+  <data name="gate.lbl.mgmt" xml:space="preserve">
+    <value>관리 화면</value>
+  </data>
+  <data name="gate.lbl.mode" xml:space="preserve">
+    <value>동작 모드</value>
+  </data>
+  <data name="gate.lbl.platform" xml:space="preserve">
+    <value>플랫폼</value>
+  </data>
+  <data name="gate.lbl.pubMode" xml:space="preserve">
+    <value>게시 방식</value>
+  </data>
+  <data name="gate.lbl.pubReFail" xml:space="preserve">
+    <value>게시 / 재접속 / 실패</value>
+  </data>
+  <data name="gate.lbl.src" xml:space="preserve">
+    <value>설정 출처</value>
+  </data>
+  <data name="gate.lbl.statsSince" xml:space="preserve">
+    <value>통계 기준</value>
+  </data>
+  <data name="gate.lbl.statusTopic" xml:space="preserve">
+    <value>상태 토픽</value>
+  </data>
+  <data name="gate.lbl.subnet" xml:space="preserve">
+    <value>서브넷 마스크</value>
+  </data>
+  <data name="gate.lbl.targetFw" xml:space="preserve">
+    <value>대상 펌웨어</value>
+  </data>
+  <data name="gate.lbl.unsentEvt" xml:space="preserve">
+    <value>미전송 이벤트</value>
+  </data>
+  <data name="gate.lbl.uptime" xml:space="preserve">
+    <value>가동 시간</value>
+  </data>
+  <data name="gate.lbl.wifiPw" xml:space="preserve">
+    <value>Wi-Fi 암호</value>
+  </data>
+  <data name="gate.lbl.wifiSec" xml:space="preserve">
+    <value>Wi-Fi 보안</value>
+  </data>
+  <data name="gate.lbl.writeProc" xml:space="preserve">
+    <value>쓰기 처리</value>
+  </data>
+  <data name="gate.net.belowAddr" xml:space="preserve">
+    <value>아래 주소로</value>
+  </data>
+  <data name="gate.net.changedPw" xml:space="preserve">
+    <value>{label} 변경</value>
+  </data>
+  <data name="gate.net.clean" xml:space="preserve">
+    <value>장치에 저장된 설정과 같습니다.</value>
+  </data>
+  <data name="gate.net.dhcpAddr" xml:space="preserve">
+    <value>공유기에서 확인한 장치 주소로</value>
+  </data>
+  <data name="gate.net.dhcpNote" xml:space="preserve">
+    <value>DHCP로 바꾸면 장치 주소가 달라질 수 있습니다. 공유기에서 장치 주소를 확인하세요.</value>
+  </data>
+  <data name="gate.net.dnsBad" xml:space="preserve">
+    <value>올바른 DNS 서버 주소를 입력하세요.</value>
+  </data>
+  <data name="gate.net.enterPw" xml:space="preserve">
+    <value>Wi-Fi 암호를 입력하세요.</value>
+  </data>
+  <data name="gate.net.gwForm" xml:space="preserve">
+    <value>IPv4 주소 형식으로 입력하세요.</value>
+  </data>
+  <data name="gate.net.gwSame" xml:space="preserve">
+    <value>같은 서브넷에 있는 다른 호스트 주소를 입력하세요.</value>
+  </data>
+  <data name="gate.net.ipForm" xml:space="preserve">
+    <value>IPv4 주소 형식(예: 192.168.0.50)으로 입력하세요.</value>
+  </data>
+  <data name="gate.net.joinAp" xml:space="preserve">
+    <value>설정 AP를 끄고 "{ssid}" Wi-Fi에 접속</value>
+  </data>
+  <data name="gate.net.keepHint" xml:space="preserve">
+    <value>비워 두면 저장된 암호를 유지합니다.</value>
+  </data>
+  <data name="gate.net.loading" xml:space="preserve">
+    <value>네트워크 정보를 불러오는 중…</value>
+  </data>
+  <data name="gate.net.maskForm" xml:space="preserve">
+    <value>IPv4 형식(예: 255.255.255.0)으로 입력하세요.</value>
+  </data>
+  <data name="gate.net.maskRange" xml:space="preserve">
+    <value>/1~/30 범위의 연속된 마스크여야 합니다.</value>
+  </data>
+  <data name="gate.net.movedNote" xml:space="preserve">
+    <value>장치 주소가 {ip}(으)로 바뀝니다. 재부팅 뒤 아래 주소로 접속하세요.</value>
+  </data>
+  <data name="gate.net.noCtl" xml:space="preserve">
+    <value>제어 문자는 사용할 수 없습니다.</value>
+  </data>
+  <data name="gate.net.none" xml:space="preserve">
+    <value>(없음)</value>
+  </data>
+  <data name="gate.net.notHost" xml:space="preserve">
+    <value>이 서브넷에서 쓸 수 있는 호스트 주소가 아닙니다.</value>
+  </data>
+  <data name="gate.net.openHint" xml:space="preserve">
+    <value>개방형 네트워크는 암호를 사용하지 않습니다.</value>
+  </data>
+  <data name="gate.net.pwLen" xml:space="preserve">
+    <value>영문·숫자·기호 8~63자로 입력하세요.</value>
+  </data>
+  <data name="gate.net.pwLenHint" xml:space="preserve">
+    <value>영문·숫자·기호 8~63자</value>
+  </data>
+  <data name="gate.net.saveReboot" xml:space="preserve">
+    <value>저장 후 재부팅</value>
+  </data>
+  <data name="gate.net.saveText" xml:space="preserve">
+    <value>저장하면 장치가 재부팅되며 게이트웨이 통신이 잠시 중단됩니다.</value>
+  </data>
+  <data name="gate.net.saveTtl" xml:space="preserve">
+    <value>네트워크 설정을 저장할까요?</value>
+  </data>
+  <data name="gate.net.savedReboot" xml:space="preserve">
+    <value>네트워크 설정을 저장했습니다. 장치를 재부팅하는 중입니다.</value>
+  </data>
+  <data name="gate.net.setupNote" xml:space="preserve">
+    <value>PC나 휴대폰을 "{ssid}" 네트워크에 연결한 뒤 {how} 접속하세요.</value>
+  </data>
+  <data name="gate.net.setupState" xml:space="preserve">
+    <value>접속할 Wi-Fi를 확인한 뒤 저장하면 설정 모드를 마칩니다.</value>
+  </data>
+  <data name="gate.net.ssidLen" xml:space="preserve">
+    <value>UTF-8 기준 1~{n}바이트로 입력하세요.</value>
+  </data>
+  <data name="gate.net.wrongNote" xml:space="preserve">
+    <value>Wi-Fi 정보가 틀리면 장치가 접속하지 못하며, 5분 뒤 설정 AP를 다시 엽니다. </value>
+  </data>
+  <data name="gate.ov.elapsed" xml:space="preserve">
+    <value>{n}초 경과 · 장치가 다시 응답하면 자동으로 새로 고칩니다.</value>
+  </data>
+  <data name="gate.ov.timeout" xml:space="preserve">
+    <value>장치가 3분 동안 응답하지 않습니다.</value>
+  </data>
+  <data name="gate.ov.verify" xml:space="preserve">
+    <value>IP 주소나 Wi-Fi가 바뀌었거나 새 설정으로 시작하지 못했을 수 있습니다. 주소를 확인하거나 USB 직렬 로그를 확인하세요.</value>
+  </data>
+  <data name="gate.pd.accUnsup" xml:space="preserve">
+    <value>이 프로필은 {m} 모드를 지원하지 않습니다.</value>
+  </data>
+  <data name="gate.pd.address" xml:space="preserve">
+    <value>주소</value>
+  </data>
+  <data name="gate.pd.applied" xml:space="preserve">
+    <value>포인트 {id} 적용됨 · "저장"을 눌러야 장치에 반영됩니다.</value>
+  </data>
+  <data name="gate.pd.badType" xml:space="preserve">
+    <value>지원하지 않는 자료형입니다.</value>
+  </data>
+  <data name="gate.pd.byteOrder" xml:space="preserve">
+    <value>바이트 순서</value>
+  </data>
+  <data name="gate.pd.copy" xml:space="preserve">
+    <value>포인트 복제</value>
+  </data>
+  <data name="gate.pd.dupId" xml:space="preserve">
+    <value>이미 사용 중인 ID입니다.</value>
+  </data>
+  <data name="gate.pd.editTtl" xml:space="preserve">
+    <value>포인트 편집 · {id}</value>
+  </data>
+  <data name="gate.pd.etc" xml:space="preserve">
+    <value>기타</value>
+  </data>
+  <data name="gate.pd.formula" xml:space="preserve">
+    <value>표시값 = 원시값 × {n} ÷ {d} + {o} (쓰기 시 역변환 적용)</value>
+  </data>
+  <data name="gate.pd.formulaInfo" xml:space="preserve">
+    <value>스케일은 분모가 0이 아닌 32비트 정수 분수, 오프셋은 32비트 정수입니다.</value>
+  </data>
+  <data name="gate.pd.i32" xml:space="preserve">
+    <value>32비트 정수를 입력하세요.</value>
+  </data>
+  <data name="gate.pd.maxBytes" xml:space="preserve">
+    <value>포인트 매핑 크기가 {n}바이트를 넘습니다.</value>
+  </data>
+  <data name="gate.pd.maxPts" xml:space="preserve">
+    <value>포인트는 최대 {n}개입니다.</value>
+  </data>
+  <data name="gate.pd.nameCtl" xml:space="preserve">
+    <value>제어 문자 없이 {n}자 이내</value>
+  </data>
+  <data name="gate.pd.new" xml:space="preserve">
+    <value>새 포인트</value>
+  </data>
+  <data name="gate.pd.nonZero" xml:space="preserve">
+    <value>0이 아닌 값을 입력하세요.</value>
+  </data>
+  <data name="gate.pd.numRange" xml:space="preserve">
+    <value>{a}~{b} 사이의 숫자를 입력하세요.</value>
+  </data>
+  <data name="gate.pd.pickAcc" xml:space="preserve">
+    <value>접근 모드를 선택하세요.</value>
+  </data>
+  <data name="gate.pd.protocol" xml:space="preserve">
+    <value>프로토콜</value>
+  </data>
+  <data name="gate.pd.sameTgt" xml:space="preserve">
+    <value>{id} 포인트와 목적지 주소가 같습니다.</value>
+  </data>
+  <data name="gate.pd.space" xml:space="preserve">
+    <value>주소 영역</value>
+  </data>
+  <data name="gate.pd.type" xml:space="preserve">
+    <value>자료형</value>
+  </data>
+  <data name="gate.pt.badItem" xml:space="preserve">
+    <value>매핑 항목 형식이 잘못되었습니다.</value>
+  </data>
+  <data name="gate.pt.badVer" xml:space="preserve">
+    <value>포인트 매핑 형식 버전이 올바르지 않습니다.</value>
+  </data>
+  <data name="gate.pt.clean" xml:space="preserve">
+    <value>장치에 저장된 내용과 같습니다.</value>
+  </data>
+  <data name="gate.pt.del" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+  <data name="gate.pt.deleted" xml:space="preserve">
+    <value>포인트 {id} 삭제됨 · "되돌리기"로 취소할 수 있습니다.</value>
+  </data>
+  <data name="gate.pt.dirty" xml:space="preserve">
+    <value>저장하지 않은 변경이 있습니다. "저장"을 눌러야 장치에 반영됩니다.</value>
+  </data>
+  <data name="gate.pt.dup" xml:space="preserve">
+    <value>복제</value>
+  </data>
+  <data name="gate.pt.edit" xml:space="preserve">
+    <value>편집</value>
+  </data>
+  <data name="gate.pt.emptyNone" xml:space="preserve">
+    <value>등록된 포인트가 없습니다. "새 포인트"로 추가하세요.</value>
+  </data>
+  <data name="gate.pt.loadFail" xml:space="preserve">
+    <value>포인트 매핑을 불러오지 못했습니다: {m}</value>
+  </data>
+  <data name="gate.pt.loginWait" xml:space="preserve">
+    <value>로그인 후 자동으로 불러옵니다.</value>
+  </data>
+  <data name="gate.pt.ro" xml:space="preserve">
+    <value>읽기</value>
+  </data>
+  <data name="gate.pt.rw" xml:space="preserve">
+    <value>읽기·쓰기</value>
+  </data>
+  <data name="gate.pt.saved" xml:space="preserve">
+    <value>포인트 {n}개를 저장했습니다.</value>
+  </data>
+  <data name="gate.pt.search" xml:space="preserve">
+    <value>ID·주소 검색</value>
+  </data>
+  <data name="gate.pt.searchName" xml:space="preserve">
+    <value>ID·이름·주소 검색</value>
+  </data>
+  <data name="gate.pt.unknown" xml:space="preserve">
+    <value>알 수 없는 매핑 항목이 있습니다.</value>
+  </data>
+  <data name="gate.pt.wo" xml:space="preserve">
+    <value>쓰기</value>
+  </data>
+  <data name="gate.sys.addrItem" xml:space="preserve">
+    <value>접속 주소: {url}</value>
+  </data>
+  <data name="gate.sys.apConnectNote" xml:space="preserve">
+    <value>PC나 휴대폰을 Wi-Fi "{ssid}"에 연결한 뒤 아래 주소로 접속하세요.</value>
+  </data>
+  <data name="gate.sys.apHint" xml:space="preserve">
+    <value>설정 모드에서 여는 Wi-Fi AP "{ssid}"의 WPA2 암호입니다. 따로 바꾸지 않았다면 nanogate입니다.</value>
+  </data>
+  <data name="gate.sys.apOff" xml:space="preserve">
+    <value>(꺼짐)</value>
+  </data>
+  <data name="gate.sys.apOn" xml:space="preserve">
+    <value>(켜짐)</value>
+  </data>
+  <data name="gate.sys.authFail" xml:space="preserve">
+    <value>인증 상태를 불러오지 못했습니다.</value>
+  </data>
+  <data name="gate.sys.authOff" xml:space="preserve">
+    <value>비밀번호가 설정되지 않아 누구나 이 화면을 변경할 수 있습니다.</value>
+  </data>
+  <data name="gate.sys.authOn" xml:space="preserve">
+    <value>비밀번호 인증 사용 중 — 세션은 30분 동안 유지되며, API 키로 자동화 요청을 통과시킬 수 있습니다.</value>
+  </data>
+  <data name="gate.sys.badJson" xml:space="preserve">
+    <value>JSON 파일을 읽을 수 없습니다.</value>
+  </data>
+  <data name="gate.sys.changeReboot" xml:space="preserve">
+    <value>통신 설정 {n}개 항목 변경 후 재부팅</value>
+  </data>
+  <data name="gate.sys.disableBtn" xml:space="preserve">
+    <value>해제</value>
+  </data>
+  <data name="gate.sys.disableFail" xml:space="preserve">
+    <value>해제하지 못했습니다: {m}</value>
+  </data>
+  <data name="gate.sys.disableQ" xml:space="preserve">
+    <value>이제부터 로그인 없이 누구나 이 화면을 변경할 수 있습니다. 해제할까요?</value>
+  </data>
+  <data name="gate.sys.disableTtl" xml:space="preserve">
+    <value>비밀번호 해제</value>
+  </data>
+  <data name="gate.sys.disabled" xml:space="preserve">
+    <value>비밀번호 인증을 해제했습니다.</value>
+  </data>
+  <data name="gate.sys.disconnect" xml:space="preserve">
+    <value>이 화면과의 연결이 끊깁니다.</value>
+  </data>
+  <data name="gate.sys.enterBtn" xml:space="preserve">
+    <value>설정 모드 진입</value>
+  </data>
+  <data name="gate.sys.enterCred" xml:space="preserve">
+    <value>비밀번호나 API 키를 입력하세요.</value>
+  </data>
+  <data name="gate.sys.enterItem1" xml:space="preserve">
+    <value>게이트웨이와 Wi-Fi 접속을 멈추고 설정 AP "{ssid}"를 엽니다.</value>
+  </data>
+  <data name="gate.sys.enterItem2" xml:space="preserve">
+    <value>AP 암호: 따로 바꾸지 않았다면 nanogate</value>
+  </data>
+  <data name="gate.sys.enterItem4" xml:space="preserve">
+    <value>관리 화면을 10분 동안 쓰지 않으면 저장된 Wi-Fi로 자동 복귀</value>
+  </data>
+  <data name="gate.sys.enterRebooting" xml:space="preserve">
+    <value>설정 모드로 재부팅하는 중입니다.</value>
+  </data>
+  <data name="gate.sys.enterSetupBtn" xml:space="preserve">
+    <value>설정 모드(AP) 진입</value>
+  </data>
+  <data name="gate.sys.enterTtl" xml:space="preserve">
+    <value>설정 모드로 전환할까요?</value>
+  </data>
+  <data name="gate.sys.exitItem" xml:space="preserve">
+    <value>설정 AP를 끄고 저장된 Wi-Fi "{ssid}"에 다시 접속</value>
+  </data>
+  <data name="gate.sys.exitSetup" xml:space="preserve">
+    <value>설정 모드 종료</value>
+  </data>
+  <data name="gate.sys.exitTtl" xml:space="preserve">
+    <value>설정 모드를 끝낼까요?</value>
+  </data>
+  <data name="gate.sys.exported" xml:space="preserve">
+    <value>백업을 내보냈습니다.</value>
+  </data>
+  <data name="gate.sys.exportedDirty" xml:space="preserve">
+    <value>백업을 내보냈습니다. 저장하지 않은 포인트 변경은 포함되지 않았습니다.</value>
+  </data>
+  <data name="gate.sys.factBtn" xml:space="preserve">
+    <value>공장 초기화</value>
+  </data>
+  <data name="gate.sys.factItem1a" xml:space="preserve">
+    <value>통신 설정, 포인트 매핑, Wi-Fi와 IP 설정을 모두 삭제</value>
+  </data>
+  <data name="gate.sys.factItem1b" xml:space="preserve">
+    <value>통신 설정과 Wi-Fi·IP 설정을 모두 삭제</value>
+  </data>
+  <data name="gate.sys.factItem2" xml:space="preserve">
+    <value>설정 AP "{ap}"(암호 nanogate)로 다시 시작</value>
+  </data>
+  <data name="gate.sys.factNote" xml:space="preserve">
+    <value>PC나 휴대폰을 Wi-Fi "{ap}"(암호 nanogate)에 연결한 뒤 아래 주소로 접속하세요.</value>
+  </data>
+  <data name="gate.sys.factRebooting" xml:space="preserve">
+    <value>공장 초기화 후 재부팅하는 중입니다.</value>
+  </data>
+  <data name="gate.sys.factText" xml:space="preserve">
+    <value>되돌릴 수 없습니다. 필요하면 먼저 백업을 내보내세요.</value>
+  </data>
+  <data name="gate.sys.factTtl" xml:space="preserve">
+    <value>공장 초기화할까요?</value>
+  </data>
+  <data name="gate.sys.failLoad" xml:space="preserve">
+    <value>불러오지 못했습니다.</value>
+  </data>
+  <data name="gate.sys.loadFail" xml:space="preserve">
+    <value>시스템 정보를 불러오지 못했습니다: {m}</value>
+  </data>
+  <data name="gate.sys.loadFirst" xml:space="preserve">
+    <value>설정과 포인트를 먼저 불러와야 합니다.</value>
+  </data>
+  <data name="gate.sys.loadingShort" xml:space="preserve">
+    <value>불러오는 중…</value>
+  </data>
+  <data name="gate.sys.modeNormal" xml:space="preserve">
+    <value>일반 (Wi-Fi 접속)</value>
+  </data>
+  <data name="gate.sys.modeSetup" xml:space="preserve">
+    <value>설정 모드 (AP)</value>
+  </data>
+  <data name="gate.sys.nNote" xml:space="preserve">
+    <value>Wi-Fi에 5분 동안 접속하지 못하면 장치가 설정 AP "{ssid}"를 엽니다. 그 AP에 연결한 뒤 {url} 로 접속해 다시 설정할 수 있습니다.</value>
+  </data>
+  <data name="gate.sys.noChange" xml:space="preserve">
+    <value>통신 설정은 현재와 같으므로 재부팅하지 않음</value>
+  </data>
+  <data name="gate.sys.noId" xml:space="preserve">
+    <value>ID 없음</value>
+  </data>
+  <data name="gate.sys.noPointList" xml:space="preserve">
+    <value>포인트 목록이 없습니다.</value>
+  </data>
+  <data name="gate.sys.notBackup" xml:space="preserve">
+    <value>nanoGate 백업 파일이 아닙니다.</value>
+  </data>
+  <data name="gate.sys.notSupported" xml:space="preserve">
+    <value>지원하지 않음</value>
+  </data>
+  <data name="gate.sys.open" xml:space="preserve">
+    <value>개방형</value>
+  </data>
+  <data name="gate.sys.otherProfile" xml:space="preserve">
+    <value>다른 게이트웨이 프로필({p})의 백업입니다.</value>
+  </data>
+  <data name="gate.sys.overwrite" xml:space="preserve">
+    <value>현재 장치의 포인트 매핑은 덮어씁니다.</value>
+  </data>
+  <data name="gate.sys.pointAt" xml:space="preserve">
+    <value>{n}번째 포인트({id}) {msg}</value>
+  </data>
+  <data name="gate.sys.rebootAfter" xml:space="preserve">
+    <value>완료 후 장치가 재부팅됩니다.</value>
+  </data>
+  <data name="gate.sys.rebootText" xml:space="preserve">
+    <value>게이트웨이 통신이 20초 정도 중단됩니다.</value>
+  </data>
+  <data name="gate.sys.rebootTtl" xml:space="preserve">
+    <value>장치를 재부팅할까요?</value>
+  </data>
+  <data name="gate.sys.rebooting" xml:space="preserve">
+    <value>장치를 재부팅하는 중입니다.</value>
+  </data>
+  <data name="gate.sys.rejoinNote" xml:space="preserve">
+    <value>PC나 휴대폰을 "{ssid}" 네트워크에 다시 연결한 뒤 장치 주소로 접속하세요.</value>
+  </data>
+  <data name="gate.sys.rejoining" xml:space="preserve">
+    <value>저장된 Wi-Fi로 다시 접속하는 중입니다.</value>
+  </data>
+  <data name="gate.sys.replacePts" xml:space="preserve">
+    <value>포인트 매핑을 백업의 {n}개로 교체</value>
+  </data>
+  <data name="gate.sys.resetBtn" xml:space="preserve">
+    <value>기본값 복원</value>
+  </data>
+  <data name="gate.sys.resetItem1" xml:space="preserve">
+    <value>저장된 통신 설정 파일을 삭제하고 펌웨어 기본값으로 시작</value>
+  </data>
+  <data name="gate.sys.resetItem2a" xml:space="preserve">
+    <value>포인트 매핑과 네트워크 설정은 유지</value>
+  </data>
+  <data name="gate.sys.resetItem2b" xml:space="preserve">
+    <value>네트워크 설정은 유지</value>
+  </data>
+  <data name="gate.sys.resetRebooting" xml:space="preserve">
+    <value>기본 설정으로 재부팅하는 중입니다.</value>
+  </data>
+  <data name="gate.sys.resetTtl" xml:space="preserve">
+    <value>통신 설정을 기본값으로 되돌릴까요?</value>
+  </data>
+  <data name="gate.sys.restoreBtn" xml:space="preserve">
+    <value>복원</value>
+  </data>
+  <data name="gate.sys.restoreFail" xml:space="preserve">
+    <value>복원 실패: {m}</value>
+  </data>
+  <data name="gate.sys.restoreTtl" xml:space="preserve">
+    <value>백업을 복원할까요?</value>
+  </data>
+  <data name="gate.sys.restored" xml:space="preserve">
+    <value>백업을 복원했습니다.</value>
+  </data>
+  <data name="gate.sys.restoredReboot" xml:space="preserve">
+    <value>백업을 복원했습니다. 장치를 재부팅하는 중입니다.</value>
+  </data>
+  <data name="gate.sys.saveFail" xml:space="preserve">
+    <value>저장하지 못했습니다: {m}</value>
+  </data>
+  <data name="gate.sys.savedAcl" xml:space="preserve">
+    <value>접근 제어를 저장했습니다.</value>
+  </data>
+  <data name="gate.sys.secured" xml:space="preserve">
+    <value>암호 사용</value>
+  </data>
+  <data name="gate.sys.stateFirst" xml:space="preserve">
+    <value>장치 상태를 먼저 불러와야 합니다.</value>
+  </data>
+  <data name="gate.sys.staticIp" xml:space="preserve">
+    <value>고정 IP</value>
+  </data>
+  <data name="gate.sys.tooManyPts" xml:space="preserve">
+    <value>포인트가 {n}개를 넘습니다.</value>
+  </data>
+  <data name="gate.ui.badValue" xml:space="preserve">
+    <value>{label} 값 오류: {msg}</value>
+  </data>
+  <data name="gate.iot.unitId" xml:space="preserve">
+    <value>유닛 {u}</value>
+  </data>
+  <data name="gate.ui.missingKey" xml:space="preserve">
+    <value>설정 키 누락: {k}</value>
+  </data>
+  <data name="gate.ui.bootAfter" xml:space="preserve">
+    <value>부팅 이후</value>
+  </data>
+  <data name="gate.ui.delFail" xml:space="preserve">
+    <value>삭제 실패: {m}</value>
+  </data>
+  <data name="gate.ui.delete" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+  <data name="gate.ui.disconnected" xml:space="preserve">
+    <value>연결 끊김</value>
+  </data>
+  <data name="gate.ui.durD" xml:space="preserve">
+    <value>{d}일 {h}시간</value>
+  </data>
+  <data name="gate.ui.durH" xml:space="preserve">
+    <value>{h}시간 {m}분</value>
+  </data>
+  <data name="gate.ui.durM" xml:space="preserve">
+    <value>{m}분 {s}초</value>
+  </data>
+  <data name="gate.ui.durS" xml:space="preserve">
+    <value>{s}초</value>
+  </data>
+  <data name="gate.ui.edit" xml:space="preserve">
+    <value>편집</value>
+  </data>
+  <data name="gate.ui.gwError" xml:space="preserve">
+    <value>게이트웨이 오류</value>
+  </data>
+  <data name="gate.ui.intRange" xml:space="preserve">
+    <value>{a}~{b} 사이의 정수를 입력하세요.</value>
+  </data>
+  <data name="gate.ui.no" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="gate.ui.noConnect" xml:space="preserve">
+    <value>장치에 연결할 수 없습니다.</value>
+  </data>
+  <data name="gate.ui.noItem" xml:space="preserve">
+    <value>설정 항목이 없습니다: {k}</value>
+  </data>
+  <data name="gate.ui.noSearch" xml:space="preserve">
+    <value>검색 결과가 없습니다.</value>
+  </data>
+  <data name="gate.ui.noneWord" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="gate.ui.ok" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="gate.ui.parityE" xml:space="preserve">
+    <value>짝수</value>
+  </data>
+  <data name="gate.ui.parityN" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="gate.ui.parityO" xml:space="preserve">
+    <value>홀수</value>
+  </data>
+  <data name="gate.ui.reboot" xml:space="preserve">
+    <value>재부팅</value>
+  </data>
+  <data name="gate.ui.required" xml:space="preserve">
+    <value>필수 항목입니다.</value>
+  </data>
+  <data name="gate.ui.reset" xml:space="preserve">
+    <value>초기화</value>
+  </data>
+  <data name="gate.ui.resetAgo" xml:space="preserve">
+    <value>{d} 전 초기화</value>
+  </data>
+  <data name="gate.ui.running" xml:space="preserve">
+    <value>정상 동작</value>
+  </data>
+  <data name="gate.ui.saveFail" xml:space="preserve">
+    <value>저장 실패: {m}</value>
+  </data>
+  <data name="gate.ui.saving" xml:space="preserve">
+    <value>저장 중…</value>
+  </data>
+  <data name="gate.ui.setupMode" xml:space="preserve">
+    <value>설정 모드</value>
+  </data>
+  <data name="gate.ui.srcDefault" xml:space="preserve">
+    <value>펌웨어 기본값</value>
+  </data>
+  <data name="gate.ui.srcFile" xml:space="preserve">
+    <value>저장된 설정</value>
+  </data>
+  <data name="gate.ui.srcInvalid" xml:space="preserve">
+    <value>기본값 (설정 파일 오류)</value>
+  </data>
+  <data name="gate.ui.srcStorage" xml:space="preserve">
+    <value>기본값 (저장소 오류)</value>
+  </data>
+  <data name="gate.ui.timeout" xml:space="preserve">
+    <value>장치 응답 시간이 초과되었습니다.</value>
+  </data>
+  <data name="gate.ui.tokenLen" xml:space="preserve">
+    <value>영문·숫자와 _ . : / - 만 {n}자 이내</value>
+  </data>
+  <data name="gate.ui.unknown" xml:space="preserve">
+    <value>원인을 알 수 없습니다.</value>
+  </data>
+  <data name="gate.ui.updatedAgo" xml:space="preserve">
+    <value>{n}초 전 갱신</value>
+  </data>
+  <data name="gate.ui.yes" xml:space="preserve">
+    <value>있음</value>
+  </data>
+  <data name="gate.ui.loading" xml:space="preserve">
+    <value>설정을 불러오는 중…</value>
+  </data>
+  <data name="gate.ui.badInputs" xml:space="preserve">
+    <value>입력값을 확인해 주세요.</value>
+  </data>
+  <data name="gate.ui.changedN" xml:space="preserve">
+    <value>변경: {n}개 저장되지 않음</value>
+  </data>
+  <data name="gate.ui.ago" xml:space="preserve">
+    <value>{d} 전</value>
+  </data>
+  <data name="gate.ui.gwStartFail" xml:space="preserve">
+    <value>게이트웨이 시작 실패: {m}</value>
+  </data>
+  <data name="gate.ui.defaultsErr" xml:space="preserve">
+    <value>설정 파일 오류로 기본값을 사용합니다: {m}</value>
+  </data>
+  <data name="gate.ui.none" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="gate.ui.rangeInt" xml:space="preserve">
+    <value>{lo}~{hi} 사이 정수를 입력하세요.</value>
+  </data>
+  <data name="gate.ui.gpio" xml:space="preserve">
+    <value>GPIO {p}</value>
+  </data>
+  <data name="gate.ui.devicesSeen" xml:space="preserve">
+    <value>감지된 장치: {n}대</value>
+  </data>
+  <data name="gate.iot.allUnitWait" xml:space="preserve">
+    <value>전 유닛 중계 · 응답 대기 {t}ms</value>
+  </data>
+  <data name="gate.iot.multidrop" xml:space="preserve">
+    <value>RS-485 멀티드롭 · 유닛 1-247 요청을 버스로 중계 · 감지된 장치: {x}</value>
+  </data>
+  <data name="gate.iot.portHint" xml:space="preserve">
+    <value>표준 포트는 502입니다. 관리 UI 포트 {p}은 사용할 수 없습니다.</value>
+  </data>
+  <data name="gate.iot.portEq" xml:space="preserve">
+    <value>관리 UI 포트 {p}과 같을 수 없습니다.</value>
+  </data>
+  <data name="gate.iot.pinNa" xml:space="preserve">
+    <value>이 보드에서 사용할 수 없는 핀입니다.</value>
+  </data>
+  <data name="gate.iot.pinList" xml:space="preserve">
+    <value>이 보드의 GPIO({b}): {p}.</value>
+  </data>
+  <data name="gate.iot.pinMini" xml:space="preserve">
+    <value> Geekble Mini(ESP32-C3)는 TX 6 / RX 7이 RS-485 트랜시버에 연결되어 있습니다.</value>
+  </data>
+  <data name="gate.iot.rt8bit" xml:space="preserve">
+    <value>RTU는 8비트만 지원합니다.</value>
+  </data>
+  <data name="gate.iot.saveNote" xml:space="preserve">
+    <value>저장하면 장치가 재부팅되며 Modbus 통신이 약 20초간 중단됩니다.</value>
+  </data>
+  <data name="gate.iot.resetNote" xml:space="preserve">
+    <value>요청/성공/오류 카운터, 발견된 장치 목록과 최근 오류 기록을 비웁니다.</value>
+  </data>
+  <data name="gate.iot.bText" xml:space="preserve">
+    <value>통신 설정을 JSON 파일로 내보내거나 복원합니다. Wi-Fi/IP 설정은 포함되지 않습니다.</value>
+  </data>
+  <data name="gate.iot.fmtBits" xml:space="preserve">
+    <value>{t} · {b} bps · {f} · 문자당 {c}비트({ms}ms)</value>
+  </data>
+  <data name="gate.iot.fmtInter" xml:space="preserve">
+    <value> · 프레임 간격 {ms}ms</value>
+  </data>
+  <data name="gate.iot.fmtDelim" xml:space="preserve">
+    <value> - 프레임 구분: ':'로 시작, CR LF로 끝남</value>
+  </data>
+  <data name="gate.iot.fmtMax" xml:space="preserve">
+    <value> · 최대 응답 약 {ms}ms</value>
+  </data>
+  <data name="gate.iot.fmtWarn" xml:space="preserve">
+    <value> - 대기 시간이 가장 긴 응답의 수신 시간보다 짧습니다. 긴 응답이 잘릴 수 있습니다.</value>
+  </data>
+  <data name="static.001" xml:space="preserve">
+    <value>0 · 최대 1회</value>
+  </data>
+  <data name="static.002" xml:space="preserve">
+    <value>0~600. 0이면 비활성입니다.</value>
+  </data>
+  <data name="static.003" xml:space="preserve">
+    <value>0~65519. 아웃스테이션 주소와 달라야 합니다.</value>
+  </data>
+  <data name="static.004" xml:space="preserve">
+    <value>0~65519. 이 장치(아웃스테이션)의 주소입니다.</value>
+  </data>
+  <data name="static.005" xml:space="preserve">
+    <value>1 · 최소 1회</value>
+  </data>
+  <data name="static.006" xml:space="preserve">
+    <value>100~3600000 ms. 주기 모드에서 전체 포인트를 이 주기로 게시합니다.</value>
+  </data>
+  <data name="static.007" xml:space="preserve">
+    <value>100~60000 ms. 한 주기 = 전체 포인트 1회 읽기.</value>
+  </data>
+  <data name="static.008" xml:space="preserve">
+    <value>2 · 정확히 1회</value>
+  </data>
+  <data name="static.009" xml:space="preserve">
+    <value>32비트 형식에서만 사용</value>
+  </data>
+  <data name="static.010" xml:space="preserve">
+    <value>8~63자, 영문·숫자·기호</value>
+  </data>
+  <data name="static.011" xml:space="preserve">
+    <value>1이면 개별 포인트 한 개입니다.</value>
+  </data>
+  <data name="static.012" xml:space="preserve">
+    <value>원본 장치 주소를 목적지 프로토콜 주소로 대응시키는 변환 표입니다.</value>
+  </data>
+  <data name="static.013" xml:space="preserve">
+    <value>API 키</value>
+  </data>
+  <data name="static.014" xml:space="preserve">
+    <value>접근</value>
+  </data>
+  <data name="static.015" xml:space="preserve">
+    <value>접근 모드</value>
+  </data>
+  <data name="static.016" xml:space="preserve">
+    <value>활성 TCP 연결</value>
+  </data>
+  <data name="static.017" xml:space="preserve">
+    <value>규칙 추가</value>
+  </data>
+  <data name="static.018" xml:space="preserve">
+    <value>주소 할당</value>
+  </data>
+  <data name="static.019" xml:space="preserve">
+    <value>관리자 접근 제어</value>
+  </data>
+  <data name="static.020" xml:space="preserve">
+    <value>브로커에서 중복되지 않는 식별자. 상태 토픽에 사용됩니다.</value>
+  </data>
+  <data name="static.021" xml:space="preserve">
+    <value>적용</value>
+  </data>
+  <data name="static.022" xml:space="preserve">
+    <value>영역</value>
+  </data>
+  <data name="static.023" xml:space="preserve">
+    <value>백업과 복원</value>
+  </data>
+  <data name="static.024" xml:space="preserve">
+    <value>기본 정보</value>
+  </data>
+  <data name="static.025" xml:space="preserve">
+    <value>배치</value>
+  </data>
+  <data name="static.026" xml:space="preserve">
+    <value>배치 행 구분자</value>
+  </data>
+  <data name="static.027" xml:space="preserve">
+    <value>배치 템플릿</value>
+  </data>
+  <data name="static.028" xml:space="preserve">
+    <value>통신 속도 (bps)</value>
+  </data>
+  <data name="static.029" xml:space="preserve">
+    <value>브로커 주소</value>
+  </data>
+  <data name="static.030" xml:space="preserve">
+    <value>브로커 포트</value>
+  </data>
+  <data name="static.031" xml:space="preserve">
+    <value>바이트 순서</value>
+  </data>
+  <data name="static.032" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="static.033" xml:space="preserve">
+    <value>템플릿 형식에서 포인트 행을 무엇으로 연결할지 정합니다. JSON 객체 목록은 쉼표, 라인 프로토콜은 줄바꿈을 쓰세요.</value>
+  </data>
+  <data name="static.034" xml:space="preserve">
+    <value>예를 선택하면 모든 포인트를 접두사에 /data를 붙인 토픽의 메시지 하나로 게시합니다. JSON 또는 템플릿 형식에서 사용할 수 있습니다.</value>
+  </data>
+  <data name="static.035" xml:space="preserve">
+    <value>클라이언트 ID</value>
+  </data>
+  <data name="static.036" xml:space="preserve">
+    <value>쉼표</value>
+  </data>
+  <data name="static.037" xml:space="preserve">
+    <value>통신 설정</value>
+  </data>
+  <data name="static.038" xml:space="preserve">
+    <value>Wi-Fi 접속과 IP 주소를 설정합니다. 저장하면 장치가 재부팅되어 새 설정으로 접속합니다.</value>
+  </data>
+  <data name="static.039" xml:space="preserve">
+    <value>연결 중</value>
+  </data>
+  <data name="static.040" xml:space="preserve">
+    <value>개수</value>
+  </data>
+  <data name="static.041" xml:space="preserve">
+    <value>DHCP 자동</value>
+  </data>
+  <data name="static.042" xml:space="preserve">
+    <value>DNP3 연결</value>
+  </data>
+  <data name="static.043" xml:space="preserve">
+    <value>DNP3 마스터</value>
+  </data>
+  <data name="static.044" xml:space="preserve">
+    <value>DNP3 아웃스테이션</value>
+  </data>
+  <data name="static.045" xml:space="preserve">
+    <value>대시보드</value>
+  </data>
+  <data name="static.046" xml:space="preserve">
+    <value>데이터 비트</value>
+  </data>
+  <data name="static.047" xml:space="preserve">
+    <value>기본 게이트웨이 (선택)</value>
+  </data>
+  <data name="static.048" xml:space="preserve">
+    <value>모두 삭제</value>
+  </data>
+  <data name="static.049" xml:space="preserve">
+    <value>분모</value>
+  </data>
+  <data name="static.050" xml:space="preserve">
+    <value>목적지</value>
+  </data>
+  <data name="static.051" xml:space="preserve">
+    <value>목적지 (DNP3)</value>
+  </data>
+  <data name="static.052" xml:space="preserve">
+    <value>목적지 (상위 시스템)</value>
+  </data>
+  <data name="static.053" xml:space="preserve">
+    <value>장치</value>
+  </data>
+  <data name="static.054" xml:space="preserve">
+    <value>장치 BOOT 버튼: 부팅이 끝난 뒤 3초 이상 눌렀다 떼면 설정 모드(AP)로, 10초 이상 눌렀다 떼면 공장 초기화합니다. 설정 모드에서 짧게 누르면 저장된 Wi-Fi로 돌아갑니다. 상태 LED가 있는 보드는 누르는 동안 켜졌다가 3초 뒤 깜박이고 10초 뒤 빠르게 깜박입니다. 전원을 넣거나 리셋할 때 누르고 있으면 펌웨어 다운로드 모드로 들어가므로 주의하세요.</value>
+  </data>
+  <data name="static.055" xml:space="preserve">
+    <value>장치 예외 응답</value>
+  </data>
+  <data name="static.056" xml:space="preserve">
+    <value>장치 정보, 백업과 복원, 유지 관리</value>
+  </data>
+  <data name="static.057" xml:space="preserve">
+    <value>장치 상태</value>
+  </data>
+  <data name="static.058" xml:space="preserve">
+    <value>비밀번호 해제</value>
+  </data>
+  <data name="static.059" xml:space="preserve">
+    <value>변경 취소</value>
+  </data>
+  <data name="static.060" xml:space="preserve">
+    <value>표시 이름</value>
+  </data>
+  <data name="static.061" xml:space="preserve">
+    <value>설정 모드(AP) 진입</value>
+  </data>
+  <data name="static.062" xml:space="preserve">
+    <value>짝수</value>
+  </data>
+  <data name="static.063" xml:space="preserve">
+    <value>배출 온도</value>
+  </data>
+  <data name="static.064" xml:space="preserve">
+    <value>백업 내보내기</value>
+  </data>
+  <data name="static.065" xml:space="preserve">
+    <value>통신 설정과 저장된 포인트 매핑을 JSON 파일로 내보내거나 되돌립니다. Wi-Fi와 IP 설정은 포함하지 않습니다.</value>
+  </data>
+  <data name="static.066" xml:space="preserve">
+    <value>공장 초기화</value>
+  </data>
+  <data name="static.067" xml:space="preserve">
+    <value>브로커 인증을 사용하는 경우만 입력하세요.</value>
+  </data>
+  <data name="static.068" xml:space="preserve">
+    <value>자동화 요청용 (선택)</value>
+  </data>
+  <data name="static.069" xml:space="preserve">
+    <value>형식</value>
+  </data>
+  <data name="static.070" xml:space="preserve">
+    <value>프레임 오류</value>
+  </data>
+  <data name="static.071" xml:space="preserve">
+    <value>상위 클라이언트</value>
+  </data>
+  <data name="static.072" xml:space="preserve">
+    <value>IP 주소</value>
+  </data>
+  <data name="static.073" xml:space="preserve">
+    <value>IP 또는 호스트 이름. Mosquitto 등이 설치된 PC 주소를 지정하세요.</value>
+  </data>
+  <data name="static.074" xml:space="preserve">
+    <value>JSON: {"v","q","t"} (배치: {"ID":값}) · 템플릿: 아래 문자열 · Binary: 자료형별 빅 엔디안 바이트 · Plain: 값만.</value>
+  </data>
+  <data name="static.075" xml:space="preserve">
+    <value>Keep Alive (초)</value>
+  </data>
+  <data name="static.076" xml:space="preserve">
+    <value>비워 두면 현재 암호를 유지합니다. 영문·숫자·기호 8~63자</value>
+  </data>
+  <data name="static.077" xml:space="preserve">
+    <value>리스닝 포트</value>
+  </data>
+  <data name="static.078" xml:space="preserve">
+    <value>게이트웨이가 폴링으로 갱신하는 실시간 값과 품질입니다. 이 탭에 있는 동안 5초마다 자동 갱신됩니다.</value>
+  </data>
+  <data name="static.079" xml:space="preserve">
+    <value>규칙을 불러오는 중…</value>
+  </data>
+  <data name="static.080" xml:space="preserve">
+    <value>불러오는 중…</value>
+  </data>
+  <data name="static.081" xml:space="preserve">
+    <value>로그아웃</value>
+  </data>
+  <data name="static.082" xml:space="preserve">
+    <value>MQTT 브로커</value>
+  </data>
+  <data name="static.083" xml:space="preserve">
+    <value>MQTT 게시</value>
+  </data>
+  <data name="static.084" xml:space="preserve">
+    <value>유지 관리</value>
+  </data>
+  <data name="static.085" xml:space="preserve">
+    <value>마스터 주소</value>
+  </data>
+  <data name="static.086" xml:space="preserve">
+    <value>Modbus → DNP3 컨버터</value>
+  </data>
+  <data name="static.087" xml:space="preserve">
+    <value>Modbus → MQTT 컨버터</value>
+  </data>
+  <data name="static.088" xml:space="preserve">
+    <value>Modbus Serial ↔ TCP 게이트웨이</value>
+  </data>
+  <data name="static.089" xml:space="preserve">
+    <value>네트워크</value>
+  </data>
+  <data name="static.090" xml:space="preserve">
+    <value>새 AP 암호 (선택)</value>
+  </data>
+  <data name="static.091" xml:space="preserve">
+    <value>새 비밀번호</value>
+  </data>
+  <data name="static.092" xml:space="preserve">
+    <value>새 포인트</value>
+  </data>
+  <data name="static.093" xml:space="preserve">
+    <value>새 규칙</value>
+  </data>
+  <data name="static.094" xml:space="preserve">
+    <value>줄바꿈</value>
+  </data>
+  <data name="static.095" xml:space="preserve">
+    <value>아니요 (포인트별)</value>
+  </data>
+  <data name="static.096" xml:space="preserve">
+    <value>기록된 오류가 없습니다.</value>
+  </data>
+  <data name="static.097" xml:space="preserve">
+    <value>응답 없음</value>
+  </data>
+  <data name="static.098" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="static.099" xml:space="preserve">
+    <value>분자</value>
+  </data>
+  <data name="static.100" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="static.101" xml:space="preserve">
+    <value>홀수</value>
+  </data>
+  <data name="static.102" xml:space="preserve">
+    <value>오프셋</value>
+  </data>
+  <data name="static.103" xml:space="preserve">
+    <value>변경 시</value>
+  </data>
+  <data name="static.104" xml:space="preserve">
+    <value>변경 시: 값이나 품질이 바뀐 포인트만 즉시 게시합니다. 주기: 모든 포인트를 아래 주기마다 게시합니다.</value>
+  </data>
+  <data name="static.105" xml:space="preserve">
+    <value>규칙 한 건이 Modbus 영역의 연속 주소 여러 개를 DNP3 포인트 블록에 한 번에 연결합니다. 개수를 1로 하면 개별 포인트 매핑이고, 스케일(×분자÷분모+오프셋)로 원시 값을 engineering 단위로 변환합니다. 각 규칙은 사용할 RS-485 슬레이브(Unit)를 직접 지정합니다. 규칙은 저장 후 재부팅하면 반영됩니다.</value>
+  </data>
+  <data name="static.106" xml:space="preserve">
+    <value>암호 없는 개방형 네트워크</value>
+  </data>
+  <data name="static.107" xml:space="preserve">
+    <value>아웃스테이션 주소</value>
+  </data>
+  <data name="static.108" xml:space="preserve">
+    <value>패리티</value>
+  </data>
+  <data name="static.109" xml:space="preserve">
+    <value>암호</value>
+  </data>
+  <data name="static.110" xml:space="preserve">
+    <value>암호 (선택)</value>
+  </data>
+  <data name="static.111" xml:space="preserve">
+    <value>페이로드</value>
+  </data>
+  <data name="static.112" xml:space="preserve">
+    <value>주기</value>
+  </data>
+  <data name="static.113" xml:space="preserve">
+    <value>{id} {v} {q} {t} {topic} {addr} {space} {unit} {type} 자리를 사용합니다. 줄바꿈은 \n, 탭은 \t로 입력하세요. 예: {"id":"{id}","value":{v},"ts":{t}}</value>
+  </data>
+  <data name="static.114" xml:space="preserve">
+    <value>{points}와 {t} 자리를 사용합니다. 예: {"t":{t},"points":{points}}</value>
+  </data>
+  <data name="static.115" xml:space="preserve">
+    <value>포인트 ID</value>
+  </data>
+  <data name="static.116" xml:space="preserve">
+    <value>포인트 캐시</value>
+  </data>
+  <data name="static.117" xml:space="preserve">
+    <value>포인트 매핑</value>
+  </data>
+  <data name="static.118" xml:space="preserve">
+    <value>포인트</value>
+  </data>
+  <data name="static.119" xml:space="preserve">
+    <value>폴링 주기 (ms)</value>
+  </data>
+  <data name="static.120" xml:space="preserve">
+    <value>시리얼 Modbus 장치를 폴링해 MQTT 브로커로 게시합니다.</value>
+  </data>
+  <data name="static.121" xml:space="preserve">
+    <value>시리얼 Modbus 장치를 폴링해 DNP3 아웃스테이션으로 제공합니다.</value>
+  </data>
+  <data name="static.122" xml:space="preserve">
+    <value>기본 DNS (선택)</value>
+  </data>
+  <data name="static.123" xml:space="preserve">
+    <value>프로토콜</value>
+  </data>
+  <data name="static.124" xml:space="preserve">
+    <value>게시 주기 (ms)</value>
+  </data>
+  <data name="static.125" xml:space="preserve">
+    <value>게시 방식</value>
+  </data>
+  <data name="static.126" xml:space="preserve">
+    <value>품질</value>
+  </data>
+  <data name="static.127" xml:space="preserve">
+    <value>읽기</value>
+  </data>
+  <data name="static.128" xml:space="preserve">
+    <value>읽기·쓰기</value>
+  </data>
+  <data name="static.129" xml:space="preserve">
+    <value>재부팅</value>
+  </data>
+  <data name="static.130" xml:space="preserve">
+    <value>최근 오류</value>
+  </data>
+  <data name="static.131" xml:space="preserve">
+    <value>새로 고침</value>
+  </data>
+  <data name="static.132" xml:space="preserve">
+    <value>Modbus TCP 요청을 시리얼 하위 장치로 그대로 중계합니다.</value>
+  </data>
+  <data name="static.133" xml:space="preserve">
+    <value>통계 초기화</value>
+  </data>
+  <data name="static.134" xml:space="preserve">
+    <value>응답 대기 시간 (ms)</value>
+  </data>
+  <data name="static.135" xml:space="preserve">
+    <value>기본값 복원</value>
+  </data>
+  <data name="static.136" xml:space="preserve">
+    <value>기본값 복원은 통신 설정만 초기화하며 포인트 매핑과 네트워크 설정은 유지합니다. 공장 초기화는 모든 설정을 지우고 설정 AP로 시작합니다.</value>
+  </data>
+  <data name="static.137" xml:space="preserve">
+    <value>백업에서 복원</value>
+  </data>
+  <data name="static.138" xml:space="preserve">
+    <value>규칙</value>
+  </data>
+  <data name="static.139" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="static.140" xml:space="preserve">
+    <value>저장 후 재부팅</value>
+  </data>
+  <data name="static.141" xml:space="preserve">
+    <value>저장하면 장치가 재부팅되어 새 설정으로 시작합니다.</value>
+  </data>
+  <data name="static.142" xml:space="preserve">
+    <value>스케일</value>
+  </data>
+  <data name="static.143" xml:space="preserve">
+    <value>스케일: 표시값 = 원시값 × 분자 ÷ 분모 + 오프셋 (쓰기 시 역변환 적용)</value>
+  </data>
+  <data name="static.144" xml:space="preserve">
+    <value>ID 검색</value>
+  </data>
+  <data name="static.145" xml:space="preserve">
+    <value>ID·이름·주소 검색</value>
+  </data>
+  <data name="static.146" xml:space="preserve">
+    <value>보조 DNS (선택)</value>
+  </data>
+  <data name="static.147" xml:space="preserve">
+    <value>시리얼 버스</value>
+  </data>
+  <data name="static.148" xml:space="preserve">
+    <value>시리얼 통신</value>
+  </data>
+  <data name="static.149" xml:space="preserve">
+    <value>설정 AP</value>
+  </data>
+  <data name="static.150" xml:space="preserve">
+    <value>하위 장치</value>
+  </data>
+  <data name="static.151" xml:space="preserve">
+    <value>하위 장치 · 폴링</value>
+  </data>
+  <data name="static.152" xml:space="preserve">
+    <value>원본</value>
+  </data>
+  <data name="static.153" xml:space="preserve">
+    <value>원본 (Modbus)</value>
+  </data>
+  <data name="static.154" xml:space="preserve">
+    <value>원본 (하위 장치)</value>
+  </data>
+  <data name="static.155" xml:space="preserve">
+    <value>시작 주소</value>
+  </data>
+  <data name="static.156" xml:space="preserve">
+    <value>시작 인덱스</value>
+  </data>
+  <data name="static.157" xml:space="preserve">
+    <value>고정 IP</value>
+  </data>
+  <data name="static.158" xml:space="preserve">
+    <value>정지 비트</value>
+  </data>
+  <data name="static.159" xml:space="preserve">
+    <value>서브넷 마스크</value>
+  </data>
+  <data name="static.160" xml:space="preserve">
+    <value>성공률</value>
+  </data>
+  <data name="static.161" xml:space="preserve">
+    <value>시스템</value>
+  </data>
+  <data name="static.162" xml:space="preserve">
+    <value>템플릿</value>
+  </data>
+  <data name="static.163" xml:space="preserve">
+    <value>이 규칙이 폴링할 RS-485 슬레이브 주소입니다. Unit이 다른 규칙을 두면 멀티드롭이 됩니다.</value>
+  </data>
+  <data name="static.164" xml:space="preserve">
+    <value>장치와 연결이 끊겼습니다. 다시 연결하는 중입니다…</value>
+  </data>
+  <data name="static.165" xml:space="preserve">
+    <value>기본 포트는 1883입니다.</value>
+  </data>
+  <data name="static.166" xml:space="preserve">
+    <value>설정 모드(AP)입니다. 게이트웨이는 동작하지 않습니다. 네트워크 탭에서 접속할 Wi-Fi를 저장하거나 시스템 탭에서 설정 모드를 종료하세요.</value>
+  </data>
+  <data name="static.167" xml:space="preserve">
+    <value>게이트웨이 프로토콜은 인증과 암호화를 제공하지 않습니다. 관리 화면은 관리자 접근 제어(비밀번호·API 키)로 로그인을 요구할 수 있지만, 통신 자체는 평문 HTTP이므로 신뢰할 수 있는 격리된 네트워크에서만 사용하세요.</value>
+  </data>
+  <data name="static.168" xml:space="preserve">
+    <value>표준 포트는 20000입니다.</value>
+  </data>
+  <data name="static.169" xml:space="preserve">
+    <value>표준 포트는 502입니다.</value>
+  </data>
+  <data name="static.170" xml:space="preserve">
+    <value>메모리 보호를 위해 포인트 저장과 게이트웨이 요청 처리를 짧게 번갈아 실행합니다. 저장 중에는 통신 응답이 평소보다 늦어질 수 있습니다.</value>
+  </data>
+  <data name="static.171" xml:space="preserve">
+    <value>토픽 접두사</value>
+  </data>
+  <data name="static.172" xml:space="preserve">
+    <value>누적 · 폴링</value>
+  </data>
+  <data name="static.173" xml:space="preserve">
+    <value>누적 · 요청</value>
+  </data>
+  <data name="static.174" xml:space="preserve">
+    <value>유형</value>
+  </data>
+  <data name="static.175" xml:space="preserve">
+    <value>UART 핀</value>
+  </data>
+  <data name="static.176" xml:space="preserve">
+    <value>되돌리기</value>
+  </data>
+  <data name="static.177" xml:space="preserve">
+    <value>클라이언트 최대 4개가 동시에 접속할 수 있으며, 직렬 버스 요청은 순서대로 처리됩니다.</value>
+  </data>
+  <data name="static.178" xml:space="preserve">
+    <value>영문·숫자와 - _ . / : 사용. 게시 토픽과 상태 토픽의 앞부분이 됩니다.</value>
+  </data>
+  <data name="static.179" xml:space="preserve">
+    <value>사용자 이름을 정한 경우에만 쓰입니다.</value>
+  </data>
+  <data name="static.180" xml:space="preserve">
+    <value>사용자 이름 (선택)</value>
+  </data>
+  <data name="static.181" xml:space="preserve">
+    <value>값</value>
+  </data>
+  <data name="static.182" xml:space="preserve">
+    <value>값 변환 (스케일)</value>
+  </data>
+  <data name="static.183" xml:space="preserve">
+    <value>게시 확인을 기다린 다음 다음 메시지로 넘어갑니다.</value>
+  </data>
+  <data name="static.184" xml:space="preserve">
+    <value>쓰기</value>
+  </data>
+  <data name="static.185" xml:space="preserve">
+    <value>예 (단일 메시지)</value>
+  </data>
+  <data name="static.186" xml:space="preserve">
+    <value>nanoGate 관리</value>
+  </data>
+  <data name="static.187" xml:space="preserve">
+    <value>회</value>
+  </data>
+  <data name="static.188" xml:space="preserve">
+    <value>회 · 포인트 읽기</value>
+  </data>
+  <data name="static.189" xml:space="preserve">
+    <value>동시 최대 4개 연결</value>
+  </data>
+  <data name="static.190" xml:space="preserve">
+    <value>통신 속도</value>
+  </data>
+  <data name="static.191" xml:space="preserve">
+    <value>응답 대기 시간</value>
+  </data>
+  <data name="static.192" xml:space="preserve">
+    <value>폴링 주기</value>
+  </data>
+  <data name="static.193" xml:space="preserve">
+    <value>TCP 리스닝 포트</value>
+  </data>
+  <data name="static.194" xml:space="preserve">
+    <value>DNP3 리스닝 포트</value>
+  </data>
+  <data name="static.195" xml:space="preserve">
+    <value>TX 핀</value>
+  </data>
+  <data name="static.196" xml:space="preserve">
+    <value>RX 핀</value>
+  </data>
+  <data name="static.197" xml:space="preserve">
+    <value>사용자 이름</value>
+  </data>
+  <data name="static.198" xml:space="preserve">
+    <value>게시 주기</value>
+  </data>
+  <data name="static.199" xml:space="preserve">
+    <value>페이로드 형식</value>
+  </data>
+  <data name="static.200" xml:space="preserve">
+    <value>RS485 방향 제어</value>
+  </data>
+  <data name="static.201" xml:space="preserve">
+    <value>자동 모듈</value>
+  </data>
+  <data name="static.202" xml:space="preserve">
+    <value>네이티브 RTS</value>
+  </data>
+  <data name="static.203" xml:space="preserve">
+    <value>자동 모듈: 트랜시버가 DE/RE 방향을 스스로 제어하므로 핀을 사용하지 않습니다. 네이티브 RTS: MCU가 MAX485/MAX3485 계열 칩의 DE/RE 핀을 제어합니다.</value>
+  </data>
+  <data name="static.204" xml:space="preserve">
+    <value>DE/RE (GPIO)</value>
+  </data>
+  <data name="static.205" xml:space="preserve">
+    <value>트랜시버의 DE와 /RE 두 핀에 함께 연결한 GPIO입니다. TX/RX와 달라야 합니다.</value>
+  </data>
+  <data name="static.206" xml:space="preserve">
+    <value>DE/RE 핀</value>
+  </data>
+</root>

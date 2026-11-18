@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Korean translation source. Pairs with texts.resx by name. Build-tool file only - never embedded. -->
+    <data name="gate.mqt.batch" xml:space="preserve">
+    <value>배치</value>
+  </data>
+  <data name="gate.mqt.batchJsonTpl" xml:space="preserve">
+    <value>배치는 JSON 또는 템플릿 형식에서만 사용할 수 있습니다.</value>
+  </data>
+  <data name="gate.mqt.checkBatch" xml:space="preserve">
+    <value>배치 값을 확인하세요.</value>
+  </data>
+  <data name="gate.mqt.connected" xml:space="preserve">
+    <value>연결됨</value>
+  </data>
+  <data name="gate.mqt.disconnected" xml:space="preserve">
+    <value>끊김</value>
+  </data>
+  <data name="gate.mqt.enterBatchTpl" xml:space="preserve">
+    <value>배치 템플릿을 입력하세요.</value>
+  </data>
+  <data name="gate.mqt.enterTpl" xml:space="preserve">
+    <value>템플릿을 입력하세요.</value>
+  </data>
+  <data name="gate.mqt.fTpl" xml:space="preserve">
+    <value>템플릿</value>
+  </data>
+  <data name="gate.mqt.hostForm" xml:space="preserve">
+    <value>IP 또는 호스트 이름을 입력하세요(영문·숫자·.- 최대 63자).</value>
+  </data>
+  <data name="gate.mqt.idForm" xml:space="preserve">
+    <value>영문·숫자와 - _ . 문자만 최대 64자로 입력하세요.</value>
+  </data>
+  <data name="gate.mqt.mChange" xml:space="preserve">
+    <value>변경 시</value>
+  </data>
+  <data name="gate.mqt.mInterval" xml:space="preserve">
+    <value>주기</value>
+  </data>
+  <data name="gate.mqt.max200" xml:space="preserve">
+    <value>200자 이하여야 합니다.</value>
+  </data>
+  <data name="gate.mqt.max64" xml:space="preserve">
+    <value>64자 이하여야 합니다.</value>
+  </data>
+  <data name="gate.mqt.nCount" xml:space="preserve">
+    <value>개</value>
+  </data>
+  <data name="gate.mqt.needPlaceholder" xml:space="preserve">
+    <value>{id} {v} 같은 자리를 최소 하나 포함하세요.</value>
+  </data>
+  <data name="gate.mqt.needPoints" xml:space="preserve">
+    <value>{points} 자리를 포함해야 합니다.</value>
+  </data>
+  <data name="gate.mqt.pickFormat" xml:space="preserve">
+    <value>형식을 선택하세요.</value>
+  </data>
+  <data name="gate.mqt.pickJoin" xml:space="preserve">
+    <value>구분자를 선택하세요.</value>
+  </data>
+  <data name="gate.mqt.pickMode" xml:space="preserve">
+    <value>게시 방식을 선택하세요.</value>
+  </data>
+  <data name="gate.mqt.pickQos" xml:space="preserve">
+    <value>QoS를 선택하세요.</value>
+  </data>
+  <data name="gate.mqt.pointIdPh" xml:space="preserve">
+    <value>&lt;포인트 ID&gt;</value>
+  </data>
+  <data name="gate.mqt.portTaken" xml:space="preserve">
+    <value>기본 포트는 1883입니다. 관리 화면이 쓰는 {p} 포트는 사용할 수 없습니다.</value>
+  </data>
+  <data name="gate.mqt.prefixForm" xml:space="preserve">
+    <value>영문·숫자와 - _ . / : 사용, 최대 64자. /로 시작·끝이나 //는 사용할 수 없습니다.</value>
+  </data>
+  <data name="gate.mqt.pubStop" xml:space="preserve">
+    <value>게시 중지</value>
+  </data>
+  <data name="gate.mqt.pvPub" xml:space="preserve">
+    <value> · 게시: {topic} · QoS {q} · {mode}</value>
+  </data>
+  <data name="gate.mqt.rcReconnect" xml:space="preserve">
+    <value>끊김 · 재접속 중</value>
+  </data>
+  <data name="gate.mqt.resetStatText" xml:space="preserve">
+    <value>폴링·읽기·오류·게시 카운터와 최근 오류 기록을 지웁니다. MQTT 연결은 유지됩니다.</value>
+  </data>
+  <data name="gate.mqt.saveText" xml:space="preserve">
+    <value>저장하면 장치가 재부팅되며 Modbus 폴링과 MQTT 게시가 20초 정도 중단됩니다.</value>
+  </data>
+  <data name="gate.mqt.skipSuffix" xml:space="preserve">
+    <value> (건너뜀 {n})</value>
+  </data>
+  <data name="gate.mqt.fPlain" xml:space="preserve">
+    <value>평문</value>
+  </data>
+  <data name="gate.mqt.fBin" xml:space="preserve">
+    <value>이진</value>
+  </data>
+  <data name="gate.mqt.pvPoll" xml:space="preserve">
+    <value> · 예상 폴링 주기 ≈ {ms}ms(매 {cyc}ms)</value>
+  </data>
+  <data name="gate.mqt.batchTag" xml:space="preserve">
+    <value> (일괄)</value>
+  </data>
+  <data name="gate.mqt.batchSuffix" xml:space="preserve">
+    <value> · 일괄</value>
+  </data>
+  <data name="gate.mqt.skipped" xml:space="preserve">
+    <value>{n}개의 포인트가 이 프로필에서 지원되지 않아 건너뛰었습니다. {note}</value>
+  </data>
+  <data name="gate.mqt.polled" xml:space="preserve">
+    <value>{n}개 포인트 폴링</value>
+  </data>
+  <data name="gate.dnp.pollStop" xml:space="preserve">
+      <value>폴링 중지</value>
+    </data>
+  <data name="gate.dnp.pvDelay" xml:space="preserve">
+      <value> — 폴링 주기가 읽기 총 시간보다 짧아 매 주기 지연이 누적될 수 있습니다.</value>
+    </data></root>

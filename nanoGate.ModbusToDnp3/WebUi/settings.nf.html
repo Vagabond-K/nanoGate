@@ -1,0 +1,344 @@
+  <!-- 설정 뷰: TCP/시리얼 설정과 DNP3 규칙 편집(fsRules)입니다. -->
+      <section id="v-settings" hidden>
+        <div class="head">
+          <div>
+            <h1>Communication settings</h1>
+            <p class="sub">
+              Saving reboots the device, which starts with the new settings.
+            </p>
+          </div>
+        </div>
+        <form id="sf" novalidate>
+          <div class="cols">
+            <fieldset>
+              <legend>Serial communication</legend>
+              <div class="field">
+                <span>Protocol</span>
+                <div class="seg">
+                  <label
+                    ><input
+                      type="radio"
+                      name="protocol"
+                      data-label="Protocol"
+                      value="RTU"
+                    /><span>RTU</span></label
+                  ><label
+                    ><input
+                      type="radio"
+                      name="protocol"
+                      data-label="Protocol"
+                      value="ASCII"
+                    /><span>ASCII</span></label
+                  >
+                </div>
+              </div>
+              <label class="field"
+                ><span>Baud rate (bps)</span
+                ><select name="baudRate" data-label="Baud rate"></select
+              ></label>
+              <div class="g3">
+                <label class="field"
+                  ><span>Data bits</span
+                  ><select name="dataBits" data-label="Data bits">
+                    <option>7</option>
+                    <option>8</option>
+                  </select></label
+                >
+                <label class="field"
+                  ><span>Parity</span
+                  ><select name="parity" data-label="Parity">
+                    <option value="None">None</option>
+                    <option value="Even">Even</option>
+                    <option value="Odd">Odd</option>
+                  </select></label
+                >
+                <label class="field"
+                  ><span>Stop bits</span
+                  ><select name="stopBits" data-label="Stop bits">
+                    <option>1</option>
+                    <option>2</option>
+                  </select></label
+                >
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Slaves - polling</legend>
+              <label class="field"
+                ><span>Response timeout (ms)</span>
+                <number
+                  name="timeout"
+                  data-label="Response timeout"
+                  data-fmt="ms"
+                  min="100"
+                  max="10000"
+                  step="100"
+                />
+                <small>100~10000 ms</small></label
+              >
+              <label class="field"
+                ><span>Poll interval (ms)</span>
+                <number
+                  name="pollInterval"
+                  data-label="Poll interval"
+                  data-fmt="ms"
+                  min="100"
+                  max="60000"
+                  step="100"
+                />
+                <small
+                  >100~60000 ms. One cycle = reading all points once.</small
+                ></label
+              >
+            </fieldset>
+            <fieldset>
+              <legend>DNP3 outstation</legend>
+              <label class="field"
+                ><span>Listening port</span>
+                <number
+                  name="dnp3Port"
+                  data-label="DNP3 listening port"
+                  min="1"
+                  max="65535"
+                />
+                <small id="portHint">The standard port is 20000.</small></label
+              >
+              <div class="g2">
+                <label class="field"
+                  ><span>Outstation address</span>
+                  <number
+                    name="localAddress"
+                    data-label="Outstation address"
+                    min="0"
+                    max="65519"
+                  />
+                  <small
+                    >0~65519. The address of this device (outstation).</small
+                  ></label
+                >
+                <label class="field"
+                  ><span>Master address</span>
+                  <number
+                    name="masterAddress"
+                    data-label="Master address"
+                    min="0"
+                    max="65519"
+                  />
+                  <small
+                    >0~65519. Must differ from the outstation address.</small
+                  ></label
+                >
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>UART pins</legend>
+              <div class="g2">
+                <label class="field"
+                  ><span>TX (GPIO)</span
+                  ><select
+                    name="txPin"
+                    data-label="TX pin"
+                    data-fmt="pin"
+                  ></select
+                ></label>
+                <label class="field"
+                  ><span>RX (GPIO)</span
+                  ><select
+                    name="rxPin"
+                    data-label="RX pin"
+                    data-fmt="pin"
+                  ></select
+                ></label>
+              </div>
+              <div class="field">
+                <span>RS485 direction control</span>
+                <div class="seg">
+                  <label
+                    ><input
+                      type="radio"
+                      name="rs485Mode"
+                      data-label="RS485 direction control"
+                      value="auto"
+                    /><span>Auto transceiver</span></label
+                  ><label
+                    ><input
+                      type="radio"
+                      name="rs485Mode"
+                      data-label="RS485 direction control"
+                      value="rts"
+                    /><span>Native RTS</span></label
+                  >
+                </div>
+                <small
+                  >Auto transceiver: the module controls DE/RE by itself and no
+                  pin is used. Native RTS: the MCU drives the DE//RE pins of a
+                  MAX485/MAX3485-style chip.</small
+                >
+              </div>
+              <label class="field" id="dePinField"
+                ><span>DE//RE (GPIO)</span
+                ><select
+                  name="rs485DePin"
+                  data-label="DE//RE pin"
+                  data-fmt="pin"
+                ></select
+                ><small
+                  >The pin wired to both DE and /RE of the transceiver. It must
+                  differ from TX/RX.</small
+                ></label
+              >
+              <p class="hint" id="pinHint"></p>
+            </fieldset>
+          </div>
+          <div class="preview" id="preview" hidden></div>
+          <div class="actions">
+            <span class="grow muted" id="sfState"></span
+            ><button type="button" id="sfUndo">Discard changes</button
+            ><button type="submit" class="primary" id="sfSave">
+              Save and reboot
+            </button>
+          </div>
+        </form>
+        <div id="fsRules">
+          <p class="hint">
+            One rule connects a range of consecutive Modbus addresses in an area
+            to a DNP3 point block at once. A count of 1 is a single-point
+            mapping, and the scale (x numerator / denominator + offset) converts
+            raw values to engineering units. Each rule specifies the RS-485
+            slave (Unit) it polls. Rules apply after saving and rebooting.
+          </p>
+          <div class="tw">
+            <table id="rTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Rules</th>
+                  <th>Scale</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="rRows"></tbody>
+            </table>
+            <div class="empty" id="rEmpty">Loading rules...</div>
+          </div>
+          <div class="alert" id="rErr" hidden></div>
+          <div class="actions">
+            <span class="grow muted" id="rState"></span
+            ><button type="button" id="rReload">Refresh</button
+            ><button type="button" id="rAdd">Add rule</button
+            ><button type="button" id="rClear">Delete all</button
+            ><button type="button" class="primary" id="rSave">Save</button>
+          </div>
+        </div>
+      </section>
+      <dialog id="rd" class="wide">
+        <form id="rdf" class="dlg" novalidate>
+          <h3 id="rdTitle">New rule</h3>
+          <fieldset>
+            <legend>Source (Modbus)</legend>
+            <div class="g3">
+              <label class="field"
+                ><span>Unit ID</span>
+                <number name="rUnit" min="1" max="247" placeholder="1" />
+                <small
+                  >The RS-485 slave address this rule polls. Rules with
+                  different Units form a multidrop bus.</small
+                ></label
+              >
+              <label class="field"
+                ><span>Area</span
+                ><select name="rSpace">
+                  <option value="coil">Coil</option>
+                  <option value="discrete-input">Discrete Input</option>
+                  <option value="input-register">Input Register</option>
+                  <option value="holding-register">Holding Register</option>
+                </select></label
+              >
+              <label class="field"
+                ><span>Start address</span>
+                <number name="rFrom" min="0" max="65535" />
+              </label>
+              <label class="field"
+                ><span>Count</span>
+                <number name="rCount" min="1" max="1024" />
+                <small>A count of 1 maps a single point.</small></label
+              >
+              <label class="field"
+                ><span>Format</span
+                ><select name="rKind">
+                  <option>Bool</option>
+                  <option>Int16</option>
+                  <option>UInt16</option>
+                  <option>Int32</option>
+                  <option>UInt32</option>
+                  <option>Float32</option>
+                </select></label
+              >
+              <label class="field"
+                ><span>Byte order</span
+                ><select name="rOrder">
+                  <option>ABCD</option>
+                  <option>CDAB</option>
+                  <option>BADC</option>
+                  <option>DCBA</option></select
+                ><small>32-bit types only</small></label
+              >
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Destination (DNP3)</legend>
+            <div class="g3">
+              <label class="field"
+                ><span>Type</span
+                ><select name="rTo">
+                  <option value="binary-input">Binary Input</option>
+                  <option value="binary-output">Binary Output</option>
+                  <option value="analog-input">Analog Input</option>
+                  <option value="analog-output">Analog Output</option>
+                  <option value="counter">Counter</option>
+                </select></label
+              >
+              <label class="field"
+                ><span>Start index</span>
+                <number name="rIndex" min="0" max="65535" />
+              </label>
+            </div>
+          </fieldset>
+          <fieldset id="rdScale">
+            <legend>Value conversion (scale)</legend>
+            <div class="g3">
+              <label class="field"
+                ><span>Numerator</span>
+                <number
+                  name="rNum"
+                  min="-1000000"
+                  max="1000000"
+                  placeholder="1"
+                />
+              </label>
+              <label class="field"
+                ><span>Denominator</span>
+                <number
+                  name="rDen"
+                  min="-1000000"
+                  max="1000000"
+                  placeholder="1"
+                />
+              </label>
+              <label class="field"
+                ><span>Offset</span>
+                <number
+                  name="rOff"
+                  min="-1000000"
+                  max="1000000"
+                  placeholder="0"
+                />
+              </label>
+            </div>
+            <p class="formula" id="rdFormula"></p>
+          </fieldset>
+          <div class="actions">
+            <button type="button" id="rdCancel">Cancel</button
+            ><button type="submit" class="primary">Apply</button>
+          </div>
+        </form>
+      </dialog>

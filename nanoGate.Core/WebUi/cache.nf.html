@@ -1,0 +1,31 @@
+<section id="v-cache" hidden>
+  <div class="head">
+    <div>
+      <h1>Point cache</h1>
+      <p class="sub">
+        Live values and qualities refreshed by gateway polling. This tab
+        auto-refreshes every 5 seconds while open.
+      </p>
+    </div>
+  </div>
+  <div class="toolbar">
+    <search id="cq" placeholder="Search ID" />
+    <span class="grow"></span>
+    <span id="cCount" class="muted"></span>
+    <button id="cReload">Refresh</button>
+  </div>
+  <div class="alert" id="cErr" hidden></div>
+  <div class="tw">
+    <table id="cTable">
+      <thead>
+        <tr id="cHead">
+          <th>ID</th>
+          <th>Value</th>
+          <th>Quality</th>
+        </tr>
+      </thead>
+      <tbody id="cRows"></tbody>
+    </table>
+    <div class="empty" id="cEmpty">Loading...</div>
+  </div>
+</section>

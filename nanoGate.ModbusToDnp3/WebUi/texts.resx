@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Base-language (en) dictionary source. Named entries = uiText fallbacks; static.NNN = static-region originals (comment shows the text). Build-tool file only - never embedded. -->
+    <data name="gate.dnp.added" xml:space="preserve">
+    <value>Rule added. Press Save.</value>
+  </data>
+  <data name="gate.dnp.addrDiff" xml:space="preserve">
+    <value>Enter an address different from the outstation address.</value>
+  </data>
+  <data name="gate.dnp.badFields" xml:space="preserve">
+    <value>Wrong number of fields on line {n}.</value>
+  </data>
+  <data name="gate.dnp.badLine" xml:space="preserve">
+    <value>Line {n} is not in rule format.</value>
+  </data>
+  <data name="gate.dnp.badVer" xml:space="preserve">
+    <value>Invalid rules file format version.</value>
+  </data>
+  <data name="gate.dnp.cleared" xml:space="preserve">
+    <value>All rules deleted. They take effect after a reboot.</value>
+  </data>
+  <data name="gate.dnp.clearText" xml:space="preserve">
+    <value>Saving reverts to having no rules. The change applies after a reboot.</value>
+  </data>
+  <data name="gate.dnp.clearTtl" xml:space="preserve">
+    <value>Delete all rules?</value>
+  </data>
+  <data name="gate.dnp.countN" xml:space="preserve">
+    <value>{n}</value>
+  </data>
+  <data name="gate.dnp.crAbs" xml:space="preserve">
+    <value>Absolute value must be 1000000 or less.</value>
+  </data>
+  <data name="gate.dnp.crBitTo" xml:space="preserve">
+    <value>Coil/Discrete Input can only map to Binary types.</value>
+  </data>
+  <data name="gate.dnp.crCnt" xml:space="preserve">
+    <value>Counter supports Int32/UInt32 types only.</value>
+  </data>
+  <data name="gate.dnp.crDen" xml:space="preserve">
+    <value>The denominator cannot be 0.</value>
+  </data>
+  <data name="gate.dnp.crFrom" xml:space="preserve">
+    <value>Start address + count (x{w} registers) exceeds 65536.</value>
+  </data>
+  <data name="gate.dnp.crIndex" xml:space="preserve">
+    <value>Start index + count exceeds 65536.</value>
+  </data>
+  <data name="gate.dnp.crInt" xml:space="preserve">
+    <value>Enter an integer (-1000000~1000000).</value>
+  </data>
+  <data name="gate.dnp.crRegTo" xml:space="preserve">
+    <value>To map a Register area to a Binary type, use Coil/Discrete Input.</value>
+  </data>
+  <data name="gate.dnp.crUnit" xml:space="preserve">
+    <value>Unit ID must be an integer between 1 and 247.</value>
+  </data>
+  <data name="gate.dnp.formula" xml:space="preserve">
+    <value>Displayed = raw x {n} / {d} + {o} (inverse applied on write)</value>
+  </data>
+  <data name="gate.dnp.loadFail" xml:space="preserve">
+    <value>Failed to load rules: {m}</value>
+  </data>
+  <data name="gate.dnp.maxRules" xml:space="preserve">
+    <value>Rules are limited to 64.</value>
+  </data>
+  <data name="gate.dnp.modified" xml:space="preserve">
+    <value>Rule modified. Press Save.</value>
+  </data>
+  <data name="gate.dnp.oneConn" xml:space="preserve">
+    <value> - 1 at a time</value>
+  </data>
+  <data name="gate.dnp.outMst" xml:space="preserve">
+    <value>Outstation {a} / Master {b}</value>
+  </data>
+  <data name="gate.dnp.polling" xml:space="preserve">
+    <value>Polling {n} points</value>
+  </data>
+  <data name="gate.dnp.pollStop" xml:space="preserve">
+    <value>Stop polling</value>
+  </data>
+  <data name="gate.dnp.portTaken" xml:space="preserve">
+    <value>The standard port is 20000. Port {p} used by the management page cannot be used.</value>
+  </data>
+  <data name="gate.dnp.ptsRules" xml:space="preserve">
+    <value>{p} ({r} rules){skip}</value>
+  </data>
+  <data name="gate.dnp.pvDelay" xml:space="preserve">
+    <value> - the poll interval is shorter than the total read time; delays may accumulate each cycle.</value>
+  </data>
+  <data name="gate.dnp.pvPoll" xml:space="preserve">
+    <value> - est. poll cycle ~ {ms} ms (interval {cyc} ms)</value>
+  </data>
+  <data name="gate.dnp.rdEdit" xml:space="preserve">
+    <value>Edit rule {n}</value>
+  </data>
+  <data name="gate.dnp.rdNew" xml:space="preserve">
+    <value>New rule</value>
+  </data>
+  <data name="gate.dnp.resetStatText" xml:space="preserve">
+    <value>Clears the polling, read and error counters and the recent error log.</value>
+  </data>
+  <data name="gate.dnp.rsClean" xml:space="preserve">
+    <value>Matches the rules stored on the device. Applies after a reboot.</value>
+  </data>
+  <data name="gate.dnp.rsDirty" xml:space="preserve">
+    <value>There are unsaved rule changes. Save and reboot to apply them.</value>
+  </data>
+  <data name="gate.dnp.rsEmpty" xml:space="preserve">
+    <value>No rules yet. Use "Add rule" to create per-slave range mappings.</value>
+  </data>
+  <data name="gate.dnp.rsFail" xml:space="preserve">
+    <value>Failed to load rules. Press Refresh.</value>
+  </data>
+  <data name="gate.dnp.rtAo" xml:space="preserve">
+    <value>Analog Output (Holding Register control)</value>
+  </data>
+  <data name="gate.dnp.rtBo" xml:space="preserve">
+    <value>Binary Output (Coil control)</value>
+  </data>
+  <data name="gate.dnp.saved" xml:space="preserve">
+    <value>Saved {n} rules. They take effect after a reboot.</value>
+  </data>
+  <data name="gate.dnp.saveText" xml:space="preserve">
+    <value>Saving reboots the device; Modbus polling and DNP3 responses pause for about 20 seconds.</value>
+  </data>
+  <data name="gate.dnp.skipped" xml:space="preserve">
+    <value>{n} point(s) were skipped as unusable in this profile. {note}</value>
+  </data>
+  <data name="gate.dnp.skipSuffix" xml:space="preserve">
+    <value> - skipped {n}</value>
+  </data>
+</root>

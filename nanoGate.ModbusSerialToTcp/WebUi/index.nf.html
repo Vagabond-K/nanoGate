@@ -1,0 +1,183 @@
+@route:/
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>nanoGate management</title>
+    <style>
+      /* 공용 스타일은 nanoGate.Core 셸(shell.nf.css)로 옮겼습니다. */
+    </style>
+<nf-style/>
+  </head>
+  <body>
+    <shell />
+    <main>
+      <dashboard />
+      <settings />
+      <network />
+      <system />
+    </main>
+    <ask />
+    <overlay />
+    <static />
+    <div id="toasts"></div>
+<nf-core/>
+    <script>
+      "use strict";
+      function profileRender(s) {
+        const setup = s.mode === "setup",
+          ok = s.gatewayReady;
+        $("flow").className = "flow " + (ok ? "ok" : setup ? "" : "bad");
+        $("fTcp").textContent = "TCP:" + s.tcpPort;
+        $("fGw").textContent = s.ip;
+        $("fGwSub").textContent = setup
+          ? uiText("gate.ui.setupMode")
+          : ok
+            ? uiText("gate.iot.relaying")
+            : uiText("gate.iot.relayStop");
+        $("fSer").textContent = s.protocol + " " + s.baudRate;
+        $("fSerSub").textContent =
+          frame(s) + " · TX " + s.txPin + " / RX " + s.rxPin;
+        const units = s.units || [];
+        $("fUnit").textContent = uiText("gate.ui.devicesSeen", {
+          n: units.length,
+        });
+        $("fUnitSub").textContent = uiText("gate.iot.allUnitWait", {
+          t: s.timeout,
+        });
+        const alerts = [];
+        if (!ok)
+          alerts.push(
+            setup
+              ? s.gatewayError
+              : uiText("gate.ui.gwStartFail", {
+                  m: s.gatewayError || uiText("gate.ui.unknown"),
+                }),
+          );
+        if (s.settingsError)
+          alerts.push(uiText("gate.ui.defaultsErr", { m: s.settingsError }));
+        $("dAlert").hidden = !alerts.length;
+        $("dAlert").textContent = alerts.join("\n");
+        const fail =
+          (s.timeouts || 0) + (s.frameErrors || 0) + (s.deviceExceptions || 0);
+        const rate = s.requests
+          ? ((s.requests - fail) / s.requests) * 100
+          : null;
+        $("kRate").textContent =
+          rate == null ? "-" : (rate === 100 ? "100" : rate.toFixed(1)) + "%";
+        $("kBar").style.width = (rate || 0) + "%";
+        $("kBar").className =
+          rate == null ? "" : rate >= 99 ? "ok" : rate >= 90 ? "warn" : "bad";
+        for (const k of [
+          "requests",
+          "timeouts",
+          "frameErrors",
+          "deviceExceptions",
+          "tcpConnections",
+        ])
+          $("k-" + k).textContent = num(s[k]);
+        $("modeNote").textContent = uiText("gate.iot.multidrop", {
+          x: units.length ? units.join(", ") : uiText("gate.ui.none"),
+        });
+        $("dErr").textContent = s.lastError || uiText("gate.iot.noErrors");
+        $("dErr").className = s.lastError ? "mono" : "muted";
+        $("portHint").textContent = uiText("gate.iot.portHint", { p: mgmt });
+        if (s.allowedPins !== pinsText) setPins(s.allowedPins);
+        if (!base || !profileDirty()) fillForm(s);
+      }
+      function profileTick(up) {
+        fillDl("dState", [
+          [uiText("gate.lbl.uptime"), dur(up)],
+          [uiText("gate.lbl.freeMem"), kb(st.freeMemory)],
+          [
+            uiText("gate.lbl.src"),
+            SOURCES[st.settingsSource] || st.settingsSource,
+          ],
+          [uiText("gate.lbl.board"), st.target],
+          [
+            uiText("gate.lbl.statsSince"),
+            st.statsSince
+              ? uiText("gate.ui.ago", { d: dur(up - st.statsSince) })
+              : uiText("gate.ui.bootAfter"),
+          ],
+        ]);
+      }
+      function checkSettings(v) {
+        const e = {};
+        if (v.protocol !== "RTU" && v.protocol !== "ASCII")
+          e.protocol = uiText("gate.iot.pickProto");
+        if (!BAUDS.includes(+v.baudRate))
+          e.baudRate = uiText("gate.iot.badBaud");
+        if (
+          v.protocol === "RTU"
+            ? v.dataBits !== "8"
+            : v.dataBits !== "7" && v.dataBits !== "8"
+        )
+          e.dataBits =
+            v.protocol === "RTU"
+              ? uiText("gate.iot.rt8bit")
+              : uiText("gate.iot.pick78");
+        if (!PARITY[v.parity]) e.parity = uiText("gate.iot.pickParity");
+        if (v.stopBits !== "1" && v.stopBits !== "2")
+          e.stopBits = uiText("gate.iot.pick12");
+        if (!isInt(v.timeout, 100, 10000))
+          e.timeout = uiText("gate.ui.rangeInt", { lo: 100, hi: 10000 });
+        if (!isInt(v.tcpPort, 1, 65535))
+          e.tcpPort = uiText("gate.ui.rangeInt", { lo: 1, hi: 65535 });
+        else if (+v.tcpPort === mgmt)
+          e.tcpPort = uiText("gate.iot.portEq", { p: mgmt });
+        if (!pins.includes(+v.txPin)) e.txPin = uiText("gate.iot.pinNa");
+        if (!pins.includes(+v.rxPin)) e.rxPin = uiText("gate.iot.pinNa");
+        else if (v.txPin === v.rxPin) e.rxPin = uiText("gate.iot.pinDiff");
+        if (v.rs485Mode === "rts") {
+          if (!pins.includes(+v.rs485DePin))
+            e.rs485DePin = uiText("gate.iot.pinNa");
+          else if (
+            +v.rs485DePin === +v.txPin ||
+            +v.rs485DePin === +v.rxPin
+          )
+            e.rs485DePin = uiText("gate.iot.pinDiff");
+        }
+        return e;
+      }
+      function syncForm() {
+        const f = $("sf").elements,
+          rtu = f.protocol.value === "RTU";
+        f.dataBits.options[0].disabled = rtu;
+        if (rtu) f.dataBits.value = "8";
+        $("dePinField").style.display =
+          f.rs485Mode.value === "rts" ? "" : "none";
+        const st8 = formState(base ? checkSettings(formValues()) : {}),
+          v = st8.v,
+          bad = st8.bad;
+        const p = $("preview");
+        p.hidden = !base || bad;
+        if (p.hidden) return;
+        const bits =
+            1 + +v.dataBits + (v.parity === "None" ? 0 : 1) + +v.stopBits,
+          ch = (bits * 1000) / v.baudRate;
+        const longest = (rtu ? 256 : 513) * ch;
+        let text = uiText("gate.iot.fmtBits", {
+          t: v.protocol,
+          b: num(v.baudRate),
+          f: frame(v),
+          c: bits,
+          ms: ch.toFixed(2),
+        });
+        text += rtu
+          ? uiText("gate.iot.fmtInter", {
+              ms: (v.baudRate > 19200 ? 1.75 : 3.5 * ch).toFixed(2),
+            })
+          : uiText("gate.iot.fmtDelim");
+        text += uiText("gate.iot.fmtMax", { ms: Math.ceil(longest) });
+        const warn = +v.timeout < longest;
+        if (warn) text += uiText("gate.iot.fmtWarn");
+        p.textContent = text;
+        p.className = "preview" + (warn ? " warn" : "");
+      }
+</script>
+<nf-script/>
+  </body>
+</html>

@@ -1,0 +1,384 @@
+@route:/
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>nanoGate management</title>
+    <style>
+      /* 공용 스타일은 nanoGate.Core 셸(shell.nf.css)로 옮겼습니다. */
+    </style>
+<nf-style/>
+  </head>
+  <body>
+    <shell />
+    <main>
+      <dashboard />
+      <settings />
+      <points />
+      <cache />
+      <network />
+      <system />
+    </main>
+    <pointspaces />
+    <pointdlg />
+    <ask />
+    <overlay />
+    <static />
+    <div id="toasts"></div>
+<nf-core/>
+    <script>
+      "use strict";
+      // 셸 공용 대화창 문구를 제품용 키로 덮어씁니다.
+      // CFG는 공용 셸 블록(shell.nf.js)에서 선언되므로 블록 순서에 상관없이
+      // 모든 스크립트 실행이 끝난 뒤(DOMContentLoaded) 대입해야 합니다.
+      document.addEventListener("DOMContentLoaded", function () {
+        CFG.saveText = uiText("gate.mqt.saveText");
+        CFG.resetText = uiText("gate.mqt.resetStatText");
+      });
+      const FORMATS = {
+        json: "JSON",
+        template: uiText("gate.mqt.fTpl"),
+        binary: uiText("gate.mqt.fBin"),
+        plain: uiText("gate.mqt.fPlain"),
+      };
+      const MODES = {
+        change: uiText("gate.mqt.mChange"),
+        interval: uiText("gate.mqt.mInterval"),
+      };
+      function profileRender(s) {
+        const setup = s.mode === "setup",
+          ok = s.gatewayReady;
+        $("flow").className =
+          "flow " + (ok && s.mqttConnected ? "ok" : setup ? "" : "bad");
+        $("fSer").textContent = s.protocol + " " + s.baudRate;
+        $("fSerSub").textContent =
+          uiText("gate.iot.unitId", {
+            u: s.unitMax > s.unitMin ? s.unitMin + "~" + s.unitMax : s.unitMin,
+          }) +
+          " · " +
+          frame(s);
+        $("fGw").textContent = s.ip;
+        $("fGwSub").textContent = setup
+          ? uiText("gate.ui.setupMode")
+          : ok
+            ? uiText("gate.mqt.polled", { n: s.pointCount })
+            : uiText("gate.dnp.pollStop");
+        $("fMqtt").textContent = s.brokerHost + ":" + s.brokerPort;
+        $("fMqttSub").textContent =
+          (ok
+            ? s.mqttConnected
+              ? uiText("gate.mqt.connected")
+              : uiText("gate.mqt.rcReconnect")
+            : uiText("gate.mqt.pubStop")) +
+          " · QoS " +
+          s.mqttQos +
+          " · " +
+          FORMATS[s.payloadFormat];
+        const alerts = [];
+        if (!ok)
+          alerts.push(
+            setup
+              ? s.gatewayError
+              : uiText("gate.ui.gwStartFail", {
+                  m: s.gatewayError || uiText("gate.ui.unknown"),
+                }),
+          );
+        if (s.settingsError)
+          alerts.push(uiText("gate.ui.defaultsErr", { m: s.settingsError }));
+        if (s.skippedPoints > 0)
+          alerts.push(
+            uiText("gate.mqt.skipped", {
+              n: s.skippedPoints,
+              note: s.skipNote || "",
+            }),
+          );
+        $("dAlert").hidden = !alerts.length;
+        $("dAlert").textContent = alerts.join("\n");
+        const fail =
+          (s.timeouts || 0) + (s.frameErrors || 0) + (s.deviceExceptions || 0);
+        const rate = s.requests
+          ? ((s.requests - fail) / s.requests) * 100
+          : null;
+        $("kRate").textContent =
+          rate == null ? "-" : (rate === 100 ? "100" : rate.toFixed(1)) + "%";
+        $("kBar").style.width = (rate || 0) + "%";
+        $("kBar").className =
+          rate == null ? "" : rate >= 99 ? "ok" : rate >= 90 ? "warn" : "bad";
+        for (const k of [
+          "polls",
+          "requests",
+          "timeouts",
+          "frameErrors",
+          "mqttPublishes",
+        ])
+          $("k-" + k).textContent = num(s[k]);
+        $("dErr").textContent = s.lastError || uiText("gate.iot.noErrors");
+        $("dErr").className = s.lastError ? "mono" : "muted";
+        $("portHint").textContent = uiText("gate.mqt.portTaken", { p: mgmt });
+        if (s.allowedPins !== pinsText) setPins(s.allowedPins);
+        if (!base || !profileDirty()) fillForm(s);
+      }
+      function profileTick(up) {
+        fillDl("dState", [
+          [uiText("gate.lbl.uptime"), dur(up)],
+          [uiText("gate.lbl.freeMem"), kb(st.freeMemory)],
+          [
+            uiText("gate.lbl.src"),
+            SOURCES[st.settingsSource] || st.settingsSource,
+          ],
+          [uiText("gate.lbl.board"), st.target],
+          [
+            uiText("gate.lbl.statsSince"),
+            st.statsSince
+              ? uiText("gate.ui.ago", { d: dur(up - st.statsSince) })
+              : uiText("gate.ui.bootAfter"),
+          ],
+        ]);
+        const batch = st.publishBatch === "1" || st.publishBatch === 1;
+        fillDl("dMqtt", [
+          [
+            uiText("gate.lbl.mConnect"),
+            st.mqttConnected
+              ? uiText("gate.mqt.connected")
+              : uiText("gate.mqt.disconnected"),
+          ],
+          [
+            uiText("gate.lbl.pubReFail"),
+            num(st.mqttPublishes) +
+              " · " +
+              num(st.mqttReconnects) +
+              " · " +
+              num(st.mqttFailures),
+          ],
+          [uiText("gate.lbl.writeProc"), num(st.mqttWrites)],
+          [
+            uiText("gate.lbl.dataTopic"),
+            batch
+              ? st.topicPrefix + "/data"
+              : st.topicPrefix + "/" + uiText("gate.mqt.pointIdPh"),
+          ],
+          [
+            uiText("gate.lbl.statusTopic"),
+            st.topicPrefix + "/" + st.mqttClientId + "/status",
+          ],
+          [
+            uiText("gate.lbl.pubMode"),
+            (MODES[st.publishMode] || st.publishMode) +
+              (st.publishMode === "interval"
+                ? " · " + num(st.publishInterval) + " ms"
+                : "") +
+              " · " +
+              FORMATS[st.payloadFormat] +
+              (batch ? uiText("gate.mqt.batchSuffix") : ""),
+          ],
+          [
+            uiText("gate.lbl.mapPts"),
+            num(st.pointCount) +
+              uiText("gate.mqt.nCount") +
+              (st.skippedPoints
+                ? uiText("gate.mqt.skipSuffix", { n: st.skippedPoints })
+                : ""),
+          ],
+        ]);
+      }
+      function checkSettings(v) {
+        const e = {};
+        if (v.protocol !== "RTU" && v.protocol !== "ASCII")
+          e.protocol = uiText("gate.iot.pickProto");
+        if (!BAUDS.includes(+v.baudRate))
+          e.baudRate = uiText("gate.iot.badBaud");
+        if (
+          v.protocol === "RTU"
+            ? v.dataBits !== "8"
+            : v.dataBits !== "7" && v.dataBits !== "8"
+        )
+          e.dataBits =
+            v.protocol === "RTU"
+              ? uiText("gate.iot.rt8bit")
+              : uiText("gate.iot.pick78");
+        if (!PARITY[v.parity]) e.parity = uiText("gate.iot.pickParity");
+        if (v.stopBits !== "1" && v.stopBits !== "2")
+          e.stopBits = uiText("gate.iot.pick12");
+        if (!isInt(v.timeout, 100, 10000))
+          e.timeout = uiText("gate.ui.rangeInt", { lo: 100, hi: 10000 });
+        if (!isInt(v.pollInterval, 100, 60000))
+          e.pollInterval = uiText("gate.ui.rangeInt", { lo: 100, hi: 60000 });
+        if (!pins.includes(+v.txPin)) e.txPin = uiText("gate.iot.pinNa");
+        if (!pins.includes(+v.rxPin)) e.rxPin = uiText("gate.iot.pinNa");
+        else if (v.txPin === v.rxPin) e.rxPin = uiText("gate.iot.pinDiff");
+        if (v.rs485Mode === "rts") {
+          if (!pins.includes(+v.rs485DePin))
+            e.rs485DePin = uiText("gate.iot.pinNa");
+          else if (
+            +v.rs485DePin === +v.txPin ||
+            +v.rs485DePin === +v.rxPin
+          )
+            e.rs485DePin = uiText("gate.iot.pinDiff");
+        }
+        if (!/^[A-Za-z0-9.-]{1,63}$/.test(v.brokerHost))
+          e.brokerHost = uiText("gate.mqt.hostForm");
+        if (!isInt(v.brokerPort, 1, 65535))
+          e.brokerPort = uiText("gate.ui.rangeInt", { lo: 1, hi: 65535 });
+        else if (+v.brokerPort === mgmt)
+          e.brokerPort = uiText("gate.iot.portEq", { p: mgmt });
+        if (!/^[A-Za-z0-9_.-]{1,64}$/.test(v.mqttClientId))
+          e.mqttClientId = uiText("gate.mqt.idForm");
+        if (v.mqttUsername.length > 64)
+          e.mqttUsername = uiText("gate.mqt.max64");
+        if (v.mqttPassword.length > 64)
+          e.mqttPassword = uiText("gate.mqt.max64");
+        if (!isInt(v.keepAlive, 0, 600))
+          e.keepAlive = uiText("gate.ui.rangeInt", { lo: 0, hi: 600 });
+        if (
+          !/^[A-Za-z0-9_:./-]{1,64}$/.test(v.topicPrefix) ||
+          v.topicPrefix[0] === "/" ||
+          v.topicPrefix.slice(-1) === "/" ||
+          v.topicPrefix.includes("//")
+        )
+          e.topicPrefix = uiText("gate.mqt.prefixForm");
+        if (!["change", "interval"].includes(v.publishMode))
+          e.publishMode = uiText("gate.mqt.pickMode");
+        if (!isInt(v.publishInterval, 100, 3600000))
+          e.publishInterval = uiText("gate.ui.rangeInt", {
+            lo: 100,
+            hi: 3600000,
+          });
+        if (!FORMATS[v.payloadFormat])
+          e.payloadFormat = uiText("gate.mqt.pickFormat");
+        if (v.publishBatch !== "0" && v.publishBatch !== "1")
+          e.publishBatch = uiText("gate.mqt.checkBatch");
+        else if (
+          v.publishBatch === "1" &&
+          v.payloadFormat !== "json" &&
+          v.payloadFormat !== "template"
+        )
+          e.publishBatch = uiText("gate.mqt.batchJsonTpl");
+        if (!v.mqttBatchTpl) e.mqttBatchTpl = uiText("gate.mqt.enterBatchTpl");
+        else if (v.mqttBatchTpl.length > 200)
+          e.mqttBatchTpl = uiText("gate.mqt.max200");
+        else if (v.mqttBatchTpl.indexOf("{points}") < 0)
+          e.mqttBatchTpl = uiText("gate.mqt.needPoints");
+        if (v.mqttBatchJoin !== "comma" && v.mqttBatchJoin !== "newline")
+          e.mqttBatchJoin = uiText("gate.mqt.pickJoin");
+        if (!["0", "1", "2"].includes(v.mqttQos))
+          e.mqttQos = uiText("gate.mqt.pickQos");
+        if (v.payloadFormat === "template") {
+          if (!v.mqttTemplate) e.mqttTemplate = uiText("gate.mqt.enterTpl");
+          else if (v.mqttTemplate.length > 200)
+            e.mqttTemplate = uiText("gate.mqt.max200");
+          else if (v.mqttTemplate.indexOf("{") < 0)
+            e.mqttTemplate = uiText("gate.mqt.needPlaceholder");
+        }
+        return e;
+      }
+      function syncForm() {
+        const f = $("sf").elements,
+          rtu = f.protocol.value === "RTU";
+        f.dataBits.options[0].disabled = rtu;
+        if (rtu) f.dataBits.value = "8";
+        $("piField").style.display =
+          f.publishMode.value === "interval" ? "" : "none";
+        $("dePinField").style.display =
+          f.rs485Mode.value === "rts" ? "" : "none";
+        $("tplField").style.display =
+          f.payloadFormat.value === "template" ? "" : "none";
+        const batching = f.publishBatch.value === "1";
+        $("batchTplField").style.display = batching ? "" : "none";
+        $("batchJoinField").style.display = batching ? "" : "none";
+        const st8 = formState(base ? checkSettings(formValues()) : {}),
+          v = st8.v,
+          bad = st8.bad;
+        $("t-points").classList.toggle("dot", pointsDirty());
+        const p = $("preview");
+        p.hidden = !base || bad;
+        if (p.hidden) return;
+        const bits =
+            1 + +v.dataBits + (v.parity === "None" ? 0 : 1) + +v.stopBits,
+          ch = (bits * 1000) / v.baudRate;
+        const longest = (rtu ? 256 : 513) * ch;
+        let text =
+          v.protocol +
+          " · " +
+          num(v.baudRate) +
+          " bps · " +
+          frame(v) +
+          uiText("gate.iot.fmtMax", { ms: Math.ceil(longest) });
+        const warn = +v.timeout < longest;
+        if (warn) text += uiText("gate.iot.fmtWarn");
+        if (st && st.pointCount) {
+          const per = +v.timeout + 30;
+          text += uiText("gate.mqt.pvPoll", {
+            ms: num(st.pointCount * per),
+            cyc: v.pollInterval,
+          });
+          if (st.pointCount * per > +v.pollInterval)
+            text += uiText("gate.dnp.pvDelay");
+        }
+        const batch = v.publishBatch === "1";
+        text += uiText("gate.mqt.pvPub", {
+          topic: batch
+            ? v.topicPrefix + "/data" + uiText("gate.mqt.batchTag")
+            : v.topicPrefix + "/" + uiText("gate.mqt.pointIdPh"),
+          q: v.mqttQos,
+          mode: MODES[v.publishMode] || v.publishMode,
+        });
+        if (v.publishMode === "interval")
+          text += " (" + num(v.publishInterval) + " ms)";
+        p.textContent = text;
+        p.className = "preview" + (warn ? " warn" : "");
+      }
+      const profilePoint = () => [
+        "",
+        "",
+        st && st.protocol === "ASCII" ? "modbus-ascii" : "modbus-rtu",
+        "1",
+        "holding-register",
+        "0",
+        "Int16",
+        "mqtt",
+        "mqtt",
+        "topic",
+        "",
+        "Float32",
+        "RO",
+        "1",
+        "1",
+        "0",
+      ];
+      // 코어 cache.nf.js도 같은 이름의 기본 컴포넌트를 등록하므로,
+      // 재정의가 마지막 등록이 되도록. DOMContentLoaded 이후에 등록합니다
+      // (블록 순서가 비결정적이어서 코어 등록이 뒤로 오면 기본 구현이
+      // 살아나 profileCacheRow ReferenceError가 납니다).
+      document.addEventListener("DOMContentLoaded", function () {
+      WebUi.component("cacheRow", function (a) {
+        const p = a.p,
+          node = WebUi.node;
+        const m = points ? points.find((x) => x[0] === p.id) : null;
+        if (!m)
+          return [
+            node("td", { className: "mono", text: p.id }),
+            node("td", { className: "mono", text: "" }),
+            node("td", { className: "mono", text: "" }),
+            node("td", { className: "mono", text: "" }),
+          ];
+        const batch = st && (st.publishBatch === "1" || st.publishBatch === 1);
+        const topic = batch
+          ? st.topicPrefix + "/data"
+          : st.topicPrefix + "/" + p.id;
+        return [
+          node("td", { className: "mono", text: p.id }),
+          node("td", {
+            className: "mono",
+            text: uiText("gate.iot.unitId", { u: m[3] }),
+          }),
+          node("td", { className: "mono", text: spaceLabel(m[4]) + " " + m[5] }),
+          node("td", { className: "mono", text: topic }),
+        ];
+      });
+      });
+    </script>
+<nf-script/>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+#pdAddr {
+  align-items: start;
+}
+.formula {
+  margin: 10px 0 0;
+  color: var(--mu);
+  font-size: 13px;
+}

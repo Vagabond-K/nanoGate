@@ -1,0 +1,113 @@
+<section id="v-network" hidden>
+  <div class="head">
+    <div>
+      <h1>Network</h1>
+      <p class="sub">
+        Configures the Wi-Fi connection and IP address. Saving reboots the
+        device, which then connects with the new settings.
+      </p>
+    </div>
+  </div>
+  <form id="nf" novalidate>
+    <div class="cols">
+      <fieldset>
+        <legend>Wi-Fi</legend>
+        <label class="field"
+          ><span>SSID</span
+          ><input
+            name="ssid"
+            data-max="ssid"
+            autocomplete="off"
+            spellcheck="false"
+        /></label>
+        <label class="field"
+          ><span>Password</span>
+          <wui-password name="password" maxlength="63" autocomplete="new-password"></wui-password>
+          <small id="pwHint"></small
+        ></label>
+        <label class="check"
+          ><input type="checkbox" name="open" /><span
+            >Open network without a password</span
+          ></label
+        >
+      </fieldset>
+      <fieldset>
+        <legend>IP address</legend>
+        <div class="field">
+          <span>Address assignment</span>
+          <div class="seg">
+            <label
+              ><input type="radio" name="dhcp" value="1" /><span
+                >DHCP (auto)</span
+              ></label
+            ><label
+              ><input type="radio" name="dhcp" value="0" /><span
+                >Static IP</span
+              ></label
+            >
+          </div>
+        </div>
+        <div class="g2">
+          <label class="field"
+            ><span>IP address</span
+            ><input
+              name="ip"
+              inputmode="decimal"
+              autocomplete="off"
+              placeholder="192.168.0.50"
+          /></label>
+          <label class="field"
+            ><span>Subnet mask</span
+            ><input
+              name="subnet"
+              inputmode="decimal"
+              autocomplete="off"
+              placeholder="255.255.255.0"
+          /></label>
+        </div>
+        <label class="field"
+          ><span>Default gateway (optional)</span
+          ><input
+            name="gateway"
+            inputmode="decimal"
+            autocomplete="off"
+            placeholder="192.168.0.1"
+        /></label>
+        <div class="g2">
+          <label class="field"
+            ><span>Primary DNS (optional)</span
+            ><input name="dns1" inputmode="decimal" autocomplete="off"
+          /></label>
+          <label class="field"
+            ><span>Secondary DNS (optional)</span
+            ><input name="dns2" inputmode="decimal" autocomplete="off"
+          /></label>
+        </div>
+      </fieldset>
+      <fieldset id="apBox" hidden>
+        <legend>Setup AP</legend>
+        <p class="hint" id="apHint"></p>
+        <label class="field"
+          ><span>New AP password (optional)</span>
+          <password
+            name="apPassword"
+            maxlength="63"
+            autocomplete="new-password"
+          />
+          <small
+            >Leave blank to keep the current password. 8~63 letters, digits,
+            symbols</small
+          ></label
+        >
+      </fieldset>
+    </div>
+    <p class="note" id="nNote" hidden></p>
+    <div class="actions">
+      <span class="grow muted" id="nfState"></span
+      ><button type="button" id="nfUndo">Discard changes</button
+      ><button type="submit" class="primary" id="nfSave">
+        Save and reboot
+      </button>
+    </div>
+  </form>
+</section>

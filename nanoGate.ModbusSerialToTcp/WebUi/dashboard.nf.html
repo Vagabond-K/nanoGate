@@ -1,0 +1,70 @@
+  <!-- 대시보드 뷰: 실시간 KPI와 트래픽 지표 모음입니다. -->
+      <section id="v-dashboard">
+        <div class="head">
+          <div>
+            <h1>Modbus Serial <-> TCP gateway</h1>
+            <p class="sub">
+              Relays Modbus TCP requests as-is to the serial slaves.
+              <span id="dAge"></span>
+            </p>
+          </div>
+          <button id="dReset">Reset statistics</button>
+        </div>
+        <div class="alert" id="dAlert" hidden></div>
+        <div class="flow" id="flow">
+          <div class="node">
+            <small>Slaves</small><b id="fUnit">-</b><span id="fUnitSub">-</span>
+          </div>
+          <div class="link"></div>
+          <div class="node">
+            <small>Serial bus</small><b id="fSer">-</b
+            ><span id="fSerSub">-</span>
+          </div>
+          <div class="link"></div>
+          <div class="node gw">
+            <small>nanoGate</small><b id="fGw">-</b><span id="fGwSub">-</span>
+          </div>
+          <div class="link"></div>
+          <div class="node">
+            <small>Host clients</small><b id="fTcp">Modbus TCP</b
+            ><span>up to 4 concurrent connections</span>
+          </div>
+        </div>
+        <div class="kpis">
+          <div class="card kpi">
+            <div class="l">Success rate</div>
+            <div class="v" id="kRate">-</div>
+            <div class="track"><i id="kBar"></i></div>
+          </div>
+          <div class="card kpi">
+            <div class="l">No response</div>
+            <div class="v" id="k-timeouts">0</div>
+          </div>
+          <div class="card kpi">
+            <div class="l">Frame errors</div>
+            <div class="v" id="k-frameErrors">0</div>
+          </div>
+          <div class="card kpi">
+            <div class="l">Device exception responses</div>
+            <div class="v" id="k-deviceExceptions">0</div>
+          </div>
+          <div class="card kpi">
+            <div class="l">Active TCP connections</div>
+            <div class="v" id="k-tcpConnections">0</div>
+          </div>
+        </div>
+        <div class="cumbar">
+          Total - requests <b id="k-requests">0</b>time(s)
+        </div>
+        <p class="hint" id="modeNote"></p>
+        <div class="grid">
+          <div class="card">
+            <h2>Device status</h2>
+            <dl id="dState"></dl>
+          </div>
+          <div class="card">
+            <h2>Recent errors</h2>
+            <div id="dErr" class="muted">No errors recorded.</div>
+          </div>
+        </div>
+      </section>

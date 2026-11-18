@@ -1,0 +1,282 @@
+@route:/
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>nanoGate management</title>
+    <style>
+      /* 공용 스타일은 nanoGate.Core 셸(shell.nf.css)로 옮겼습니다. */
+      #fsRules{margin-top:14px}
+      #rTable td{white-space:nowrap}
+      #rTable{table-layout:fixed}
+      #rTable th:first-child,#rTable td:first-child{width:34px;padding:9px 2px 9px 10px;text-align:center}
+      #rTable th:nth-child(3),#rTable td:nth-child(3){width:96px}
+      #rTable th:nth-child(4),#rTable td:nth-child(4){width:148px}
+      /* 캐시 표의 규칙 번호: 규칙 표의 # 컬럼과 같은 폭·색상 */
+      #cTable th:first-child,#cTable td:first-child{width:44px;min-width:0;text-align:center;color:var(--mu)}
+    </style>
+<nf-style/>
+  </head>
+  <body>
+    <shell />
+    <main>
+      <dashboard />
+      <settings />
+      <rules />
+      <points />
+      <cache />
+      <network />
+      <system />
+    </main>
+    <pointspaces />
+    <pointdlg />
+    <ask />
+    <overlay />
+    <static />
+    <div id="toasts"></div>
+<nf-core/>
+    <script>
+      "use strict";
+      // 셸 공용 대화창 문구를 제품용 키로 덮어씁니다.
+      // CFG는 공용 셸 블록(shell.nf.js)에서 선언되므로 블록 순서에 상관없이
+      // 모든 스크립트 실행이 끝난 뒤(DOMContentLoaded) 대입해야 합니다.
+      document.addEventListener("DOMContentLoaded", function () {
+        CFG.saveText = uiText("gate.dnp.saveText");
+        CFG.resetText = uiText("gate.dnp.resetStatText");
+      });
+      function profileRender(s) {
+        const setup = s.mode === "setup",
+          ok = s.gatewayReady;
+        $("flow").className = "flow " + (ok ? "ok" : setup ? "" : "bad");
+        $("fSer").textContent = s.protocol + " " + s.baudRate;
+        $("fSerSub").textContent = frame(s);
+        $("fGw").textContent = s.ip;
+        $("fGwSub").textContent = setup
+          ? uiText("gate.ui.setupMode")
+          : ok
+            ? uiText("gate.dnp.polling", { n: s.pointCount })
+            : uiText("gate.dnp.pollStop");
+        $("fDnp3").textContent = "TCP:" + s.dnp3Port;
+        $("fDnp3Sub").textContent = uiText("gate.dnp.outMst", {
+          a: s.localAddress,
+          b: s.masterAddress,
+        });
+        const alerts = [];
+        if (!ok)
+          alerts.push(
+            setup
+              ? s.gatewayError
+              : uiText("gate.ui.gwStartFail", {
+                  m: s.gatewayError || uiText("gate.ui.unknown"),
+                }),
+          );
+        if (s.settingsError)
+          alerts.push(uiText("gate.ui.defaultsErr", { m: s.settingsError }));
+        if (s.skippedPoints > 0)
+          alerts.push(
+            uiText("gate.dnp.skipped", {
+              n: s.skippedPoints,
+              note: s.skipNote || "",
+            }),
+          );
+        $("dAlert").hidden = !alerts.length;
+        $("dAlert").textContent = alerts.join("\n");
+        const fail =
+          (s.timeouts || 0) + (s.frameErrors || 0) + (s.deviceExceptions || 0);
+        const rate = s.requests
+          ? ((s.requests - fail) / s.requests) * 100
+          : null;
+        $("kRate").textContent =
+          rate == null ? "-" : (rate === 100 ? "100" : rate.toFixed(1)) + "%";
+        $("kBar").style.width = (rate || 0) + "%";
+        $("kBar").className =
+          rate == null ? "" : rate >= 99 ? "ok" : rate >= 90 ? "warn" : "bad";
+        for (const k of [
+          "polls",
+          "requests",
+          "timeouts",
+          "frameErrors",
+          "dnp3Connections",
+        ])
+          $("k-" + k).textContent = num(s[k]);
+        $("dErr").textContent = s.lastError || uiText("gate.iot.noErrors");
+        $("dErr").className = s.lastError ? "mono" : "muted";
+        $("portHint").textContent = uiText("gate.dnp.portTaken", { p: mgmt });
+        if (s.allowedPins !== pinsText) setPins(s.allowedPins);
+        if (!base || !profileDirty()) fillForm(s);
+      }
+      function profileTick(up) {
+        fillDl("dState", [
+          [uiText("gate.lbl.uptime"), dur(up)],
+          [uiText("gate.lbl.freeMem"), kb(st.freeMemory)],
+          [
+            uiText("gate.lbl.src"),
+            SOURCES[st.settingsSource] || st.settingsSource,
+          ],
+          [uiText("gate.lbl.board"), st.target],
+          [
+            uiText("gate.lbl.statsSince"),
+            st.statsSince
+              ? uiText("gate.ui.ago", { d: dur(up - st.statsSince) })
+              : uiText("gate.ui.bootAfter"),
+          ],
+        ]);
+        fillDl("dDnp3", [
+          [
+            uiText("gate.lbl.mapPts"),
+            uiText("gate.dnp.ptsRules", {
+              p: num(st.pointCount),
+              r: num(st.ruleCount || 0),
+              skip: st.skippedPoints
+                ? uiText("gate.dnp.skipSuffix", { n: st.skippedPoints })
+                : "",
+            }),
+          ],
+          [
+            uiText("gate.lbl.unsentEvt"),
+            st.dnp3Events == null
+              ? "-"
+              : uiText("gate.dnp.countN", { n: num(st.dnp3Events) }),
+          ],
+          [
+            uiText("gate.lbl.evtOverflow"),
+            st.dnp3Overflow ? uiText("gate.ui.yes") : uiText("gate.ui.none"),
+          ],
+          [
+            uiText("gate.lbl.devException"),
+            uiText("gate.dnp.countN", { n: num(st.deviceExceptions) }),
+          ],
+          [
+            uiText("gate.lbl.activeConn"),
+            num(st.dnp3Connections) +
+              (/C3/i.test(st.target) ? uiText("gate.dnp.oneConn") : ""),
+          ],
+        ]);
+      }
+      function checkSettings(v) {
+        const e = {};
+        if (v.protocol !== "RTU" && v.protocol !== "ASCII")
+          e.protocol = uiText("gate.iot.pickProto");
+        if (!BAUDS.includes(+v.baudRate))
+          e.baudRate = uiText("gate.iot.badBaud");
+        if (
+          v.protocol === "RTU"
+            ? v.dataBits !== "8"
+            : v.dataBits !== "7" && v.dataBits !== "8"
+        )
+          e.dataBits =
+            v.protocol === "RTU"
+              ? uiText("gate.iot.rt8bit")
+              : uiText("gate.iot.pick78");
+        if (!PARITY[v.parity]) e.parity = uiText("gate.iot.pickParity");
+        if (v.stopBits !== "1" && v.stopBits !== "2")
+          e.stopBits = uiText("gate.iot.pick12");
+        if (!isInt(v.timeout, 100, 10000))
+          e.timeout = uiText("gate.ui.rangeInt", { lo: 100, hi: 10000 });
+        if (!isInt(v.dnp3Port, 1, 65535))
+          e.dnp3Port = uiText("gate.ui.rangeInt", { lo: 1, hi: 65535 });
+        else if (+v.dnp3Port === mgmt)
+          e.dnp3Port = uiText("gate.iot.portEq", { p: mgmt });
+        if (!isInt(v.localAddress, 0, 65519))
+          e.localAddress = uiText("gate.ui.rangeInt", { lo: 0, hi: 65519 });
+        if (!isInt(v.masterAddress, 0, 65519))
+          e.masterAddress = uiText("gate.ui.rangeInt", { lo: 0, hi: 65519 });
+        else if (v.localAddress === v.masterAddress)
+          e.masterAddress = uiText("gate.dnp.addrDiff");
+        if (!isInt(v.pollInterval, 100, 60000))
+          e.pollInterval = uiText("gate.ui.rangeInt", { lo: 100, hi: 60000 });
+        if (!pins.includes(+v.txPin)) e.txPin = uiText("gate.iot.pinNa");
+        if (!pins.includes(+v.rxPin)) e.rxPin = uiText("gate.iot.pinNa");
+        else if (v.txPin === v.rxPin) e.rxPin = uiText("gate.iot.pinDiff");
+        if (v.rs485Mode === "rts") {
+          if (!pins.includes(+v.rs485DePin))
+            e.rs485DePin = uiText("gate.iot.pinNa");
+          else if (
+            +v.rs485DePin === +v.txPin ||
+            +v.rs485DePin === +v.rxPin
+          )
+            e.rs485DePin = uiText("gate.iot.pinDiff");
+        }
+        return e;
+      }
+      function syncForm() {
+        const f = $("sf").elements,
+          rtu = f.protocol.value === "RTU";
+        f.dataBits.options[0].disabled = rtu;
+        if (rtu) f.dataBits.value = "8";
+        $("dePinField").style.display =
+          f.rs485Mode.value === "rts" ? "" : "none";
+        const st8 = formState(base ? checkSettings(formValues()) : {}),
+          v = st8.v,
+          bad = st8.bad;
+        $("t-points").classList.toggle("dot", pointsDirty() || rulesDirty());
+        const p = $("preview");
+        p.hidden = !base || bad;
+        if (p.hidden) return;
+        const bits =
+            1 + +v.dataBits + (v.parity === "None" ? 0 : 1) + +v.stopBits,
+          ch = (bits * 1000) / v.baudRate;
+        const longest = (rtu ? 256 : 513) * ch;
+        let text = uiText("gate.iot.fmtBits", {
+          t: v.protocol,
+          b: num(v.baudRate),
+          f: frame(v),
+          c: bits,
+          ms: ch.toFixed(2),
+        });
+        text += uiText("gate.iot.fmtMax", { ms: Math.ceil(longest) });
+        const warn = +v.timeout < longest;
+        if (warn) text += uiText("gate.iot.pvWarn");
+        if (st && st.pointCount) {
+          const per = +v.timeout + 30;
+          text += uiText("gate.dnp.pvPoll", {
+            ms: num(st.pointCount * per),
+            cyc: v.pollInterval,
+          });
+          if (st.pointCount * per > +v.pollInterval)
+            text += uiText("gate.dnp.pvDelay");
+        }
+        p.textContent = text;
+        p.className = "preview" + (warn ? " warn" : "");
+      }
+      const profilePoint = () => [
+        "",
+        "",
+        st && st.protocol === "ASCII" ? "modbus-ascii" : "modbus-rtu",
+        "unit-1",
+        "holding-register",
+        "0",
+        "Int16",
+        "dnp3",
+        "dnp3",
+        "analog-input",
+        "0",
+        "Float32",
+        "RO",
+        "1",
+        "1",
+        "0",
+      ];
+      function profileCacheRow(p) {
+        if (!rules) return null;
+        const m = /^규칙(\d+)-(\d+)$/.exec(p.id);
+        if (!m) return [p.id, "", "", ""];
+        const r = rules[+m[1] - 1];
+        if (!r) return [m[1], "", "", ""];
+        const w = is32(r.kind) ? 2 : 1,
+          i = +m[2] || 0;
+        return [
+          m[1],
+          r.unit || "1",
+          (RSPACES.find((x) => x[0] === r.space) || ["", r.space])[1] +
+            " " +
+            ((+r.from || 0) + i * w),
+          (TONAMES[r.to] || r.to) + " " + ((+r.index || 0) + i),
+        ];
+      }
+    </script>
+<nf-script/>
+  </body>
+</html>

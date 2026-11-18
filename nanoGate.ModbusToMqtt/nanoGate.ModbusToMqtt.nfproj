@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <NanoFrameworkProjectSystemPath Condition="'$(NanoFrameworkProjectSystemPath)' == ''">$(MSBuildExtensionsPath)\nanoFramework\v1.0\</NanoFrameworkProjectSystemPath>
+  </PropertyGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
+    <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{4D8A2C1E-7B39-4F5A-9E6D-1C2B3A4F5E6D}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>nanoGate.ModbusToMqtt</RootNamespace>
+    <AssemblyName>nanoGate.ModbusToMqtt</AssemblyName>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <LangVersion>7.3</LangVersion>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <PackagesPath>$(MSBuildThisFileDirectory)..\packages\</PackagesPath>
+    <DefineConstants Condition="'$(SerialProtocol)' == 'Ascii'">$(DefineConstants);MODBUS_ASCII</DefineConstants>
+    <WebUiId>modbus-to-mqtt</WebUiId>
+  </PropertyGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
+  <ItemGroup>
+    <ProjectReference Include="..\nanoGate.Core\nanoGate.Core.nfproj">
+      <Name>nanoGate.Core</Name>
+      <Project>{5B1E9D24-3F67-4A8C-9D0B-64C8E217F3A9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\nanoGate.Points\nanoGate.Points.nfproj">
+      <Name>nanoGate.Points</Name>
+      <Project>{7C3F2A18-9B4D-4E5F-8A6C-2D9E1F4B7C83}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="ModbusToMqttProfile.cs" />
+    <Compile Include="GatewaySettings.cs" />
+    <Compile Include="GatewayStatistics.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WebUi\**\*.nf.html" />
+    <None Include="WebUi\**\*.nf.js" />
+    <None Include="WebUi\**\*.nf.css" />
+    <None Include="WebUi\*.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <HintPath>$(PackagesPath)nanoFramework.CoreLibrary.1.17.11\lib\mscorlib.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="nanoFramework.Hardware.Esp32">
+      <HintPath>$(PackagesPath)nanoFramework.Hardware.Esp32.1.6.42\lib\nanoFramework.Hardware.Esp32.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Runtime.Native">
+      <HintPath>$(PackagesPath)nanoFramework.Runtime.Native.1.7.11\lib\nanoFramework.Runtime.Native.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.ResourceManager">
+      <HintPath>$(PackagesPath)nanoFramework.ResourceManager.1.2.32\lib\nanoFramework.ResourceManager.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="nanoFramework.Runtime.Events">
+      <HintPath>$(PackagesPath)nanoFramework.Runtime.Events.1.11.39\lib\nanoFramework.Runtime.Events.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="System.Device.Gpio">
+      <HintPath>$(PackagesPath)nanoFramework.System.Device.Gpio.1.1.64\lib\System.Device.Gpio.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem">
+      <HintPath>$(PackagesPath)nanoFramework.System.IO.FileSystem.1.1.96\lib\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Ports">
+      <HintPath>$(PackagesPath)nanoFramework.System.IO.Ports.1.1.142\lib\System.IO.Ports.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Streams">
+      <HintPath>$(PackagesPath)nanoFramework.System.IO.Streams.1.1.96\lib\System.IO.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net">
+      <HintPath>$(PackagesPath)nanoFramework.System.Net.1.11.66\lib\System.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>$(PackagesPath)nanoFramework.System.Threading.1.1.52\lib\System.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.System.Text">
+      <HintPath>$(PackagesPath)nanoFramework.System.Text.1.3.42\lib\nanoFramework.System.Text.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>$(PackagesPath)nanoFramework.System.Net.Http.Server.1.5.214\lib\System.Net.Http.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="nanoFramework.WebServer">
+      <HintPath>$(PackagesPath)nanoFramework.WebServer.1.2.162\lib\nanoFramework.WebServer.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="System.Collections">
+      <HintPath>$(PackagesPath)nanoFramework.System.Collections.1.5.75\lib\nanoFramework.System.Collections.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="VagabondK.nF.Modbus">
+      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.0.1.0-preview.7\lib\VagabondK.nF.Modbus.dll</HintPath>
+    </Reference>
+    <Reference Include="VagabondK.nF.Modbus.Client">
+      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.Client.0.1.0-preview.7\lib\VagabondK.nF.Modbus.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="VagabondK.nF.Modbus.RTU">
+      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.RTU.0.1.0-preview.7\lib\VagabondK.nF.Modbus.RTU.dll</HintPath>
+    </Reference>
+    <Reference Include="VagabondK.nF.Modbus.ASCII">
+      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.ASCII.0.1.0-preview.7\lib\VagabondK.nF.Modbus.ASCII.dll</HintPath>
+    </Reference>
+    <Reference Include="VagabondK.nF.Modbus.Serial">
+      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.Serial.0.1.0-preview.7\lib\VagabondK.nF.Modbus.Serial.dll</HintPath>
+    </Reference>
+    <Reference Include="VagabondK.nF.MQTT">
+      <HintPath>$(PackagesPath)VagabondK.nF.MQTT.0.1.0-preview.7\lib\VagabondK.nF.MQTT.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="nanoFramework.System.Security.Cryptography">
+      <HintPath>$(PackagesPath)nanoFramework.System.Security.Cryptography.1.0.43\lib\nanoFramework.System.Security.Cryptography.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="VagabondK.nF.Web">
+      <HintPath>$(PackagesPath)VagabondK.nF.Web.0.1.0-preview.7\lib\VagabondK.nF.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
+  <!--
+    VagabondK.nF.WebUi 페이지 빌드: packages\VagabondK.nF.WebUi.<ver>\build\의
+    라이브러리 targets를 직접 import합니다. WebUiId(문자열은 GatewayProfile과 일치해야
+    함)는 이 파일 앞 PropertyGroup에서 개별 설정합니다. 패키지가 없으면
+    WebUiPackageCheck 대상이 복원을 요구하며 실패합니다.
+  -->
+  <PropertyGroup>
+    <_WuiPkgs>$([MSBuild]::NormalizeDirectory('$(MSBuildProjectDirectory)', '..', 'packages'))</_WuiPkgs>
+    <_WuiPkgDirs Condition="Exists('$(_WuiPkgs)')">$([System.IO.Directory]::GetDirectories($(_WuiPkgs), 'VagabondK.nF.WebUi.*'))</_WuiPkgDirs>
+    <VagabondKWebUiTargets Condition="'$(VagabondKWebUiPackageDir)' == '' and '$(_WuiPkgDirs)' != '' and !$(_WuiPkgDirs.Contains(';'))">$([MSBuild]::NormalizePath($(_WuiPkgDirs), 'build', 'VagabondK.nF.WebUi.targets'))</VagabondKWebUiTargets>
+    <VagabondKWebUiTargets Condition="'$(VagabondKWebUiPackageDir)' != ''">$([MSBuild]::NormalizePath('$(VagabondKWebUiPackageDir)', 'build', 'VagabondK.nF.WebUi.targets'))</VagabondKWebUiTargets>
+    <WebUiNamespace>nanoGate.Core</WebUiNamespace>
+    <WebUiClassName>WebPage</WebUiClassName>
+    <!-- 페이지 루트: 프로젝트 WebUi → Core 공유 조각(프로젝트가 우선, 섀도잉).
+         루트 페이지는 WebUi\index.nf.html 첫 줄의 @route 마커가 선언합니다. -->
+    <WebUiComponents>$(MSBuildProjectDirectory)\WebUi;$([MSBuild]::NormalizePath('$(MSBuildProjectDirectory)', '..', 'nanoGate.Core', 'WebUi'))</WebUiComponents>
+    <WebUiBrand>nanoGate</WebUiBrand>
+    <WebUiLinkCss>true</WebUiLinkCss>
+  </PropertyGroup>
+  <Target Name="WebUiPackageCheck">
+    <Error Condition="$(_WuiPkgDirs.Contains(';'))" Text="packages\ 에 여러 버전의 VagabondK.nF.WebUi가 설치되어 있습니다. 최신 하나만 남기거나 VagabondKWebUiPackageDir로 직접 지정하십시오." />
+    <Error Condition="'$(VagabondKWebUiTargets)' == '' or !Exists('$(VagabondKWebUiTargets)')" Text="VagabondK.nF.WebUi NuGet 패키지가 packages\ 에서 발견되지 않습니다. nuget restore nanoGate.sln (또는 VS에서 솔루션 복원)을 실행하십시오." />
+  </Target>
+  <PropertyGroup>
+    <BuildDependsOn>WebUiPackageCheck;$(BuildDependsOn)</BuildDependsOn>
+  </PropertyGroup>
+  <Import Project="$(VagabondKWebUiTargets)" Condition="'$(VagabondKWebUiTargets)' != '' and Exists('$(VagabondKWebUiTargets)')" />
+</Project>

@@ -1,0 +1,68 @@
+  <!-- 대시보드 뷰: KPI·트래픽 지표와 MQTT 링크 상태입니다. -->
+      <section id="v-dashboard">
+        <div class="head">
+          <div>
+            <h1>Modbus -> MQTT converter</h1>
+            <p class="sub">
+              Polls serial Modbus devices and publishes them to an MQTT broker.
+              <span id="dAge"></span>
+            </p>
+          </div>
+          <button id="dReset">Reset statistics</button>
+        </div>
+        <div class="alert" id="dAlert" hidden></div>
+        <div class="flow" id="flow">
+          <div class="node">
+            <small>Slaves</small><b id="fSer">Modbus</b
+            ><span id="fSerSub">-</span>
+          </div>
+          <div class="link"></div>
+          <div class="node gw">
+            <small>nanoGate</small><b id="fGw">-</b><span id="fGwSub">-</span>
+          </div>
+          <div class="link"></div>
+          <div class="node">
+            <small>MQTT broker</small><b id="fMqtt">MQTT</b
+            ><span id="fMqttSub">-</span>
+          </div>
+        </div>
+        <div class="kpis">
+          <div class="card kpi">
+            <div class="l">Success rate</div>
+            <div class="v" id="kRate">-</div>
+            <div class="track"><i id="kBar"></i></div>
+          </div>
+          <div class="card kpi">
+            <div class="l">No response</div>
+            <div class="v" id="k-timeouts">0</div>
+          </div>
+          <div class="card kpi">
+            <div class="l">Frame errors</div>
+            <div class="v" id="k-frameErrors">0</div>
+          </div>
+          <div class="card kpi">
+            <div class="l">MQTT publishing</div>
+            <div class="v" id="k-mqttPublishes">0</div>
+          </div>
+        </div>
+        <div class="cumbar">
+          Total - polls <b id="k-polls">0</b>time(s) - point reads
+          <b id="k-requests">0</b>time(s)
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h2>Device status</h2>
+            <dl id="dState"></dl>
+          </div>
+          <div class="card">
+            <h2>MQTT broker</h2>
+            <dl id="dMqtt"></dl>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h2>Recent errors</h2>
+            <div id="dErr" class="muted">No errors recorded.</div>
+          </div>
+        </div>
+      </section>

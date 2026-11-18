@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Base-language (en) dictionary source. Named entries = uiText fallbacks; static.NNN = static-region originals (comment shows the text). Build-tool file only - never embedded. -->
+    <data name="gate.mqt.batch" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="gate.mqt.batchJsonTpl" xml:space="preserve">
+    <value>Batch is available only with JSON or template format.</value>
+  </data>
+  <data name="gate.mqt.checkBatch" xml:space="preserve">
+    <value>Check the batch value.</value>
+  </data>
+  <data name="gate.mqt.connected" xml:space="preserve">
+    <value>Connected</value>
+  </data>
+  <data name="gate.mqt.disconnected" xml:space="preserve">
+    <value>Disconnected</value>
+  </data>
+  <data name="gate.mqt.enterBatchTpl" xml:space="preserve">
+    <value>Enter the batch template.</value>
+  </data>
+  <data name="gate.mqt.enterTpl" xml:space="preserve">
+    <value>Enter the template.</value>
+  </data>
+  <data name="gate.mqt.fTpl" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="gate.mqt.hostForm" xml:space="preserve">
+    <value>Enter an IP or host name (letters, digits, . and - up to 63 chars).</value>
+  </data>
+  <data name="gate.mqt.idForm" xml:space="preserve">
+    <value>Use letters, digits and - _ . only, up to 64 chars.</value>
+  </data>
+  <data name="gate.mqt.mChange" xml:space="preserve">
+    <value>On change</value>
+  </data>
+  <data name="gate.mqt.mInterval" xml:space="preserve">
+    <value>Periodic</value>
+  </data>
+  <data name="gate.mqt.nCount" xml:space="preserve">
+    <value>items</value>
+  </data>
+  <data name="gate.mqt.needPlaceholder" xml:space="preserve">
+    <value>Include at least one placeholder such as {id} {v}.</value>
+  </data>
+  <data name="gate.mqt.needPoints" xml:space="preserve">
+    <value>It must include the {points} placeholder.</value>
+  </data>
+  <data name="gate.mqt.pickFormat" xml:space="preserve">
+    <value>Select a format.</value>
+  </data>
+  <data name="gate.mqt.pickJoin" xml:space="preserve">
+    <value>Select a separator.</value>
+  </data>
+  <data name="gate.mqt.pickMode" xml:space="preserve">
+    <value>Select a publish mode.</value>
+  </data>
+  <data name="gate.mqt.pickQos" xml:space="preserve">
+    <value>Select a QoS.</value>
+  </data>
+  <data name="gate.mqt.pointIdPh" xml:space="preserve">
+    <value>&lt;point ID&gt;</value>
+  </data>
+  <data name="gate.mqt.portTaken" xml:space="preserve">
+    <value>The default port is 1883. Port {p} used by the management page cannot be used.</value>
+  </data>
+  <data name="gate.mqt.prefixForm" xml:space="preserve">
+    <value>Use letters, digits and - _ . / : up to 64 chars. It cannot start or end with / or contain //.</value>
+  </data>
+  <data name="gate.mqt.pubStop" xml:space="preserve">
+    <value>Stop publishing</value>
+  </data>
+  <data name="gate.mqt.pvPub" xml:space="preserve">
+    <value> - publish: {topic} - QoS {q} - {mode}</value>
+  </data>
+  <data name="gate.mqt.rcReconnect" xml:space="preserve">
+    <value>Disconnected - reconnecting</value>
+  </data>
+  <data name="gate.mqt.resetStatText" xml:space="preserve">
+    <value>Clears the polling, read, error and publish counters and the recent error log. The MQTT connection is kept.</value>
+  </data>
+  <data name="gate.mqt.saveText" xml:space="preserve">
+    <value>Saving reboots the device; Modbus polling and MQTT publishing pause for about 20 seconds.</value>
+  </data>
+  <data name="gate.mqt.skipSuffix" xml:space="preserve">
+    <value> (skipped {n})</value>
+  </data>
+  <data name="gate.mqt.fPlain" xml:space="preserve">
+    <value>Plain</value>
+  </data>
+  <data name="gate.mqt.fBin" xml:space="preserve">
+    <value>Binary</value>
+  </data>
+  <data name="gate.mqt.pvPoll" xml:space="preserve">
+    <value> · est. poll cycle ≈ {ms} ms (every {cyc} ms)</value>
+  </data>
+  <data name="gate.mqt.batchTag" xml:space="preserve">
+    <value> (batch)</value>
+  </data>
+  <data name="gate.mqt.batchSuffix" xml:space="preserve">
+    <value> · batch</value>
+  </data>
+  <data name="gate.mqt.skipped" xml:space="preserve">
+    <value>Point {n} point(s) are unsupported in this profile and were skipped. {note}</value>
+  </data>
+  <data name="gate.mqt.polled" xml:space="preserve">
+    <value>{n} points polled</value>
+  </data>
+  <data name="gate.mqt.max64" xml:space="preserve">
+    <value>Must be 64 characters or fewer.</value>
+  </data>
+  <data name="gate.mqt.max200" xml:space="preserve">
+    <value>Must be 200 characters or fewer.</value>
+  </data>
+  <data name="gate.dnp.pollStop" xml:space="preserve">
+      <value>Stop polling</value>
+    </data>
+  <data name="gate.dnp.pvDelay" xml:space="preserve">
+      <value> - the poll interval is shorter than the total read time; delays may accumulate each cycle.</value>
+    </data></root>

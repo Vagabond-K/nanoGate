@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.0.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "nanoGate.ModbusSerialToTcp", "nanoGate.ModbusSerialToTcp\nanoGate.ModbusSerialToTcp.nfproj", "{44B1E26F-9550-4DA8-BC4E-036EEA6F12A1}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "nanoGate.ModbusToDnp3", "nanoGate.ModbusToDnp3\nanoGate.ModbusToDnp3.nfproj", "{A7E24B1C-6D3F-4A0B-9C51-2E8B41F7D903}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "nanoGate.ModbusToMqtt", "nanoGate.ModbusToMqtt\nanoGate.ModbusToMqtt.nfproj", "{B9C4D25E-8A17-4F3D-B06C-5D92E3A81F46}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "nanoGate.Core", "nanoGate.Core\nanoGate.Core.nfproj", "{5B1E9D24-3F67-4A8C-9D0B-64C8E217F3A9}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "nanoGate.Points", "nanoGate.Points\nanoGate.Points.nfproj", "{7C3F2A18-9B4D-4E5F-8A6C-2D9E1F4B7C83}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AnyCPU = Debug|AnyCPU
+		Release|AnyCPU = Release|AnyCPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44B1E26F-9550-4DA8-BC4E-036EEA6F12A1}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{44B1E26F-9550-4DA8-BC4E-036EEA6F12A1}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{44B1E26F-9550-4DA8-BC4E-036EEA6F12A1}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{44B1E26F-9550-4DA8-BC4E-036EEA6F12A1}.Release|AnyCPU.Build.0 = Release|Any CPU
+		{A7E24B1C-6D3F-4A0B-9C51-2E8B41F7D903}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{A7E24B1C-6D3F-4A0B-9C51-2E8B41F7D903}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{A7E24B1C-6D3F-4A0B-9C51-2E8B41F7D903}.Debug|AnyCPU.Deploy.0 = Debug|Any CPU
+		{A7E24B1C-6D3F-4A0B-9C51-2E8B41F7D903}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{A7E24B1C-6D3F-4A0B-9C51-2E8B41F7D903}.Release|AnyCPU.Build.0 = Release|Any CPU
+		{B9C4D25E-8A17-4F3D-B06C-5D92E3A81F46}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{B9C4D25E-8A17-4F3D-B06C-5D92E3A81F46}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{B9C4D25E-8A17-4F3D-B06C-5D92E3A81F46}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{B9C4D25E-8A17-4F3D-B06C-5D92E3A81F46}.Release|AnyCPU.Build.0 = Release|Any CPU
+		{5B1E9D24-3F67-4A8C-9D0B-64C8E217F3A9}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{5B1E9D24-3F67-4A8C-9D0B-64C8E217F3A9}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{5B1E9D24-3F67-4A8C-9D0B-64C8E217F3A9}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{5B1E9D24-3F67-4A8C-9D0B-64C8E217F3A9}.Release|AnyCPU.Build.0 = Release|Any CPU
+		{7C3F2A18-9B4D-4E5F-8A6C-2D9E1F4B7C83}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{7C3F2A18-9B4D-4E5F-8A6C-2D9E1F4B7C83}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{7C3F2A18-9B4D-4E5F-8A6C-2D9E1F4B7C83}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{7C3F2A18-9B4D-4E5F-8A6C-2D9E1F4B7C83}.Release|AnyCPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

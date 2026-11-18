@@ -1,0 +1,7 @@
+#pTable.no-tgt .c-arrow,
+#pTable.no-tgt .c-tgt {
+  display: none;
+}
+#pTable.no-scale .c-scale {
+  display: none;
+}

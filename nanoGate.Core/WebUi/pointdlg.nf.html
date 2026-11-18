@@ -1,0 +1,66 @@
+<datalist id="dlProto">
+  <option>modbus-rtu</option>
+  <option>modbus-ascii</option>
+  <option>modbus-tcp</option>
+  <!-- 대상 프로토콜 제안은 각 게이트웨이의 pointspaces.nf.js가 추가합니다. -->
+</datalist>
+<dialog id="pd" class="wide">
+  <form id="pf" class="dlg" novalidate>
+    <h3 id="pdTitle">New point</h3>
+    <fieldset>
+      <legend>Basic info</legend>
+      <div class="g3">
+        <label class="field"
+          ><span>Point ID</span
+          ><input
+            name="id"
+            data-max="id"
+            autocomplete="off"
+            placeholder="temp-1"
+        /></label>
+        <label class="field"
+          ><span>Display name</span
+          ><input
+            name="name"
+            data-max="name"
+            autocomplete="off"
+            placeholder="Exhaust temperature"
+        /></label>
+        <label class="field"
+          ><span>Access mode</span
+          ><select name="acc">
+            <option value="RO">Read</option>
+            <option value="WO">Write</option>
+            <option value="RW">Read/Write</option>
+          </select></label
+        >
+      </div>
+    </fieldset>
+    <div class="g2" id="pdAddr">
+      <fieldset id="pdSrc"><legend>Source (slaves)</legend></fieldset>
+      <fieldset id="pdTgt"><legend>Destination (host system)</legend></fieldset>
+    </div>
+    <fieldset id="pdScale">
+      <legend>Value conversion (scale)</legend>
+      <div class="g3">
+        <label class="field"
+          ><span>Numerator</span>
+          <wui-number name="num" min="-2147483648" max="2147483647" placeholder="1"></wui-number>
+        </label>
+        <label class="field"
+          ><span>Denominator</span>
+          <wui-number name="den" min="-2147483648" max="2147483647" placeholder="1"></wui-number>
+        </label>
+        <label class="field"
+          ><span>Offset</span>
+          <wui-number name="off" min="-2147483648" max="2147483647" placeholder="0"></wui-number>
+        </label>
+      </div>
+      <p class="formula" id="pdFormula"></p>
+    </fieldset>
+    <div class="actions">
+      <button type="button" id="pdCancel">Cancel</button
+      ><button type="submit" class="primary">Apply</button>
+    </div>
+  </form>
+</dialog>

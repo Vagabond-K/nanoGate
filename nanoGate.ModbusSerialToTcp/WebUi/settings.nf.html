@@ -1,0 +1,165 @@
+  <!-- 설정 뷰: 시리얼·게이트웨이 설정 폼입니다. -->
+      <section id="v-settings" hidden>
+        <div class="head">
+          <div>
+            <h1>Communication settings</h1>
+            <p class="sub">
+              Saving reboots the device, which starts with the new settings.
+            </p>
+          </div>
+        </div>
+        <form id="sf" novalidate>
+          <div class="cols">
+            <fieldset>
+              <legend>Serial communication</legend>
+              <div class="field">
+                <span>Protocol</span>
+                <div class="seg">
+                  <label
+                    ><input
+                      type="radio"
+                      name="protocol"
+                      data-label="Protocol"
+                      value="RTU"
+                    /><span>RTU</span></label
+                  ><label
+                    ><input
+                      type="radio"
+                      name="protocol"
+                      data-label="Protocol"
+                      value="ASCII"
+                    /><span>ASCII</span></label
+                  >
+                </div>
+              </div>
+              <label class="field"
+                ><span>Baud rate (bps)</span
+                ><select name="baudRate" data-label="Baud rate"></select
+              ></label>
+              <div class="g3">
+                <label class="field"
+                  ><span>Data bits</span
+                  ><select name="dataBits" data-label="Data bits">
+                    <option>7</option>
+                    <option>8</option>
+                  </select></label
+                >
+                <label class="field"
+                  ><span>Parity</span
+                  ><select name="parity" data-label="Parity">
+                    <option value="None">None</option>
+                    <option value="Even">Even</option>
+                    <option value="Odd">Odd</option>
+                  </select></label
+                >
+                <label class="field"
+                  ><span>Stop bits</span
+                  ><select name="stopBits" data-label="Stop bits">
+                    <option>1</option>
+                    <option>2</option>
+                  </select></label
+                >
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Slaves</legend>
+              <label class="field"
+                ><span>Response timeout (ms)</span>
+                <number
+                  name="timeout"
+                  data-label="Response timeout"
+                  data-fmt="ms"
+                  min="100"
+                  max="10000"
+                  step="100"
+                />
+                <small>100~10000 ms</small></label
+              >
+            </fieldset>
+            <fieldset>
+              <legend>Modbus TCP</legend>
+              <label class="field"
+                ><span>Listening port</span>
+                <number
+                  name="tcpPort"
+                  data-label="TCP listening port"
+                  min="1"
+                  max="65535"
+                />
+                <small id="portHint">The standard port is 502.</small></label
+              >
+              <p class="hint">
+                Up to 4 clients can connect at once, and serial bus requests are
+                processed in order.
+              </p>
+            </fieldset>
+            <fieldset>
+              <legend>UART pins</legend>
+              <div class="g2">
+                <label class="field"
+                  ><span>TX (GPIO)</span
+                  ><select
+                    name="txPin"
+                    data-label="TX pin"
+                    data-fmt="pin"
+                  ></select
+                ></label>
+                <label class="field"
+                  ><span>RX (GPIO)</span
+                  ><select
+                    name="rxPin"
+                    data-label="RX pin"
+                    data-fmt="pin"
+                  ></select
+                ></label>
+              </div>
+              <div class="field">
+                <span>RS485 direction control</span>
+                <div class="seg">
+                  <label
+                    ><input
+                      type="radio"
+                      name="rs485Mode"
+                      data-label="RS485 direction control"
+                      value="auto"
+                    /><span>Auto transceiver</span></label
+                  ><label
+                    ><input
+                      type="radio"
+                      name="rs485Mode"
+                      data-label="RS485 direction control"
+                      value="rts"
+                    /><span>Native RTS</span></label
+                  >
+                </div>
+                <small
+                  >Auto transceiver: the module controls DE/RE by itself and no
+                  pin is used. Native RTS: the MCU drives the DE//RE pins of a
+                  MAX485/MAX3485-style chip.</small
+                >
+              </div>
+              <label class="field" id="dePinField"
+                ><span>DE//RE (GPIO)</span
+                ><select
+                  name="rs485DePin"
+                  data-label="DE//RE pin"
+                  data-fmt="pin"
+                ></select
+                ><small
+                  >The pin wired to both DE and /RE of the transceiver. It must
+                  differ from TX/RX.</small
+                ></label
+              >
+              <p class="hint" id="pinHint"></p>
+            </fieldset>
+          </div>
+          <div class="preview" id="preview" hidden></div>
+          <div class="actions">
+            <span class="grow muted" id="sfState"></span
+            ><button type="button" id="sfUndo">Discard changes</button
+            ><button type="submit" class="primary" id="sfSave">
+              Save and reboot
+            </button>
+          </div>
+        </form>
+      </section>

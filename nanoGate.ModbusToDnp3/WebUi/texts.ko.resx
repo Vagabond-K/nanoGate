@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Korean translation source. Pairs with texts.resx by name. Build-tool file only - never embedded. -->
+    <data name="gate.dnp.added" xml:space="preserve">
+    <value>규칙을 추가했습니다. 저장을 누르세요.</value>
+  </data>
+  <data name="gate.dnp.addrDiff" xml:space="preserve">
+    <value>아웃스테이션 주소와 다른 주소를 입력하세요.</value>
+  </data>
+  <data name="gate.dnp.badFields" xml:space="preserve">
+    <value>{n}번째 줄의 필드 수가 올바르지 않습니다.</value>
+  </data>
+  <data name="gate.dnp.badLine" xml:space="preserve">
+    <value>{n}번째 줄이 규칙 형식이 아닙니다.</value>
+  </data>
+  <data name="gate.dnp.badVer" xml:space="preserve">
+    <value>규칙 파일 형식 버전이 올바르지 않습니다.</value>
+  </data>
+  <data name="gate.dnp.clearText" xml:space="preserve">
+    <value>저장하면 규칙이 없는 상태로 되돌아갑니다. 반영은 재부팅 후 됩니다.</value>
+  </data>
+  <data name="gate.dnp.clearTtl" xml:space="preserve">
+    <value>규칙을 모두 삭제할까요?</value>
+  </data>
+  <data name="gate.dnp.cleared" xml:space="preserve">
+    <value>규칙을 모두 삭제했습니다. 재부팅 후 반영됩니다.</value>
+  </data>
+  <data name="gate.dnp.countN" xml:space="preserve">
+    <value>{n}건</value>
+  </data>
+  <data name="gate.dnp.crAbs" xml:space="preserve">
+    <value>절대값은 1000000 이하입니다.</value>
+  </data>
+  <data name="gate.dnp.crBitTo" xml:space="preserve">
+    <value>Coil/Discrete Input은 Binary 계열에만 매핑할 수 있습니다.</value>
+  </data>
+  <data name="gate.dnp.crCnt" xml:space="preserve">
+    <value>Counter는 Int32/UInt32 형식만 가능합니다.</value>
+  </data>
+  <data name="gate.dnp.crDen" xml:space="preserve">
+    <value>분모는 0이 될 수 없습니다.</value>
+  </data>
+  <data name="gate.dnp.crFrom" xml:space="preserve">
+    <value>시작 주소 + 개수(×{w} Register)가 65536을 넘습니다.</value>
+  </data>
+  <data name="gate.dnp.crIndex" xml:space="preserve">
+    <value>시작 인덱스 + 개수가 65536을 넘습니다.</value>
+  </data>
+  <data name="gate.dnp.crInt" xml:space="preserve">
+    <value>정수(-1000000~1000000)로 입력하세요.</value>
+  </data>
+  <data name="gate.dnp.crRegTo" xml:space="preserve">
+    <value>Register 영역을 Binary 계열에 매핑하려면 Coil/Discrete Input을 사용하세요.</value>
+  </data>
+  <data name="gate.dnp.crUnit" xml:space="preserve">
+    <value>Unit ID는 1~247 사이의 정수여야 합니다.</value>
+  </data>
+  <data name="gate.dnp.formula" xml:space="preserve">
+    <value>표시값 = 원시값 × {n} ÷ {d} + {o} (쓰기 시 역변환 적용)</value>
+  </data>
+  <data name="gate.dnp.loadFail" xml:space="preserve">
+    <value>규칙을 불러오지 못했습니다: {m}</value>
+  </data>
+  <data name="gate.dnp.maxRules" xml:space="preserve">
+    <value>규칙은 최대 64건입니다.</value>
+  </data>
+  <data name="gate.dnp.modified" xml:space="preserve">
+    <value>규칙을 수정했습니다. 저장을 누르세요.</value>
+  </data>
+  <data name="gate.dnp.oneConn" xml:space="preserve">
+    <value> · 한 번에 1개</value>
+  </data>
+  <data name="gate.dnp.outMst" xml:space="preserve">
+    <value>아웃스테이션 {a} / 마스터 {b}</value>
+  </data>
+  <data name="gate.dnp.pollStop" xml:space="preserve">
+    <value>폴링 중지</value>
+  </data>
+  <data name="gate.dnp.polling" xml:space="preserve">
+    <value>{n}포인트 폴링 중</value>
+  </data>
+  <data name="gate.dnp.portTaken" xml:space="preserve">
+    <value>표준 포트는 20000입니다. 관리 화면이 쓰는 {p} 포트는 사용할 수 없습니다.</value>
+  </data>
+  <data name="gate.dnp.ptsRules" xml:space="preserve">
+    <value>{p}개 (규칙 {r}건){skip}</value>
+  </data>
+  <data name="gate.dnp.pvDelay" xml:space="preserve">
+    <value> — 폴링 주기가 읽기 총 시간보다 짧아 매 주기 지연이 누적될 수 있습니다.</value>
+  </data>
+  <data name="gate.dnp.pvPoll" xml:space="preserve">
+    <value> · 예상 폴링 1주기 ≈ {ms} ms (주기 {cyc} ms)</value>
+  </data>
+  <data name="gate.dnp.rdEdit" xml:space="preserve">
+    <value>규칙 {n} 편집</value>
+  </data>
+  <data name="gate.dnp.rdNew" xml:space="preserve">
+    <value>새 규칙</value>
+  </data>
+  <data name="gate.dnp.resetStatText" xml:space="preserve">
+    <value>폴링·읽기·오류 카운터와 최근 오류 기록을 지웁니다.</value>
+  </data>
+  <data name="gate.dnp.rsClean" xml:space="preserve">
+    <value>장치에 저장된 규칙과 같습니다. 반영은 재부팅 후 됩니다.</value>
+  </data>
+  <data name="gate.dnp.rsDirty" xml:space="preserve">
+    <value>저장하지 않은 규칙 변경이 있습니다. 저장 후 재부팅해야 반영됩니다.</value>
+  </data>
+  <data name="gate.dnp.rsEmpty" xml:space="preserve">
+    <value>아직 규칙이 없습니다. "규칙 추가"로 슬레이브별 범위 매핑을 만드세요.</value>
+  </data>
+  <data name="gate.dnp.rsFail" xml:space="preserve">
+    <value>규칙을 불러오지 못했습니다. 새로 고침을 누르세요.</value>
+  </data>
+  <data name="gate.dnp.rtAo" xml:space="preserve">
+    <value>Analog Output (Holding Register 제어)</value>
+  </data>
+  <data name="gate.dnp.rtBo" xml:space="preserve">
+    <value>Binary Output (Coil 제어)</value>
+  </data>
+  <data name="gate.dnp.saveText" xml:space="preserve">
+    <value>저장하면 장치가 재부팅되며 Modbus 폴링과 DNP3 응답이 20초 정도 중단됩니다.</value>
+  </data>
+  <data name="gate.dnp.saved" xml:space="preserve">
+    <value>규칙 {n}건을 저장했습니다. 재부팅 후 반영됩니다.</value>
+  </data>
+  <data name="gate.dnp.skipSuffix" xml:space="preserve">
+    <value> · 건너뜀 {n}</value>
+  </data>
+  <data name="gate.dnp.skipped" xml:space="preserve">
+    <value>포인트 {n}건이 이 프로필에서 사용할 수 없어 건너뛰었습니다. {note}</value>
+  </data>
+</root>

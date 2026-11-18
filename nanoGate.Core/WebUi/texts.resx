@@ -1,0 +1,1761 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <!-- Base-language (en) dictionary source. Named entries = uiText fallbacks; static.NNN = static-region originals (comment shows the text). Build-tool file only - never embedded. -->
+  <data name="gate.cc.count" xml:space="preserve">
+    <value>{n}</value>
+  </data>
+  <data name="gate.cc.countOf" xml:space="preserve">
+    <value>{a} / {b}</value>
+  </data>
+  <data name="gate.cc.empty" xml:space="preserve">
+    <value>No cached points.</value>
+  </data>
+  <data name="gate.cc.emptyPts" xml:space="preserve">
+    <value>No cached points. Register points in the Point mapping tab.</value>
+  </data>
+  <data name="gate.cc.id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="gate.cc.qual" xml:space="preserve">
+    <value>Quality</value>
+  </data>
+  <data name="gate.cc.readFail" xml:space="preserve">
+    <value>Failed to read the point cache: {m}</value>
+  </data>
+  <data name="gate.cc.rule" xml:space="preserve">
+    <value>Rule</value>
+  </data>
+  <data name="gate.cc.searchCols" xml:space="preserve">
+    <value>Search {h}</value>
+  </data>
+  <data name="gate.cc.searchId" xml:space="preserve">
+    <value>Search ID</value>
+  </data>
+  <data name="gate.cc.topic" xml:space="preserve">
+    <value>Topic</value>
+  </data>
+  <data name="gate.cc.val" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="gate.iot.badBaud" xml:space="preserve">
+    <value>Unsupported baud rate.</value>
+  </data>
+  <data name="gate.iot.exportText" xml:space="preserve">
+    <value>Exports or restores the communication settings as a JSON file. Wi-Fi and IP settings are not included.</value>
+  </data>
+  <data name="gate.iot.gwNotStarted" xml:space="preserve">
+    <value>Gateway did not start: {m}</value>
+  </data>
+  <data name="gate.iot.mdNote" xml:space="preserve">
+    <value>RS-485 multidrop - forwards Unit 1~247 requests to the matching device on the bus - devices seen: {u}</value>
+  </data>
+  <data name="gate.iot.miniNote" xml:space="preserve">
+    <value> On the Geekble Mini (ESP32-C3), TX 6 / RX 7 are wired to the RS-485 transceiver.</value>
+  </data>
+  <data name="gate.iot.noErrors" xml:space="preserve">
+    <value>No errors recorded.</value>
+  </data>
+  <data name="gate.iot.passAll" xml:space="preserve">
+    <value>All Units forwarded - response wait {ms} ms</value>
+  </data>
+  <data name="gate.iot.pickParity" xml:space="preserve">
+    <value>Select a parity.</value>
+  </data>
+  <data name="gate.iot.pickProto" xml:space="preserve">
+    <value>Select RTU or ASCII.</value>
+  </data>
+  <data name="gate.iot.pinDiff" xml:space="preserve">
+    <value>Select a pin different from TX.</value>
+  </data>
+  <data name="gate.iot.pinHint" xml:space="preserve">
+    <value>Usable GPIO on this board ({b}): {g}.</value>
+  </data>
+  <data name="gate.iot.pinUnavail" xml:space="preserve">
+    <value>This pin is not available on this board.</value>
+  </data>
+  <data name="gate.iot.portMgmt" xml:space="preserve">
+    <value>Cannot be the same as the management page port {p}.</value>
+  </data>
+  <data name="gate.iot.portTaken" xml:space="preserve">
+    <value>The standard port is 502. Port {p} used by the management page cannot be used.</value>
+  </data>
+  <data name="gate.iot.pvBits" xml:space="preserve">
+    <value>{b} bits per char ({ms} ms)</value>
+  </data>
+  <data name="gate.iot.pvGap" xml:space="preserve">
+    <value> - inter-frame gap {ms} ms</value>
+  </data>
+  <data name="gate.iot.pvMax" xml:space="preserve">
+    <value> - longest response reception ~ {ms} ms</value>
+  </data>
+  <data name="gate.iot.pvSep" xml:space="preserve">
+    <value> - frame delimiter: ":" to CR LF</value>
+  </data>
+  <data name="gate.iot.pvWarn" xml:space="preserve">
+    <value> - the timeout is shorter than the reception time of the longest response; long responses may be truncated.</value>
+  </data>
+  <data name="gate.iot.relaying" xml:space="preserve">
+    <value>Relaying PDUs</value>
+  </data>
+  <data name="gate.iot.relayStop" xml:space="preserve">
+    <value>Stop relaying</value>
+  </data>
+  <data name="gate.iot.resetStatText" xml:space="preserve">
+    <value>Clears the request, success and error counters, the discovered device list and the recent error log.</value>
+  </data>
+  <data name="gate.iot.resetStatTtl" xml:space="preserve">
+    <value>Reset communication statistics?</value>
+  </data>
+  <data name="gate.iot.savedReboot" xml:space="preserve">
+    <value>Settings saved. The device is rebooting.</value>
+  </data>
+  <data name="gate.iot.saveText" xml:space="preserve">
+    <value>Saving reboots the device; Modbus communication pauses for about 20 seconds.</value>
+  </data>
+  <data name="gate.iot.saveTtl" xml:space="preserve">
+    <value>Save the settings?</value>
+  </data>
+  <data name="gate.iot.settingsErrUse" xml:space="preserve">
+    <value>Using defaults due to a settings file error: {m}</value>
+  </data>
+  <data name="gate.iot.statReset" xml:space="preserve">
+    <value>Statistics reset.</value>
+  </data>
+  <data name="gate.iot.unitsSeen" xml:space="preserve">
+    <value>{n} device(s) seen</value>
+  </data>
+  <data name="gate.lbl.activeConn" xml:space="preserve">
+    <value>Active connections</value>
+  </data>
+  <data name="gate.lbl.alloc" xml:space="preserve">
+    <value>Address allocation</value>
+  </data>
+  <data name="gate.lbl.ap" xml:space="preserve">
+    <value>Setup AP</value>
+  </data>
+  <data name="gate.lbl.apPw" xml:space="preserve">
+    <value>Setup AP password</value>
+  </data>
+  <data name="gate.lbl.board" xml:space="preserve">
+    <value>Board</value>
+  </data>
+  <data name="gate.lbl.dataTopic" xml:space="preserve">
+    <value>Data topic</value>
+  </data>
+  <data name="gate.lbl.devException" xml:space="preserve">
+    <value>Device exceptions</value>
+  </data>
+  <data name="gate.lbl.deviceId" xml:space="preserve">
+    <value>Device ID</value>
+  </data>
+  <data name="gate.lbl.evtOverflow" xml:space="preserve">
+    <value>Event overflow</value>
+  </data>
+  <data name="gate.lbl.firmware" xml:space="preserve">
+    <value>Firmware</value>
+  </data>
+  <data name="gate.lbl.freeMem" xml:space="preserve">
+    <value>Free memory</value>
+  </data>
+  <data name="gate.lbl.gw" xml:space="preserve">
+    <value>Base gateway</value>
+  </data>
+  <data name="gate.lbl.ip" xml:space="preserve">
+    <value>IP address</value>
+  </data>
+  <data name="gate.lbl.mac" xml:space="preserve">
+    <value>MAC address</value>
+  </data>
+  <data name="gate.lbl.mapPts" xml:space="preserve">
+    <value>Mapped points</value>
+  </data>
+  <data name="gate.lbl.mConnect" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="gate.lbl.mgmt" xml:space="preserve">
+    <value>Management page</value>
+  </data>
+  <data name="gate.lbl.mode" xml:space="preserve">
+    <value>Operating mode</value>
+  </data>
+  <data name="gate.lbl.platform" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="gate.lbl.pubMode" xml:space="preserve">
+    <value>Publish mode</value>
+  </data>
+  <data name="gate.lbl.pubReFail" xml:space="preserve">
+    <value>Publish / reconnect / fail</value>
+  </data>
+  <data name="gate.lbl.src" xml:space="preserve">
+    <value>Settings source</value>
+  </data>
+  <data name="gate.lbl.statsSince" xml:space="preserve">
+    <value>Stats since</value>
+  </data>
+  <data name="gate.lbl.statusTopic" xml:space="preserve">
+    <value>Status topic</value>
+  </data>
+  <data name="gate.lbl.subnet" xml:space="preserve">
+    <value>Subnet mask</value>
+  </data>
+  <data name="gate.lbl.targetFw" xml:space="preserve">
+    <value>Target firmware</value>
+  </data>
+  <data name="gate.lbl.unsentEvt" xml:space="preserve">
+    <value>Unsent events</value>
+  </data>
+  <data name="gate.lbl.uptime" xml:space="preserve">
+    <value>Uptime</value>
+  </data>
+  <data name="gate.lbl.wifiPw" xml:space="preserve">
+    <value>Wi-Fi password</value>
+  </data>
+  <data name="gate.lbl.wifiSec" xml:space="preserve">
+    <value>Wi-Fi security</value>
+  </data>
+  <data name="gate.lbl.writeProc" xml:space="preserve">
+    <value>Write handling</value>
+  </data>
+  <data name="gate.net.belowAddr" xml:space="preserve">
+    <value>to the address below</value>
+  </data>
+  <data name="gate.net.changedPw" xml:space="preserve">
+    <value>{label} changed</value>
+  </data>
+  <data name="gate.net.clean" xml:space="preserve">
+    <value>Matches the settings stored on the device.</value>
+  </data>
+  <data name="gate.net.dhcpAddr" xml:space="preserve">
+    <value>to the device address confirmed on the router</value>
+  </data>
+  <data name="gate.net.dhcpNote" xml:space="preserve">
+    <value>Switching to DHCP may change the device address. Check the address on your router.</value>
+  </data>
+  <data name="gate.net.dnsBad" xml:space="preserve">
+    <value>Enter a valid DNS server address.</value>
+  </data>
+  <data name="gate.net.enterPw" xml:space="preserve">
+    <value>Enter the Wi-Fi password.</value>
+  </data>
+  <data name="gate.net.gwForm" xml:space="preserve">
+    <value>Enter it in IPv4 address format.</value>
+  </data>
+  <data name="gate.net.gwSame" xml:space="preserve">
+    <value>Enter a different host address on the same subnet.</value>
+  </data>
+  <data name="gate.net.ipForm" xml:space="preserve">
+    <value>Enter it in IPv4 format (e.g. 192.168.0.50).</value>
+  </data>
+  <data name="gate.net.joinAp" xml:space="preserve">
+    <value>Turn off the setup AP and join the "{ssid}" Wi-Fi</value>
+  </data>
+  <data name="gate.net.keepHint" xml:space="preserve">
+    <value>Leave blank to keep the saved password.</value>
+  </data>
+  <data name="gate.net.loading" xml:space="preserve">
+    <value>Loading network information...</value>
+  </data>
+  <data name="gate.net.maskForm" xml:space="preserve">
+    <value>Enter it in IPv4 format (e.g. 255.255.255.0).</value>
+  </data>
+  <data name="gate.net.maskRange" xml:space="preserve">
+    <value>It must be a contiguous mask within /1~/30.</value>
+  </data>
+  <data name="gate.net.movedNote" xml:space="preserve">
+    <value>The device address will change to {ip}. After the reboot, connect to the address below.</value>
+  </data>
+  <data name="gate.net.noCtl" xml:space="preserve">
+    <value>Control characters are not allowed.</value>
+  </data>
+  <data name="gate.net.none" xml:space="preserve">
+    <value>(none)</value>
+  </data>
+  <data name="gate.net.notHost" xml:space="preserve">
+    <value>Not a usable host address on this subnet.</value>
+  </data>
+  <data name="gate.net.openHint" xml:space="preserve">
+    <value>Open networks do not use a password.</value>
+  </data>
+  <data name="gate.net.pwLen" xml:space="preserve">
+    <value>Use 8~63 letters, digits and symbols.</value>
+  </data>
+  <data name="gate.net.pwLenHint" xml:space="preserve">
+    <value>8~63 letters, digits, symbols</value>
+  </data>
+  <data name="gate.net.savedReboot" xml:space="preserve">
+    <value>Network settings saved. The device is rebooting.</value>
+  </data>
+  <data name="gate.net.saveReboot" xml:space="preserve">
+    <value>Save and reboot</value>
+  </data>
+  <data name="gate.net.saveText" xml:space="preserve">
+    <value>Saving reboots the device and gateway communication pauses briefly.</value>
+  </data>
+  <data name="gate.net.saveTtl" xml:space="preserve">
+    <value>Save the network settings?</value>
+  </data>
+  <data name="gate.net.setupNote" xml:space="preserve">
+    <value>Connect your PC or phone to the "{ssid}" network, then open {how}</value>
+  </data>
+  <data name="gate.net.setupState" xml:space="preserve">
+    <value>Check which Wi-Fi to connect to, then save to finish the setup mode.</value>
+  </data>
+  <data name="gate.net.ssidLen" xml:space="preserve">
+    <value>Enter 1~{n} bytes (UTF-8).</value>
+  </data>
+  <data name="gate.net.wrongNote" xml:space="preserve">
+    <value>If the Wi-Fi information is wrong the device cannot connect, and it reopens the setup AP after 5 minutes.</value>
+  </data>
+  <data name="gate.ov.elapsed" xml:space="preserve">
+    <value>{n}s elapsed - it refreshes automatically when the device responds again.</value>
+  </data>
+  <data name="gate.ov.timeout" xml:space="preserve">
+    <value>The device has not responded for 3 minutes.</value>
+  </data>
+  <data name="gate.ov.verify" xml:space="preserve">
+    <value>The IP address or Wi-Fi may have changed, or the device may have failed to start with the new settings. Check the address or the USB serial log.</value>
+  </data>
+  <data name="gate.pd.accUnsup" xml:space="preserve">
+    <value>This profile does not support {m} mode.</value>
+  </data>
+  <data name="gate.pd.address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="gate.pd.applied" xml:space="preserve">
+    <value>Point {id} applied - press "Save" to write it to the device.</value>
+  </data>
+  <data name="gate.pd.badType" xml:space="preserve">
+    <value>Unsupported data type.</value>
+  </data>
+  <data name="gate.pd.byteOrder" xml:space="preserve">
+    <value>Byte order</value>
+  </data>
+  <data name="gate.pd.copy" xml:space="preserve">
+    <value>Duplicate point</value>
+  </data>
+  <data name="gate.pd.dupId" xml:space="preserve">
+    <value>This ID is already in use.</value>
+  </data>
+  <data name="gate.pd.editTtl" xml:space="preserve">
+    <value>Edit point - {id}</value>
+  </data>
+  <data name="gate.pd.etc" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="gate.pd.formula" xml:space="preserve">
+    <value>Displayed = raw x {n} / {d} + {o} (inverse applied on write)</value>
+  </data>
+  <data name="gate.pd.formulaInfo" xml:space="preserve">
+    <value>Scale is a 32-bit integer fraction with a non-zero denominator; offset is a 32-bit integer.</value>
+  </data>
+  <data name="gate.pd.maxBytes" xml:space="preserve">
+    <value>The point mapping size exceeds {n} bytes.</value>
+  </data>
+  <data name="gate.pd.maxPts" xml:space="preserve">
+    <value>Points are limited to {n}.</value>
+  </data>
+  <data name="gate.pd.nameCtl" xml:space="preserve">
+    <value>Up to {n} characters without control characters.</value>
+  </data>
+  <data name="gate.pd.new" xml:space="preserve">
+    <value>New point</value>
+  </data>
+  <data name="gate.pd.nonZero" xml:space="preserve">
+    <value>Enter a non-zero value.</value>
+  </data>
+  <data name="gate.pd.numRange" xml:space="preserve">
+    <value>Enter a number between {a} and {b}.</value>
+  </data>
+  <data name="gate.pd.pickAcc" xml:space="preserve">
+    <value>Select an access mode.</value>
+  </data>
+  <data name="gate.pd.protocol" xml:space="preserve">
+    <value>Protocol</value>
+  </data>
+  <data name="gate.pd.sameTgt" xml:space="preserve">
+    <value>Same destination address as point {id}.</value>
+  </data>
+  <data name="gate.pd.space" xml:space="preserve">
+    <value>Address space</value>
+  </data>
+  <data name="gate.pd.type" xml:space="preserve">
+    <value>Data type</value>
+  </data>
+  <data name="gate.pt.badItem" xml:space="preserve">
+    <value>Invalid mapping item format.</value>
+  </data>
+  <data name="gate.pt.badVer" xml:space="preserve">
+    <value>Invalid point mapping format version.</value>
+  </data>
+  <data name="gate.pt.clean" xml:space="preserve">
+    <value>Matches the contents stored on the device.</value>
+  </data>
+  <data name="gate.pt.del" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="gate.pt.deleted" xml:space="preserve">
+    <value>Point {id} deleted - "Undo" can restore it.</value>
+  </data>
+  <data name="gate.pt.dirty" xml:space="preserve">
+    <value>There are unsaved changes. Press "Save" to write them to the device.</value>
+  </data>
+  <data name="gate.pt.dup" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="gate.pt.edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="gate.pt.emptyNone" xml:space="preserve">
+    <value>No registered points. Add one with "New point".</value>
+  </data>
+  <data name="gate.pt.loadFail" xml:space="preserve">
+    <value>Failed to load point mappings: {m}</value>
+  </data>
+  <data name="gate.pt.loginWait" xml:space="preserve">
+    <value>It loads automatically after login.</value>
+  </data>
+  <data name="gate.pt.ro" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="gate.pt.rw" xml:space="preserve">
+    <value>Read/Write</value>
+  </data>
+  <data name="gate.pt.saved" xml:space="preserve">
+    <value>Saved {n} points.</value>
+  </data>
+  <data name="gate.pt.search" xml:space="preserve">
+    <value>Search ID/address</value>
+  </data>
+  <data name="gate.pt.searchName" xml:space="preserve">
+    <value>Search ID/name/address</value>
+  </data>
+  <data name="gate.pt.unknown" xml:space="preserve">
+    <value>There are unknown mapping items.</value>
+  </data>
+  <data name="gate.pt.wo" xml:space="preserve">
+    <value>Write</value>
+  </data>
+  <data name="gate.sys.addrItem" xml:space="preserve">
+    <value>Connect at: {url}</value>
+  </data>
+  <data name="gate.sys.apConnectNote" xml:space="preserve">
+    <value>Connect your PC or phone to Wi-Fi "{ssid}", then open the address below.</value>
+  </data>
+  <data name="gate.sys.apHint" xml:space="preserve">
+    <value>The WPA2 password of the setup-mode AP "{ssid}". Unless changed, it is nanogate.</value>
+  </data>
+  <data name="gate.sys.apOff" xml:space="preserve">
+    <value>(off)</value>
+  </data>
+  <data name="gate.sys.apOn" xml:space="preserve">
+    <value>(on)</value>
+  </data>
+  <data name="gate.sys.authFail" xml:space="preserve">
+    <value>Could not read the authentication state.</value>
+  </data>
+  <data name="gate.sys.authOff" xml:space="preserve">
+    <value>No password is set, so anyone can change this page.</value>
+  </data>
+  <data name="gate.sys.authOn" xml:space="preserve">
+    <value>Password authentication is on - sessions last 30 minutes, and API keys let automation requests through.</value>
+  </data>
+  <data name="gate.sys.badJson" xml:space="preserve">
+    <value>The JSON file could not be read.</value>
+  </data>
+  <data name="gate.sys.changeReboot" xml:space="preserve">
+    <value>Reboot after {n} communication setting change(s)</value>
+  </data>
+  <data name="gate.sys.disableBtn" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="gate.sys.disabled" xml:space="preserve">
+    <value>Password authentication disabled.</value>
+  </data>
+  <data name="gate.sys.disableFail" xml:space="preserve">
+    <value>Failed to disable: {m}</value>
+  </data>
+  <data name="gate.sys.disableQ" xml:space="preserve">
+    <value>From now on anyone can change this page without logging in. Disable it?</value>
+  </data>
+  <data name="gate.sys.disableTtl" xml:space="preserve">
+    <value>Disable password</value>
+  </data>
+  <data name="gate.sys.disconnect" xml:space="preserve">
+    <value>This page will be disconnected.</value>
+  </data>
+  <data name="gate.sys.enterBtn" xml:space="preserve">
+    <value>Enter setup mode</value>
+  </data>
+  <data name="gate.sys.enterCred" xml:space="preserve">
+    <value>Enter the password or API key.</value>
+  </data>
+  <data name="gate.sys.enterRebooting" xml:space="preserve">
+    <value>Rebooting into setup mode.</value>
+  </data>
+  <data name="gate.sys.enterSetupBtn" xml:space="preserve">
+    <value>Enter setup mode (AP)</value>
+  </data>
+  <data name="gate.sys.enterTtl" xml:space="preserve">
+    <value>Switch to setup mode?</value>
+  </data>
+  <data name="gate.sys.exitItem" xml:space="preserve">
+    <value>Turn off the setup AP and rejoin the saved Wi-Fi "{ssid}"</value>
+  </data>
+  <data name="gate.sys.exitSetup" xml:space="preserve">
+    <value>Exit setup mode</value>
+  </data>
+  <data name="gate.sys.exitTtl" xml:space="preserve">
+    <value>End the setup mode?</value>
+  </data>
+  <data name="gate.sys.exported" xml:space="preserve">
+    <value>Backup exported.</value>
+  </data>
+  <data name="gate.sys.exportedDirty" xml:space="preserve">
+    <value>Backup exported. Unsaved point changes were not included.</value>
+  </data>
+  <data name="gate.sys.factBtn" xml:space="preserve">
+    <value>Factory reset</value>
+  </data>
+  <data name="gate.sys.factNote" xml:space="preserve">
+    <value>Connect your PC or phone to Wi-Fi "{ap}" (password nanogate), then open the address below.</value>
+  </data>
+  <data name="gate.sys.factRebooting" xml:space="preserve">
+    <value>Rebooting after factory reset.</value>
+  </data>
+  <data name="gate.sys.factText" xml:space="preserve">
+    <value>This cannot be undone. Export a backup first if needed.</value>
+  </data>
+  <data name="gate.sys.factTtl" xml:space="preserve">
+    <value>Factory reset the device?</value>
+  </data>
+  <data name="gate.sys.failLoad" xml:space="preserve">
+    <value>Failed to load.</value>
+  </data>
+  <data name="gate.sys.loadFail" xml:space="preserve">
+    <value>Failed to load system information: {m}</value>
+  </data>
+  <data name="gate.sys.loadFirst" xml:space="preserve">
+    <value>Load the settings and points first.</value>
+  </data>
+  <data name="gate.sys.modeNormal" xml:space="preserve">
+    <value>Normal (Wi-Fi)</value>
+  </data>
+  <data name="gate.sys.modeSetup" xml:space="preserve">
+    <value>Setup mode (AP)</value>
+  </data>
+  <data name="gate.sys.nNote" xml:space="preserve">
+    <value>If the device cannot join a Wi-Fi for 5 minutes it opens the setup AP "{ssid}". Connect to it and reconfigure at {url}.</value>
+  </data>
+  <data name="gate.sys.noChange" xml:space="preserve">
+    <value>Communication settings unchanged - no reboot</value>
+  </data>
+  <data name="gate.sys.noId" xml:space="preserve">
+    <value>No ID</value>
+  </data>
+  <data name="gate.sys.noPointList" xml:space="preserve">
+    <value>No point list.</value>
+  </data>
+  <data name="gate.sys.notBackup" xml:space="preserve">
+    <value>Not a nanoGate backup file.</value>
+  </data>
+  <data name="gate.sys.notSupported" xml:space="preserve">
+    <value>Not supported</value>
+  </data>
+  <data name="gate.sys.open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="gate.sys.otherProfile" xml:space="preserve">
+    <value>This is a backup from a different gateway profile ({p}).</value>
+  </data>
+  <data name="gate.sys.overwrite" xml:space="preserve">
+    <value>The current device point mappings will be overwritten.</value>
+  </data>
+  <data name="gate.sys.pointAt" xml:space="preserve">
+    <value>Point {n} ({id}) {msg}</value>
+  </data>
+  <data name="gate.sys.rebootAfter" xml:space="preserve">
+    <value>The device will reboot when done.</value>
+  </data>
+  <data name="gate.sys.rebooting" xml:space="preserve">
+    <value>The device is rebooting.</value>
+  </data>
+  <data name="gate.sys.rebootText" xml:space="preserve">
+    <value>Gateway communication pauses for about 20 seconds.</value>
+  </data>
+  <data name="gate.sys.rebootTtl" xml:space="preserve">
+    <value>Reboot the device?</value>
+  </data>
+  <data name="gate.sys.rejoining" xml:space="preserve">
+    <value>Rejoining the saved Wi-Fi.</value>
+  </data>
+  <data name="gate.sys.rejoinNote" xml:space="preserve">
+    <value>Reconnect your PC or phone to the "{ssid}" network, then open the device address.</value>
+  </data>
+  <data name="gate.sys.replacePts" xml:space="preserve">
+    <value>Replace point mappings with the {n} from the backup</value>
+  </data>
+  <data name="gate.sys.resetBtn" xml:space="preserve">
+    <value>Restore defaults</value>
+  </data>
+  <data name="gate.sys.resetRebooting" xml:space="preserve">
+    <value>Rebooting with default settings.</value>
+  </data>
+  <data name="gate.sys.resetTtl" xml:space="preserve">
+    <value>Restore communication settings to defaults?</value>
+  </data>
+  <data name="gate.sys.restoreBtn" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="gate.sys.restored" xml:space="preserve">
+    <value>Backup restored.</value>
+  </data>
+  <data name="gate.sys.restoredReboot" xml:space="preserve">
+    <value>Backup restored. The device is rebooting.</value>
+  </data>
+  <data name="gate.sys.restoreFail" xml:space="preserve">
+    <value>Restore failed: {m}</value>
+  </data>
+  <data name="gate.sys.restoreTtl" xml:space="preserve">
+    <value>Restore the backup?</value>
+  </data>
+  <data name="gate.sys.savedAcl" xml:space="preserve">
+    <value>Access control saved.</value>
+  </data>
+  <data name="gate.sys.saveFail" xml:space="preserve">
+    <value>Failed to save: {m}</value>
+  </data>
+  <data name="gate.sys.secured" xml:space="preserve">
+    <value>Secured</value>
+  </data>
+  <data name="gate.sys.stateFirst" xml:space="preserve">
+    <value>Load the device state first.</value>
+  </data>
+  <data name="gate.sys.staticIp" xml:space="preserve">
+    <value>Static IP</value>
+  </data>
+  <data name="gate.sys.tooManyPts" xml:space="preserve">
+    <value>More than {n} points.</value>
+  </data>
+  <data name="gate.ui.badValue" xml:space="preserve">
+    <value>{label} value error: {msg}</value>
+  </data>
+  <data name="gate.iot.unitId" xml:space="preserve">
+    <value>Unit {u}</value>
+  </data>
+  <data name="gate.ui.missingKey" xml:space="preserve">
+    <value>Missing setting key: {k}</value>
+  </data>
+  <data name="gate.ui.bootAfter" xml:space="preserve">
+    <value>Since boot</value>
+  </data>
+  <data name="gate.ui.delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="gate.ui.delFail" xml:space="preserve">
+    <value>Delete failed: {m}</value>
+  </data>
+  <data name="gate.ui.disconnected" xml:space="preserve">
+    <value>Disconnected</value>
+  </data>
+  <data name="gate.ui.durD" xml:space="preserve">
+    <value>{d}d {h}h</value>
+  </data>
+  <data name="gate.ui.durH" xml:space="preserve">
+    <value>{h}h {m}m</value>
+  </data>
+  <data name="gate.ui.durM" xml:space="preserve">
+    <value>{m}m {s}s</value>
+  </data>
+  <data name="gate.ui.durS" xml:space="preserve">
+    <value>{s}s</value>
+  </data>
+  <data name="gate.ui.edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="gate.ui.gwError" xml:space="preserve">
+    <value>Gateway error</value>
+  </data>
+  <data name="gate.ui.intRange" xml:space="preserve">
+    <value>Enter an integer between {a} and {b}.</value>
+  </data>
+  <data name="gate.ui.no" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="gate.ui.noConnect" xml:space="preserve">
+    <value>Cannot reach the device.</value>
+  </data>
+  <data name="gate.ui.noItem" xml:space="preserve">
+    <value>No settings item: {k}</value>
+  </data>
+  <data name="gate.ui.noneWord" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="gate.ui.noSearch" xml:space="preserve">
+    <value>No search results.</value>
+  </data>
+  <data name="gate.ui.ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="gate.ui.parityE" xml:space="preserve">
+    <value>Even</value>
+  </data>
+  <data name="gate.ui.parityN" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="gate.ui.parityO" xml:space="preserve">
+    <value>Odd</value>
+  </data>
+  <data name="gate.ui.reboot" xml:space="preserve">
+    <value>Reboot</value>
+  </data>
+  <data name="gate.ui.required" xml:space="preserve">
+    <value>This field is required.</value>
+  </data>
+  <data name="gate.ui.reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="gate.ui.resetAgo" xml:space="preserve">
+    <value>Reset {d} ago</value>
+  </data>
+  <data name="gate.ui.running" xml:space="preserve">
+    <value>Running</value>
+  </data>
+  <data name="gate.ui.saveFail" xml:space="preserve">
+    <value>Save failed: {m}</value>
+  </data>
+  <data name="gate.ui.saving" xml:space="preserve">
+    <value>Saving...</value>
+  </data>
+  <data name="gate.ui.setupMode" xml:space="preserve">
+    <value>Setup mode</value>
+  </data>
+  <data name="gate.ui.srcDefault" xml:space="preserve">
+    <value>Firmware defaults</value>
+  </data>
+  <data name="gate.ui.srcFile" xml:space="preserve">
+    <value>Saved settings</value>
+  </data>
+  <data name="gate.ui.srcInvalid" xml:space="preserve">
+    <value>Defaults (settings file error)</value>
+  </data>
+  <data name="gate.ui.srcStorage" xml:space="preserve">
+    <value>Defaults (storage error)</value>
+  </data>
+  <data name="gate.ui.timeout" xml:space="preserve">
+    <value>The device did not respond in time.</value>
+  </data>
+  <data name="gate.ui.tokenLen" xml:space="preserve">
+    <value>Letters, digits and _ . : / - only, up to {n} chars</value>
+  </data>
+  <data name="gate.ui.unknown" xml:space="preserve">
+    <value>Unknown cause.</value>
+  </data>
+  <data name="gate.ui.updatedAgo" xml:space="preserve">
+    <value>Updated {n}s ago</value>
+  </data>
+  <data name="gate.ui.yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="gate.lbl.dns1" xml:space="preserve">
+    <value>Primary DNS</value>
+  </data>
+  <data name="gate.lbl.dns2" xml:space="preserve">
+    <value>Secondary DNS</value>
+  </data>
+  <data name="gate.pd.i32" xml:space="preserve">
+    <value>Enter a 32-bit integer.</value>
+  </data>
+  <data name="gate.sys.resetItem1" xml:space="preserve">
+    <value>Deletes the saved communication settings file and starts with firmware defaults</value>
+  </data>
+  <data name="gate.sys.resetItem2a" xml:space="preserve">
+    <value>Point mapping and network settings are kept</value>
+  </data>
+  <data name="gate.sys.resetItem2b" xml:space="preserve">
+    <value>Network settings are kept</value>
+  </data>
+  <data name="gate.sys.enterItem1" xml:space="preserve">
+    <value>Stops the gateway and Wi-Fi connection and opens the setup AP "{ssid}".</value>
+  </data>
+  <data name="gate.sys.enterItem2" xml:space="preserve">
+    <value>AP password: nanogate unless you changed it</value>
+  </data>
+  <data name="gate.sys.enterItem4" xml:space="preserve">
+    <value>If the management page is unused for 10 minutes, the device auto-returns to the saved Wi-Fi</value>
+  </data>
+  <data name="gate.sys.factItem1a" xml:space="preserve">
+    <value>Deletes communication settings, point mapping, and Wi-Fi/IP settings</value>
+  </data>
+  <data name="gate.sys.factItem1b" xml:space="preserve">
+    <value>Deletes communication settings and Wi-Fi/IP settings</value>
+  </data>
+  <data name="gate.sys.factItem2" xml:space="preserve">
+    <value>Restarts with the setup AP "{ap}" (password nanogate)</value>
+  </data>
+  <data name="gate.iot.rtu8" xml:space="preserve">
+    <value>RTU supports 8-bit only.</value>
+  </data>
+  <data name="gate.iot.pick78" xml:space="preserve">
+    <value>Select 7 or 8 bits.</value>
+  </data>
+  <data name="gate.iot.pick12" xml:space="preserve">
+    <value>Select 1 or 2.</value>
+  </data>
+  <data name="gate.sys.loadingShort" xml:space="preserve">
+    <value>Loading…</value>
+  </data>
+  <data name="gate.ui.loading" xml:space="preserve">
+    <value>Loading settings…</value>
+  </data>
+  <data name="gate.ui.badInputs" xml:space="preserve">
+    <value>Check the input values.</value>
+  </data>
+  <data name="gate.ui.changedN" xml:space="preserve">
+    <value>Changed: {n} item(s), not saved yet</value>
+  </data>
+  <data name="gate.ui.ago" xml:space="preserve">
+    <value>{d} ago</value>
+  </data>
+  <data name="gate.ui.gwStartFail" xml:space="preserve">
+    <value>Gateway failed to start: {m}</value>
+  </data>
+  <data name="gate.ui.defaultsErr" xml:space="preserve">
+    <value>Using defaults due to settings file error: {m}</value>
+  </data>
+  <data name="gate.ui.none" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="gate.ui.rangeInt" xml:space="preserve">
+    <value>{lo}~{hi} - enter an integer in this range.</value>
+  </data>
+  <data name="gate.ui.gpio" xml:space="preserve">
+    <value>GPIO {p}</value>
+  </data>
+  <data name="gate.ui.devicesSeen" xml:space="preserve">
+    <value>Devices seen: {n}</value>
+  </data>
+  <data name="gate.iot.allUnitWait" xml:space="preserve">
+    <value>All-unit relay · response wait {t} ms</value>
+  </data>
+  <data name="gate.iot.multidrop" xml:space="preserve">
+    <value>RS-485 multidrop · Unit 1-247 requests are forwarded on the bus · devices seen: {x}</value>
+  </data>
+  <data name="gate.iot.portHint" xml:space="preserve">
+    <value>The standard port is 502. The management UI {p} port is unavailable.</value>
+  </data>
+  <data name="gate.iot.portEq" xml:space="preserve">
+    <value>Cannot equal the management UI port {p}.</value>
+  </data>
+  <data name="gate.iot.pinNa" xml:space="preserve">
+    <value>This pin is not available on this board.</value>
+  </data>
+  <data name="gate.iot.pinList" xml:space="preserve">
+    <value>GPIOs on this board ({b}): {p}.</value>
+  </data>
+  <data name="gate.iot.pinMini" xml:space="preserve">
+    <value> On the Geekble Mini (ESP32-C3), TX 6 / RX 7 are wired to the RS-485 transceiver.</value>
+  </data>
+  <data name="gate.iot.rt8bit" xml:space="preserve">
+    <value>RTU supports 8-bit only.</value>
+  </data>
+  <data name="gate.iot.saveNote" xml:space="preserve">
+    <value>Saving reboots the device; Modbus communication pauses for about 20 seconds.</value>
+  </data>
+  <data name="gate.iot.resetNote" xml:space="preserve">
+    <value>Clears the request, success and error counters, the discovered device list and the recent error log.</value>
+  </data>
+  <data name="gate.iot.bText" xml:space="preserve">
+    <value>Exports or restores the communication settings as a JSON file. Wi-Fi and IP settings are not included.</value>
+  </data>
+  <data name="gate.iot.fmtBits" xml:space="preserve">
+    <value>{t} · {b} bps · {f} · per char {c} bits ({ms} ms)</value>
+  </data>
+  <data name="gate.iot.fmtInter" xml:space="preserve">
+    <value> · inter-frame {ms} ms</value>
+  </data>
+  <data name="gate.iot.fmtDelim" xml:space="preserve">
+    <value> - frame delimiter: ':' to CR LF</value>
+  </data>
+  <data name="gate.iot.fmtMax" xml:space="preserve">
+    <value> · max response ~ {ms} ms</value>
+  </data>
+  <data name="gate.iot.fmtWarn" xml:space="preserve">
+    <value> - the timeout is shorter than the reception time of the longest response; long responses may be truncated.</value>
+  </data>
+  <data name="static.001" xml:space="preserve">
+    <value>0 - at most once</value>
+    <comment>0 - at most once</comment>
+  </data>
+  <data name="static.002" xml:space="preserve">
+    <value>0~600. 0 disables it.</value>
+    <comment>0~600. 0 disables it.</comment>
+  </data>
+  <data name="static.003" xml:space="preserve">
+    <value>0~65519. Must differ from the outstation address.</value>
+    <comment>0~65519. Must differ from the outstation address.</comment>
+  </data>
+  <data name="static.004" xml:space="preserve">
+    <value>0~65519. The address of this device (outstation).</value>
+    <comment>0~65519. The address of this device (outstation).</comment>
+  </data>
+  <data name="static.005" xml:space="preserve">
+    <value>1 - at least once</value>
+    <comment>1 - at least once</comment>
+  </data>
+  <data name="static.006" xml:space="preserve">
+    <value>100~3600000 ms. In periodic mode, publishes all points at this interval.</value>
+    <comment>100~3600000 ms. In periodic mode, publishes all points at this interval.</comment>
+  </data>
+  <data name="static.007" xml:space="preserve">
+    <value>100~60000 ms. One cycle = reading all points once.</value>
+    <comment>100~60000 ms. One cycle = reading all points once.</comment>
+  </data>
+  <data name="static.008" xml:space="preserve">
+    <value>2 - exactly once</value>
+    <comment>2 - exactly once</comment>
+  </data>
+  <data name="static.009" xml:space="preserve">
+    <value>32-bit types only</value>
+    <comment>32-bit types only</comment>
+  </data>
+  <data name="static.010" xml:space="preserve">
+    <value>8~63 letters, digits, symbols</value>
+    <comment>8~63 letters, digits, symbols</comment>
+  </data>
+  <data name="static.011" xml:space="preserve">
+    <value>A count of 1 maps a single point.</value>
+    <comment>A count of 1 maps a single point.</comment>
+  </data>
+  <data name="static.012" xml:space="preserve">
+    <value>A mapping table that pairs source device addresses with destination protocol addresses.</value>
+    <comment>A mapping table that pairs source device addresses with destination protocol addresses.</comment>
+  </data>
+  <data name="static.013" xml:space="preserve">
+    <value>API key</value>
+    <comment>API key</comment>
+  </data>
+  <data name="static.014" xml:space="preserve">
+    <value>Access</value>
+    <comment>Access</comment>
+  </data>
+  <data name="static.015" xml:space="preserve">
+    <value>Access mode</value>
+    <comment>Access mode</comment>
+  </data>
+  <data name="static.016" xml:space="preserve">
+    <value>Active TCP connections</value>
+    <comment>Active TCP connections</comment>
+  </data>
+  <data name="static.017" xml:space="preserve">
+    <value>Add rule</value>
+    <comment>Add rule</comment>
+  </data>
+  <data name="static.018" xml:space="preserve">
+    <value>Address assignment</value>
+    <comment>Address assignment</comment>
+  </data>
+  <data name="static.019" xml:space="preserve">
+    <value>Admin access control</value>
+    <comment>Admin access control</comment>
+  </data>
+  <data name="static.020" xml:space="preserve">
+    <value>An identifier unique on the broker. It is used in the status topic.</value>
+    <comment>An identifier unique on the broker. It is used in the status topic.</comment>
+  </data>
+  <data name="static.021" xml:space="preserve">
+    <value>Apply</value>
+    <comment>Apply</comment>
+  </data>
+  <data name="static.022" xml:space="preserve">
+    <value>Area</value>
+    <comment>Area</comment>
+  </data>
+  <data name="static.023" xml:space="preserve">
+    <value>Backup and restore</value>
+    <comment>Backup and restore</comment>
+  </data>
+  <data name="static.024" xml:space="preserve">
+    <value>Basic info</value>
+    <comment>Basic info</comment>
+  </data>
+  <data name="static.025" xml:space="preserve">
+    <value>Batch</value>
+    <comment>Batch</comment>
+  </data>
+  <data name="static.026" xml:space="preserve">
+    <value>Batch row separator</value>
+    <comment>Batch row separator</comment>
+  </data>
+  <data name="static.027" xml:space="preserve">
+    <value>Batch template</value>
+    <comment>Batch template</comment>
+  </data>
+  <data name="static.028" xml:space="preserve">
+    <value>Baud rate (bps)</value>
+    <comment>Baud rate (bps)</comment>
+  </data>
+  <data name="static.029" xml:space="preserve">
+    <value>Broker address</value>
+    <comment>Broker address</comment>
+  </data>
+  <data name="static.030" xml:space="preserve">
+    <value>Broker port</value>
+    <comment>Broker port</comment>
+  </data>
+  <data name="static.031" xml:space="preserve">
+    <value>Byte order</value>
+    <comment>Byte order</comment>
+  </data>
+  <data name="static.032" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="static.033" xml:space="preserve">
+    <value>Chooses how point rows are joined in template format. Use a comma for JSON object lists and a newline for line protocols.</value>
+    <comment>Chooses how point rows are joined in template format. Use a comma for JSON object lists and a newline for line protocols.</comment>
+  </data>
+  <data name="static.034" xml:space="preserve">
+    <value>Choosing Yes publishes all points as one message to &lt;prefix&gt;/data. Available with JSON or template format.</value>
+    <comment>Choosing Yes publishes all points as one message to &lt;prefix&gt;/data. Available with JSON or template format.</comment>
+  </data>
+  <data name="static.035" xml:space="preserve">
+    <value>Client ID</value>
+    <comment>Client ID</comment>
+  </data>
+  <data name="static.036" xml:space="preserve">
+    <value>Comma</value>
+    <comment>Comma</comment>
+  </data>
+  <data name="static.037" xml:space="preserve">
+    <value>Communication settings</value>
+    <comment>Communication settings</comment>
+  </data>
+  <data name="static.038" xml:space="preserve">
+    <value>Configures the Wi-Fi connection and IP address. Saving reboots the device, which then connects with the new settings.</value>
+    <comment>Configures the Wi-Fi connection and IP address. Saving reboots the device, which then connects with the new settings.</comment>
+  </data>
+  <data name="static.039" xml:space="preserve">
+    <value>Connecting</value>
+    <comment>Connecting</comment>
+  </data>
+  <data name="static.040" xml:space="preserve">
+    <value>Count</value>
+    <comment>Count</comment>
+  </data>
+  <data name="static.041" xml:space="preserve">
+    <value>DHCP (auto)</value>
+    <comment>DHCP (auto)</comment>
+  </data>
+  <data name="static.042" xml:space="preserve">
+    <value>DNP3 connection</value>
+    <comment>DNP3 connection</comment>
+  </data>
+  <data name="static.043" xml:space="preserve">
+    <value>DNP3 master</value>
+    <comment>DNP3 master</comment>
+  </data>
+  <data name="static.044" xml:space="preserve">
+    <value>DNP3 outstation</value>
+    <comment>DNP3 outstation</comment>
+  </data>
+  <data name="static.045" xml:space="preserve">
+    <value>Dashboard</value>
+    <comment>Dashboard</comment>
+  </data>
+  <data name="static.046" xml:space="preserve">
+    <value>Data bits</value>
+    <comment>Data bits</comment>
+  </data>
+  <data name="static.047" xml:space="preserve">
+    <value>Default gateway (optional)</value>
+    <comment>Default gateway (optional)</comment>
+  </data>
+  <data name="static.048" xml:space="preserve">
+    <value>Delete all</value>
+    <comment>Delete all</comment>
+  </data>
+  <data name="static.049" xml:space="preserve">
+    <value>Denominator</value>
+    <comment>Denominator</comment>
+  </data>
+  <data name="static.050" xml:space="preserve">
+    <value>Destination</value>
+    <comment>Destination</comment>
+  </data>
+  <data name="static.051" xml:space="preserve">
+    <value>Destination (DNP3)</value>
+    <comment>Destination (DNP3)</comment>
+  </data>
+  <data name="static.052" xml:space="preserve">
+    <value>Destination (host system)</value>
+    <comment>Destination (host system)</comment>
+  </data>
+  <data name="static.053" xml:space="preserve">
+    <value>Device</value>
+    <comment>Device</comment>
+  </data>
+  <data name="static.054" xml:space="preserve">
+    <value>Device BOOT button: after booting, press and hold it for 3+ seconds to enter setup mode (AP), or 10+ seconds to factory reset. In setup mode, a short press returns to the saved Wi-Fi. On boards with a status LED it lights while held, blinks after 3 seconds, and blinks fast after 10 seconds. Note that holding it during power-on or reset enters firmware download mode.</value>
+    <comment>Device BOOT button: after booting, press and hold it for 3+ seconds to enter setup mode (AP), or 10+ seconds to factory reset. In setup mode, a short press returns to the saved Wi-Fi. On boards with a status LED it lights while held, blinks after 3 seconds, and blinks fast after 10 seconds. Note that holding it during power-on or reset enters firmware download mode.</comment>
+  </data>
+  <data name="static.055" xml:space="preserve">
+    <value>Device exception responses</value>
+    <comment>Device exception responses</comment>
+  </data>
+  <data name="static.056" xml:space="preserve">
+    <value>Device info, backup and restore, maintenance</value>
+    <comment>Device info, backup and restore, maintenance</comment>
+  </data>
+  <data name="static.057" xml:space="preserve">
+    <value>Device status</value>
+    <comment>Device status</comment>
+  </data>
+  <data name="static.058" xml:space="preserve">
+    <value>Disable password</value>
+    <comment>Disable password</comment>
+  </data>
+  <data name="static.059" xml:space="preserve">
+    <value>Discard changes</value>
+    <comment>Discard changes</comment>
+  </data>
+  <data name="static.060" xml:space="preserve">
+    <value>Display name</value>
+    <comment>Display name</comment>
+  </data>
+  <data name="static.061" xml:space="preserve">
+    <value>Enter setup mode (AP)</value>
+    <comment>Enter setup mode (AP)</comment>
+  </data>
+  <data name="static.062" xml:space="preserve">
+    <value>Even</value>
+    <comment>Even</comment>
+  </data>
+  <data name="static.063" xml:space="preserve">
+    <value>Exhaust temperature</value>
+    <comment>Exhaust temperature</comment>
+  </data>
+  <data name="static.064" xml:space="preserve">
+    <value>Export backup</value>
+    <comment>Export backup</comment>
+  </data>
+  <data name="static.065" xml:space="preserve">
+    <value>Exports or restores the communication settings and saved point mappings as a JSON file. Wi-Fi and IP settings are not included.</value>
+    <comment>Exports or restores the communication settings and saved point mappings as a JSON file. Wi-Fi and IP settings are not included.</comment>
+  </data>
+  <data name="static.066" xml:space="preserve">
+    <value>Factory reset</value>
+    <comment>Factory reset</comment>
+  </data>
+  <data name="static.067" xml:space="preserve">
+    <value>Fill this in only if the broker requires authentication.</value>
+    <comment>Fill this in only if the broker requires authentication.</comment>
+  </data>
+  <data name="static.068" xml:space="preserve">
+    <value>For automation requests (optional)</value>
+    <comment>For automation requests (optional)</comment>
+  </data>
+  <data name="static.069" xml:space="preserve">
+    <value>Format</value>
+    <comment>Format</comment>
+  </data>
+  <data name="static.070" xml:space="preserve">
+    <value>Frame errors</value>
+    <comment>Frame errors</comment>
+  </data>
+  <data name="static.071" xml:space="preserve">
+    <value>Host clients</value>
+    <comment>Host clients</comment>
+  </data>
+  <data name="static.072" xml:space="preserve">
+    <value>IP address</value>
+    <comment>IP address</comment>
+  </data>
+  <data name="static.073" xml:space="preserve">
+    <value>IP or host name. Use the address of the PC running Mosquitto or another broker.</value>
+    <comment>IP or host name. Use the address of the PC running Mosquitto or another broker.</comment>
+  </data>
+  <data name="static.074" xml:space="preserve">
+    <value>JSON: {"v","q","t"} (batch: {"ID":value}) - Template: the string below - Binary: big-endian bytes per type - Plain: value only.</value>
+    <comment>JSON: {"v","q","t"} (batch: {"ID":value}) - Template: the string below - Binary: big-endian bytes per type - Plain: value only.</comment>
+  </data>
+  <data name="static.075" xml:space="preserve">
+    <value>Keep Alive (s)</value>
+    <comment>Keep Alive (s)</comment>
+  </data>
+  <data name="static.076" xml:space="preserve">
+    <value>Leave blank to keep the current password. 8~63 letters, digits, symbols</value>
+    <comment>Leave blank to keep the current password. 8~63 letters, digits, symbols</comment>
+  </data>
+  <data name="static.077" xml:space="preserve">
+    <value>Listening port</value>
+    <comment>Listening port</comment>
+  </data>
+  <data name="static.078" xml:space="preserve">
+    <value>Live values and qualities refreshed by gateway polling. This tab auto-refreshes every 5 seconds while open.</value>
+    <comment>Live values and qualities refreshed by gateway polling. This tab auto-refreshes every 5 seconds while open.</comment>
+  </data>
+  <data name="static.079" xml:space="preserve">
+    <value>Loading rules...</value>
+    <comment>Loading rules...</comment>
+  </data>
+  <data name="static.080" xml:space="preserve">
+    <value>Loading...</value>
+    <comment>Loading...</comment>
+  </data>
+  <data name="static.081" xml:space="preserve">
+    <value>Log out</value>
+    <comment>Log out</comment>
+  </data>
+  <data name="static.082" xml:space="preserve">
+    <value>MQTT broker</value>
+    <comment>MQTT broker</comment>
+  </data>
+  <data name="static.083" xml:space="preserve">
+    <value>MQTT publishing</value>
+    <comment>MQTT publishing</comment>
+  </data>
+  <data name="static.084" xml:space="preserve">
+    <value>Maintenance</value>
+    <comment>Maintenance</comment>
+  </data>
+  <data name="static.085" xml:space="preserve">
+    <value>Master address</value>
+    <comment>Master address</comment>
+  </data>
+  <data name="static.086" xml:space="preserve">
+    <value>Modbus -&gt; DNP3 converter</value>
+    <comment>Modbus -&gt; DNP3 converter</comment>
+  </data>
+  <data name="static.087" xml:space="preserve">
+    <value>Modbus -&gt; MQTT converter</value>
+    <comment>Modbus -&gt; MQTT converter</comment>
+  </data>
+  <data name="static.088" xml:space="preserve">
+    <value>Modbus Serial &lt;-&gt; TCP gateway</value>
+    <comment>Modbus Serial &lt;-&gt; TCP gateway</comment>
+  </data>
+  <data name="static.089" xml:space="preserve">
+    <value>Network</value>
+    <comment>Network</comment>
+  </data>
+  <data name="static.090" xml:space="preserve">
+    <value>New AP password (optional)</value>
+    <comment>New AP password (optional)</comment>
+  </data>
+  <data name="static.091" xml:space="preserve">
+    <value>New password</value>
+    <comment>New password</comment>
+  </data>
+  <data name="static.092" xml:space="preserve">
+    <value>New point</value>
+    <comment>New point</comment>
+  </data>
+  <data name="static.093" xml:space="preserve">
+    <value>New rule</value>
+    <comment>New rule</comment>
+  </data>
+  <data name="static.094" xml:space="preserve">
+    <value>Newline</value>
+    <comment>Newline</comment>
+  </data>
+  <data name="static.095" xml:space="preserve">
+    <value>No (per point)</value>
+    <comment>No (per point)</comment>
+  </data>
+  <data name="static.096" xml:space="preserve">
+    <value>No errors recorded.</value>
+    <comment>No errors recorded.</comment>
+  </data>
+  <data name="static.097" xml:space="preserve">
+    <value>No response</value>
+    <comment>No response</comment>
+  </data>
+  <data name="static.098" xml:space="preserve">
+    <value>None</value>
+    <comment>None</comment>
+  </data>
+  <data name="static.099" xml:space="preserve">
+    <value>Numerator</value>
+    <comment>Numerator</comment>
+  </data>
+  <data name="static.100" xml:space="preserve">
+    <value>OK</value>
+    <comment>OK</comment>
+  </data>
+  <data name="static.101" xml:space="preserve">
+    <value>Odd</value>
+    <comment>Odd</comment>
+  </data>
+  <data name="static.102" xml:space="preserve">
+    <value>Offset</value>
+    <comment>Offset</comment>
+  </data>
+  <data name="static.103" xml:space="preserve">
+    <value>On change</value>
+    <comment>On change</comment>
+  </data>
+  <data name="static.104" xml:space="preserve">
+    <value>On change: publishes only points whose value or quality changed, immediately. Periodic: publishes all points at the interval below.</value>
+    <comment>On change: publishes only points whose value or quality changed, immediately. Periodic: publishes all points at the interval below.</comment>
+  </data>
+  <data name="static.105" xml:space="preserve">
+    <value>One rule connects a range of consecutive Modbus addresses in an area to a DNP3 point block at once. A count of 1 is a single-point mapping, and the scale (x numerator / denominator + offset) converts raw values to engineering units. Each rule specifies the RS-485 slave (Unit) it polls. Rules apply after saving and rebooting.</value>
+    <comment>One rule connects a range of consecutive Modbus addresses in an area to a DNP3 point block at once. A count of 1 is a single-point mapping, and the scale (x numerator / denominator + offset) converts raw values to engineering units. Each rule specifies the RS-485 slave (Unit) it polls. Rules apply after saving and rebooting.</comment>
+  </data>
+  <data name="static.106" xml:space="preserve">
+    <value>Open network without a password</value>
+    <comment>Open network without a password</comment>
+  </data>
+  <data name="static.107" xml:space="preserve">
+    <value>Outstation address</value>
+    <comment>Outstation address</comment>
+  </data>
+  <data name="static.108" xml:space="preserve">
+    <value>Parity</value>
+    <comment>Parity</comment>
+  </data>
+  <data name="static.109" xml:space="preserve">
+    <value>Password</value>
+    <comment>Password</comment>
+  </data>
+  <data name="static.110" xml:space="preserve">
+    <value>Password (optional)</value>
+    <comment>Password (optional)</comment>
+  </data>
+  <data name="static.111" xml:space="preserve">
+    <value>Payload</value>
+    <comment>Payload</comment>
+  </data>
+  <data name="static.112" xml:space="preserve">
+    <value>Periodic</value>
+    <comment>Periodic</comment>
+  </data>
+  <data name="static.113" xml:space="preserve">
+    <value>Placeholders: {id} {v} {q} {t} {topic} {addr} {space} {unit} {type}. Enter a newline as \n and a tab as \t. Example: {"id":"{id}","value":{v},"ts":{t}}</value>
+    <comment>Placeholders: {id} {v} {q} {t} {topic} {addr} {space} {unit} {type}. Enter a newline as \n and a tab as \t. Example: {"id":"{id}","value":{v},"ts":{t}}</comment>
+  </data>
+  <data name="static.114" xml:space="preserve">
+    <value>Placeholders: {points} and {t}. Example: {"t":{t},"points":{points}}</value>
+    <comment>Placeholders: {points} and {t}. Example: {"t":{t},"points":{points}}</comment>
+  </data>
+  <data name="static.115" xml:space="preserve">
+    <value>Point ID</value>
+    <comment>Point ID</comment>
+  </data>
+  <data name="static.116" xml:space="preserve">
+    <value>Point cache</value>
+    <comment>Point cache</comment>
+  </data>
+  <data name="static.117" xml:space="preserve">
+    <value>Point mapping</value>
+    <comment>Point mapping</comment>
+  </data>
+  <data name="static.118" xml:space="preserve">
+    <value>Points</value>
+    <comment>Points</comment>
+  </data>
+  <data name="static.119" xml:space="preserve">
+    <value>Poll interval (ms)</value>
+    <comment>Poll interval (ms)</comment>
+  </data>
+  <data name="static.120" xml:space="preserve">
+    <value>Polls serial Modbus devices and publishes them to an MQTT broker.</value>
+    <comment>Polls serial Modbus devices and publishes them to an MQTT broker.</comment>
+  </data>
+  <data name="static.121" xml:space="preserve">
+    <value>Polls serial Modbus devices and serves them as a DNP3 outstation.</value>
+    <comment>Polls serial Modbus devices and serves them as a DNP3 outstation.</comment>
+  </data>
+  <data name="static.122" xml:space="preserve">
+    <value>Primary DNS (optional)</value>
+    <comment>Primary DNS (optional)</comment>
+  </data>
+  <data name="static.123" xml:space="preserve">
+    <value>Protocol</value>
+    <comment>Protocol</comment>
+  </data>
+  <data name="static.124" xml:space="preserve">
+    <value>Publish interval (ms)</value>
+    <comment>Publish interval (ms)</comment>
+  </data>
+  <data name="static.125" xml:space="preserve">
+    <value>Publish mode</value>
+    <comment>Publish mode</comment>
+  </data>
+  <data name="static.126" xml:space="preserve">
+    <value>Quality</value>
+    <comment>Quality</comment>
+  </data>
+  <data name="static.127" xml:space="preserve">
+    <value>Read</value>
+    <comment>Read</comment>
+  </data>
+  <data name="static.128" xml:space="preserve">
+    <value>Read/Write</value>
+    <comment>Read/Write</comment>
+  </data>
+  <data name="static.129" xml:space="preserve">
+    <value>Reboot</value>
+    <comment>Reboot</comment>
+  </data>
+  <data name="static.130" xml:space="preserve">
+    <value>Recent errors</value>
+    <comment>Recent errors</comment>
+  </data>
+  <data name="static.131" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>Refresh</comment>
+  </data>
+  <data name="static.132" xml:space="preserve">
+    <value>Relays Modbus TCP requests as-is to the serial slaves.</value>
+    <comment>Relays Modbus TCP requests as-is to the serial slaves.</comment>
+  </data>
+  <data name="static.133" xml:space="preserve">
+    <value>Reset statistics</value>
+    <comment>Reset statistics</comment>
+  </data>
+  <data name="static.134" xml:space="preserve">
+    <value>Response timeout (ms)</value>
+    <comment>Response timeout (ms)</comment>
+  </data>
+  <data name="static.135" xml:space="preserve">
+    <value>Restore defaults</value>
+    <comment>Restore defaults</comment>
+  </data>
+  <data name="static.136" xml:space="preserve">
+    <value>Restore defaults resets only the communication settings and keeps point mappings and network settings. Factory reset erases everything and starts in setup AP mode.</value>
+    <comment>Restore defaults resets only the communication settings and keeps point mappings and network settings. Factory reset erases everything and starts in setup AP mode.</comment>
+  </data>
+  <data name="static.137" xml:space="preserve">
+    <value>Restore from backup</value>
+    <comment>Restore from backup</comment>
+  </data>
+  <data name="static.138" xml:space="preserve">
+    <value>Rules</value>
+    <comment>Rules</comment>
+  </data>
+  <data name="static.139" xml:space="preserve">
+    <value>Save</value>
+    <comment>Save</comment>
+  </data>
+  <data name="static.140" xml:space="preserve">
+    <value>Save and reboot</value>
+    <comment>Save and reboot</comment>
+  </data>
+  <data name="static.141" xml:space="preserve">
+    <value>Saving reboots the device, which starts with the new settings.</value>
+    <comment>Saving reboots the device, which starts with the new settings.</comment>
+  </data>
+  <data name="static.142" xml:space="preserve">
+    <value>Scale</value>
+    <comment>Scale</comment>
+  </data>
+  <data name="static.143" xml:space="preserve">
+    <value>Scale: displayed = raw x numerator / denominator + offset (inverse applied on write)</value>
+    <comment>Scale: displayed = raw x numerator / denominator + offset (inverse applied on write)</comment>
+  </data>
+  <data name="static.144" xml:space="preserve">
+    <value>Search ID</value>
+    <comment>Search ID</comment>
+  </data>
+  <data name="static.145" xml:space="preserve">
+    <value>Search ID/name/address</value>
+    <comment>Search ID/name/address</comment>
+  </data>
+  <data name="static.146" xml:space="preserve">
+    <value>Secondary DNS (optional)</value>
+    <comment>Secondary DNS (optional)</comment>
+  </data>
+  <data name="static.147" xml:space="preserve">
+    <value>Serial bus</value>
+    <comment>Serial bus</comment>
+  </data>
+  <data name="static.148" xml:space="preserve">
+    <value>Serial communication</value>
+    <comment>Serial communication</comment>
+  </data>
+  <data name="static.149" xml:space="preserve">
+    <value>Setup AP</value>
+    <comment>Setup AP</comment>
+  </data>
+  <data name="static.150" xml:space="preserve">
+    <value>Slaves</value>
+    <comment>Slaves</comment>
+  </data>
+  <data name="static.151" xml:space="preserve">
+    <value>Slaves - polling</value>
+    <comment>Slaves - polling</comment>
+  </data>
+  <data name="static.152" xml:space="preserve">
+    <value>Source</value>
+    <comment>Source</comment>
+  </data>
+  <data name="static.153" xml:space="preserve">
+    <value>Source (Modbus)</value>
+    <comment>Source (Modbus)</comment>
+  </data>
+  <data name="static.154" xml:space="preserve">
+    <value>Source (slaves)</value>
+    <comment>Source (slaves)</comment>
+  </data>
+  <data name="static.155" xml:space="preserve">
+    <value>Start address</value>
+    <comment>Start address</comment>
+  </data>
+  <data name="static.156" xml:space="preserve">
+    <value>Start index</value>
+    <comment>Start index</comment>
+  </data>
+  <data name="static.157" xml:space="preserve">
+    <value>Static IP</value>
+    <comment>Static IP</comment>
+  </data>
+  <data name="static.158" xml:space="preserve">
+    <value>Stop bits</value>
+    <comment>Stop bits</comment>
+  </data>
+  <data name="static.159" xml:space="preserve">
+    <value>Subnet mask</value>
+    <comment>Subnet mask</comment>
+  </data>
+  <data name="static.160" xml:space="preserve">
+    <value>Success rate</value>
+    <comment>Success rate</comment>
+  </data>
+  <data name="static.161" xml:space="preserve">
+    <value>System</value>
+    <comment>System</comment>
+  </data>
+  <data name="static.162" xml:space="preserve">
+    <value>Template</value>
+    <comment>Template</comment>
+  </data>
+  <data name="static.163" xml:space="preserve">
+    <value>The RS-485 slave address this rule polls. Rules with different Units form a multidrop bus.</value>
+    <comment>The RS-485 slave address this rule polls. Rules with different Units form a multidrop bus.</comment>
+  </data>
+  <data name="static.164" xml:space="preserve">
+    <value>The connection to the device was lost. Reconnecting...</value>
+    <comment>The connection to the device was lost. Reconnecting...</comment>
+  </data>
+  <data name="static.165" xml:space="preserve">
+    <value>The default port is 1883.</value>
+    <comment>The default port is 1883.</comment>
+  </data>
+  <data name="static.166" xml:space="preserve">
+    <value>The device is in setup mode (AP) and the gateway is not running. Save the Wi-Fi to connect in the Network tab, or exit setup mode in the System tab.</value>
+    <comment>The device is in setup mode (AP) and the gateway is not running. Save the Wi-Fi to connect in the Network tab, or exit setup mode in the System tab.</comment>
+  </data>
+  <data name="static.167" xml:space="preserve">
+    <value>The gateway protocols provide no authentication or encryption. The management page can require login with admin access control (password / API key), but communication itself is plain HTTP - use it only on a trusted, isolated network.</value>
+    <comment>The gateway protocols provide no authentication or encryption. The management page can require login with admin access control (password / API key), but communication itself is plain HTTP - use it only on a trusted, isolated network.</comment>
+  </data>
+  <data name="static.168" xml:space="preserve">
+    <value>The standard port is 20000.</value>
+    <comment>The standard port is 20000.</comment>
+  </data>
+  <data name="static.169" xml:space="preserve">
+    <value>The standard port is 502.</value>
+    <comment>The standard port is 502.</comment>
+  </data>
+  <data name="static.170" xml:space="preserve">
+    <value>To protect memory, point saving and gateway request processing alternate in short slices. While saving, communication responses may be slower than usual.</value>
+    <comment>To protect memory, point saving and gateway request processing alternate in short slices. While saving, communication responses may be slower than usual.</comment>
+  </data>
+  <data name="static.171" xml:space="preserve">
+    <value>Topic prefix</value>
+    <comment>Topic prefix</comment>
+  </data>
+  <data name="static.172" xml:space="preserve">
+    <value>Total - polls</value>
+    <comment>Total - polls</comment>
+  </data>
+  <data name="static.173" xml:space="preserve">
+    <value>Total - requests</value>
+    <comment>Total - requests</comment>
+  </data>
+  <data name="static.174" xml:space="preserve">
+    <value>Type</value>
+    <comment>Type</comment>
+  </data>
+  <data name="static.175" xml:space="preserve">
+    <value>UART pins</value>
+    <comment>UART pins</comment>
+  </data>
+  <data name="static.176" xml:space="preserve">
+    <value>Undo</value>
+    <comment>Undo</comment>
+  </data>
+  <data name="static.177" xml:space="preserve">
+    <value>Up to 4 clients can connect at once, and serial bus requests are processed in order.</value>
+    <comment>Up to 4 clients can connect at once, and serial bus requests are processed in order.</comment>
+  </data>
+  <data name="static.178" xml:space="preserve">
+    <value>Use letters, digits and - _ . / :. It becomes the prefix of the publish and status topics.</value>
+    <comment>Use letters, digits and - _ . / :. It becomes the prefix of the publish and status topics.</comment>
+  </data>
+  <data name="static.179" xml:space="preserve">
+    <value>Used only if a user name is set.</value>
+    <comment>Used only if a user name is set.</comment>
+  </data>
+  <data name="static.180" xml:space="preserve">
+    <value>User name (optional)</value>
+    <comment>User name (optional)</comment>
+  </data>
+  <data name="static.181" xml:space="preserve">
+    <value>Value</value>
+    <comment>Value</comment>
+  </data>
+  <data name="static.182" xml:space="preserve">
+    <value>Value conversion (scale)</value>
+    <comment>Value conversion (scale)</comment>
+  </data>
+  <data name="static.183" xml:space="preserve">
+    <value>Waits for the publish acknowledgement before sending the next message.</value>
+    <comment>Waits for the publish acknowledgement before sending the next message.</comment>
+  </data>
+  <data name="static.184" xml:space="preserve">
+    <value>Write</value>
+    <comment>Write</comment>
+  </data>
+  <data name="static.185" xml:space="preserve">
+    <value>Yes (single message)</value>
+    <comment>Yes (single message)</comment>
+  </data>
+  <data name="static.186" xml:space="preserve">
+    <value>nanoGate management</value>
+    <comment>nanoGate management</comment>
+  </data>
+  <data name="static.187" xml:space="preserve">
+    <value>time(s)</value>
+    <comment>time(s)</comment>
+  </data>
+  <data name="static.188" xml:space="preserve">
+    <value>time(s) - point reads</value>
+    <comment>time(s) - point reads</comment>
+  </data>
+  <data name="static.189" xml:space="preserve">
+    <value>up to 4 concurrent connections</value>
+    <comment>up to 4 concurrent connections</comment>
+  </data>
+  <data name="static.190" xml:space="preserve">
+    <value>Baud rate</value>
+    <comment>Baud rate</comment>
+  </data>
+  <data name="static.191" xml:space="preserve">
+    <value>Response timeout</value>
+    <comment>Response timeout</comment>
+  </data>
+  <data name="static.192" xml:space="preserve">
+    <value>Poll interval</value>
+    <comment>Poll interval</comment>
+  </data>
+  <data name="static.193" xml:space="preserve">
+    <value>TCP listening port</value>
+    <comment>TCP listening port</comment>
+  </data>
+  <data name="static.194" xml:space="preserve">
+    <value>DNP3 listening port</value>
+    <comment>DNP3 listening port</comment>
+  </data>
+  <data name="static.195" xml:space="preserve">
+    <value>TX pin</value>
+    <comment>TX pin</comment>
+  </data>
+  <data name="static.196" xml:space="preserve">
+    <value>RX pin</value>
+    <comment>RX pin</comment>
+  </data>
+  <data name="static.197" xml:space="preserve">
+    <value>User name</value>
+    <comment>User name</comment>
+  </data>
+  <data name="static.198" xml:space="preserve">
+    <value>Publish interval</value>
+    <comment>Publish interval</comment>
+  </data>
+  <data name="static.199" xml:space="preserve">
+    <value>Payload format</value>
+    <comment>Payload format</comment>
+  </data>
+  <data name="static.200" xml:space="preserve">
+    <value>RS485 direction control</value>
+    <comment>RS485 direction control</comment>
+  </data>
+  <data name="static.201" xml:space="preserve">
+    <value>Auto transceiver</value>
+    <comment>Auto transceiver</comment>
+  </data>
+  <data name="static.202" xml:space="preserve">
+    <value>Native RTS</value>
+    <comment>Native RTS</comment>
+  </data>
+  <data name="static.203" xml:space="preserve">
+    <value>Auto transceiver: the module controls DE/RE by itself and no pin is used. Native RTS: the MCU drives the DE/RE pins of a MAX485/MAX3485-style chip.</value>
+    <comment>Auto transceiver: the module controls DE/RE by itself and no pin is used. Native RTS: the MCU drives the DE/RE pins of a MAX485/MAX3485-style chip.</comment>
+  </data>
+  <data name="static.204" xml:space="preserve">
+    <value>DE/RE (GPIO)</value>
+    <comment>DE/RE (GPIO)</comment>
+  </data>
+  <data name="static.205" xml:space="preserve">
+    <value>The pin wired to both DE and /RE of the transceiver. It must differ from TX/RX.</value>
+    <comment>The pin wired to both DE and /RE of the transceiver. It must differ from TX/RX.</comment>
+  </data>
+  <data name="static.206" xml:space="preserve">
+    <value>DE/RE pin</value>
+    <comment>DE/RE pin</comment>
+  </data>
+</root>

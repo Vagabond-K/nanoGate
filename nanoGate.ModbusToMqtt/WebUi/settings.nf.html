@@ -1,0 +1,364 @@
+  <!-- 설정 뷰: MQTT 브로커/토픽 설정 폼입니다. -->
+      <section id="v-settings" hidden>
+        <div class="head">
+          <div>
+            <h1>Communication settings</h1>
+            <p class="sub">
+              Saving reboots the device, which starts with the new settings.
+            </p>
+          </div>
+        </div>
+        <form id="sf" novalidate>
+          <div class="cols">
+            <fieldset>
+              <legend>Serial communication</legend>
+              <div class="field">
+                <span>Protocol</span>
+                <div class="seg">
+                  <label
+                    ><input
+                      type="radio"
+                      name="protocol"
+                      data-label="Protocol"
+                      value="RTU"
+                    /><span>RTU</span></label
+                  ><label
+                    ><input
+                      type="radio"
+                      name="protocol"
+                      data-label="Protocol"
+                      value="ASCII"
+                    /><span>ASCII</span></label
+                  >
+                </div>
+              </div>
+              <label class="field"
+                ><span>Baud rate (bps)</span
+                ><select name="baudRate" data-label="Baud rate"></select
+              ></label>
+              <div class="g3">
+                <label class="field"
+                  ><span>Data bits</span
+                  ><select name="dataBits" data-label="Data bits">
+                    <option>7</option>
+                    <option>8</option>
+                  </select></label
+                >
+                <label class="field"
+                  ><span>Parity</span
+                  ><select name="parity" data-label="Parity">
+                    <option value="None">None</option>
+                    <option value="Even">Even</option>
+                    <option value="Odd">Odd</option>
+                  </select></label
+                >
+                <label class="field"
+                  ><span>Stop bits</span
+                  ><select name="stopBits" data-label="Stop bits">
+                    <option>1</option>
+                    <option>2</option>
+                  </select></label
+                >
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Slaves - polling</legend>
+              <label class="field"
+                ><span>Response timeout (ms)</span>
+                <number
+                  name="timeout"
+                  data-label="Response timeout"
+                  data-fmt="ms"
+                  min="100"
+                  max="10000"
+                  step="100"
+                />
+                <small>100~10000 ms</small></label
+              >
+              <label class="field"
+                ><span>Poll interval (ms)</span>
+                <number
+                  name="pollInterval"
+                  data-label="Poll interval"
+                  data-fmt="ms"
+                  min="100"
+                  max="60000"
+                  step="100"
+                />
+                <small
+                  >100~60000 ms. One cycle = reading all points once.</small
+                ></label
+              >
+            </fieldset>
+            <fieldset>
+              <legend>MQTT broker</legend>
+              <label class="field"
+                ><span>Broker address</span
+                ><input
+                  name="brokerHost"
+                  data-label="Broker address"
+                  maxlength="63"
+                  autocomplete="off"
+                  placeholder="192.168.0.100"
+                /><small
+                  >IP or host name. Use the address of the PC running Mosquitto
+                  or another broker.</small
+                ></label
+              >
+              <label class="field"
+                ><span>Broker port</span>
+                <number
+                  name="brokerPort"
+                  data-label="Broker port"
+                  min="1"
+                  max="65535"
+                />
+                <small id="portHint">The default port is 1883.</small></label
+              >
+              <div class="g2">
+                <label class="field"
+                  ><span>Client ID</span
+                  ><input
+                    name="mqttClientId"
+                    data-label="Client ID"
+                    maxlength="64"
+                    autocomplete="off"
+                  /><small
+                    >An identifier unique on the broker. It is used in the
+                    status topic.</small
+                  ></label
+                >
+                <label class="field"
+                  ><span>Keep Alive (s)</span>
+                  <number
+                    name="keepAlive"
+                    data-label="Keep Alive"
+                    min="0"
+                    max="600"
+                  />
+                  <small>0~600. 0 disables it.</small></label
+                >
+              </div>
+              <div class="g2">
+                <label class="field"
+                  ><span>User name (optional)</span
+                  ><input
+                    name="mqttUsername"
+                    data-label="User name"
+                    maxlength="64"
+                    autocomplete="off"
+                  /><small
+                    >Fill this in only if the broker requires
+                    authentication.</small
+                  ></label
+                >
+                <label class="field"
+                  ><span>Password (optional)</span
+                  ><input
+                    name="mqttPassword"
+                    data-label="Password"
+                    data-fmt="secret"
+                    maxlength="64"
+                    autocomplete="off"
+                    type="password"
+                  /><small>Used only if a user name is set.</small></label
+                >
+              </div>
+              <label class="field"
+                ><span>Topic prefix</span
+                ><input
+                  name="topicPrefix"
+                  data-label="Topic prefix"
+                  maxlength="64"
+                /><small
+                  >Use letters, digits and - _ . / :. It becomes the prefix of
+                  the publish and status topics.</small
+                ></label
+              >
+            </fieldset>
+            <fieldset>
+              <legend>Payload</legend>
+              <div class="field">
+                <span>Publish mode</span>
+                <div class="seg">
+                  <label
+                    ><input
+                      type="radio"
+                      name="publishMode"
+                      data-label="Publish mode"
+                      value="change"
+                    /><span>On change</span></label
+                  ><label
+                    ><input
+                      type="radio"
+                      name="publishMode"
+                      data-label="Publish mode"
+                      value="interval"
+                    /><span>Periodic</span></label
+                  >
+                </div>
+                <small
+                  >On change: publishes only points whose value or quality
+                  changed, immediately. Periodic: publishes all points at the
+                  interval below.</small
+                >
+              </div>
+              <label class="field" id="piField"
+                ><span>Publish interval (ms)</span>
+                <number
+                  name="publishInterval"
+                  data-label="Publish interval"
+                  data-fmt="ms"
+                  min="100"
+                  max="3600000"
+                  step="100"
+                />
+                <small
+                  >100~3600000 ms. In periodic mode, publishes all points at
+                  this interval.</small
+                ></label
+              >
+              <div class="g2">
+                <label class="field"
+                  ><span>Format</span
+                  ><select name="payloadFormat" data-label="Payload format">
+                    <option value="json">JSON</option>
+                    <option value="template">Template</option>
+                    <option value="binary">Binary</option>
+                    <option value="plain">Plain</option></select
+                  ><small
+                    >JSON: {"v","q","t"} (batch: {"ID":value}) - Template: the
+                    string below - Binary: big-endian bytes per type - Plain:
+                    value only.</small
+                  ></label
+                >
+                <label class="field"
+                  ><span>Batch</span
+                  ><select name="publishBatch" data-label="Batch">
+                    <option value="0">No (per point)</option>
+                    <option value="1">Yes (single message)</option></select
+                  ><small
+                    >Choosing Yes publishes all points as one message to
+                    &lt;prefix&gt;/data. Available with JSON or template
+                    format.</small
+                  ></label
+                >
+              </div>
+              <label class="field"
+                ><span>QoS</span
+                ><select name="mqttQos" data-label="QoS">
+                  <option value="0">0 - at most once</option>
+                  <option value="1">1 - at least once</option>
+                  <option value="2">2 - exactly once</option></select
+                ><small
+                  >Waits for the publish acknowledgement before sending the next
+                  message.</small
+                ></label
+              >
+              <label class="field" id="tplField"
+                ><span>Template</span
+                ><input
+                  name="mqttTemplate"
+                  data-label="Template"
+                  maxlength="200"
+                  autocomplete="off"
+                /><small
+                  >Placeholders: {id} {v} {q} {t} {topic} {addr} {space} {unit}
+                  {type}. Enter a newline as \n and a tab as \t. Example:
+                  {"id":"{id}","value":{v},"ts":{t}}</small
+                ></label
+              >
+              <label class="field" id="batchTplField"
+                ><span>Batch template</span
+                ><input
+                  name="mqttBatchTpl"
+                  data-label="Batch template"
+                  maxlength="200"
+                  autocomplete="off"
+                /><small
+                  >Placeholders: {points} and {t}. Example:
+                  {"t":{t},"points":{points}}</small
+                ></label
+              >
+              <label class="field" id="batchJoinField"
+                ><span>Batch row separator</span
+                ><select name="mqttBatchJoin" data-label="Batch row separator">
+                  <option value="comma">Comma</option>
+                  <option value="newline">Newline</option></select
+                ><small
+                  >Chooses how point rows are joined in template format. Use a
+                  comma for JSON object lists and a newline for line
+                  protocols.</small
+                ></label
+              >
+            </fieldset>
+            <fieldset>
+              <legend>UART pins</legend>
+              <div class="g2">
+                <label class="field"
+                  ><span>TX (GPIO)</span
+                  ><select
+                    name="txPin"
+                    data-label="TX pin"
+                    data-fmt="pin"
+                  ></select
+                ></label>
+                <label class="field"
+                  ><span>RX (GPIO)</span
+                  ><select
+                    name="rxPin"
+                    data-label="RX pin"
+                    data-fmt="pin"
+                  ></select
+                ></label>
+              </div>
+              <div class="field">
+                <span>RS485 direction control</span>
+                <div class="seg">
+                  <label
+                    ><input
+                      type="radio"
+                      name="rs485Mode"
+                      data-label="RS485 direction control"
+                      value="auto"
+                    /><span>Auto transceiver</span></label
+                  ><label
+                    ><input
+                      type="radio"
+                      name="rs485Mode"
+                      data-label="RS485 direction control"
+                      value="rts"
+                    /><span>Native RTS</span></label
+                  >
+                </div>
+                <small
+                  >Auto transceiver: the module controls DE/RE by itself and no
+                  pin is used. Native RTS: the MCU drives the DE//RE pins of a
+                  MAX485/MAX3485-style chip.</small
+                >
+              </div>
+              <label class="field" id="dePinField"
+                ><span>DE//RE (GPIO)</span
+                ><select
+                  name="rs485DePin"
+                  data-label="DE//RE pin"
+                  data-fmt="pin"
+                ></select
+                ><small
+                  >The pin wired to both DE and /RE of the transceiver. It must
+                  differ from TX/RX.</small
+                ></label
+              >
+              <p class="hint" id="pinHint"></p>
+            </fieldset>
+          </div>
+          <div class="preview" id="preview" hidden></div>
+          <div class="actions">
+            <span class="grow muted" id="sfState"></span
+            ><button type="button" id="sfUndo">Discard changes</button
+            ><button type="submit" class="primary" id="sfSave">
+              Save and reboot
+            </button>
+          </div>
+        </form>
+      </section>

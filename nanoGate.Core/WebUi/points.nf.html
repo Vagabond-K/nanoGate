@@ -1,0 +1,56 @@
+<section id="v-points" hidden>
+  <div class="head">
+    <div>
+      <h1>Point mapping</h1>
+      <p class="sub">
+        A mapping table that pairs source device addresses with destination
+        protocol addresses.
+      </p>
+    </div>
+  </div>
+  <div id="pEditor">
+    <div class="toolbar">
+      <input id="pq" type="search" placeholder="Search ID/name/address" />
+      <div class="meter">
+        <span id="pCount">0 / 32</span>
+        <div class="track"><i id="pMeter"></i></div>
+        <span id="pBytes"></span>
+      </div>
+      <span class="grow"></span>
+      <button id="pAdd" disabled>New point</button>
+      <button id="pUndo" disabled>Undo</button>
+      <button id="pSave" class="primary" disabled>Save</button>
+    </div>
+    <div class="alert" id="pErr" hidden></div>
+    <div class="tw">
+      <table id="pTable">
+        <thead>
+          <tr>
+            <th>Points</th>
+            <th>Source</th>
+            <th class="c-arrow"></th>
+            <th class="c-tgt">Destination</th>
+            <th>Access</th>
+            <th class="c-scale">Scale</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="pRows"></tbody>
+      </table>
+      <div class="empty" id="pEmpty">Loading...</div>
+    </div>
+    <p class="hint" id="pState"></p>
+    <p class="hint">
+      To protect memory, point saving and gateway request processing alternate
+      in short slices. While saving, communication responses may be slower than
+      usual.
+    </p>
+    <p class="note">
+      <points-note />
+      <span id="pScaleNote"
+        >Scale: displayed = raw x numerator / denominator + offset (inverse
+        applied on write)</span
+      >
+    </p>
+  </div>
+</section>

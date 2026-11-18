@@ -1,0 +1,90 @@
+<section id="v-system" hidden>
+  <div class="head">
+    <div>
+      <h1>System</h1>
+      <p class="sub">Device info, backup and restore, maintenance</p>
+    </div>
+    <button id="sRefresh">Refresh</button>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h2>Device</h2>
+      <dl id="sDev"></dl>
+    </div>
+    <div class="card">
+      <h2>Network</h2>
+      <dl id="sNet"></dl>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h2>Backup and restore</h2>
+      <p class="muted" id="bText">
+        Exports or restores the communication settings and saved point mappings
+        as a JSON file. Wi-Fi and IP settings are not included.
+      </p>
+      <div class="actions left">
+        <button id="bExport">Export backup</button
+        ><button id="bImport">Restore from backup</button
+        ><input type="file" id="bFile" accept=".json,application/json" hidden />
+      </div>
+    </div>
+    <div class="card">
+      <h2>Maintenance</h2>
+      <p class="muted">
+        Restore defaults resets only the communication settings and keeps point
+        mappings and network settings. Factory reset erases everything and
+        starts in setup AP mode.
+      </p>
+      <div class="actions left">
+        <button id="mReboot">Reboot</button
+        ><button id="mSetup" disabled>Enter setup mode (AP)</button
+        ><button id="mReset" class="danger">Restore defaults</button
+        ><button id="mFactory" class="danger">Factory reset</button>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h2>Admin access control</h2>
+      <p class="muted" id="aText">Loading...</p>
+      <div class="g2">
+        <label class="field"
+          ><span>New password</span
+          ><input
+            id="aPass"
+            type="password"
+            maxlength="63"
+            autocomplete="new-password"
+            placeholder="8~63 letters, digits, symbols"
+        /></label>
+        <label class="field"
+          ><span>API key</span
+          ><input
+            id="aKey"
+            maxlength="64"
+            autocomplete="off"
+            placeholder="For automation requests (optional)"
+        /></label>
+      </div>
+      <div class="actions left">
+        <button id="aSave" class="primary">Save</button
+        ><button id="aOff">Disable password</button
+        ><button id="aOut">Log out</button>
+      </div>
+    </div>
+  </div>
+  <p class="note">
+    Device BOOT button: after booting, press and hold it for 3+ seconds to enter
+    setup mode (AP), or 10+ seconds to factory reset. In setup mode, a short
+    press returns to the saved Wi-Fi. On boards with a status LED it lights
+    while held, blinks after 3 seconds, and blinks fast after 10 seconds. Note
+    that holding it during power-on or reset enters firmware download mode.
+  </p>
+  <p class="note">
+    The gateway protocols provide no authentication or encryption. The
+    management page can require login with admin access control (password / API
+    key), but communication itself is plain HTTP - use it only on a trusted,
+    isolated network.
+  </p>
+</section>

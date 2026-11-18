@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <NanoFrameworkProjectSystemPath Condition="'$(NanoFrameworkProjectSystemPath)' == ''">$(MSBuildExtensionsPath)\nanoFramework\v1.0\</NanoFrameworkProjectSystemPath>
+  </PropertyGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
+    <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{5B1E9D24-3F67-4A8C-9D0B-64C8E217F3A9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>nanoGate.Core</RootNamespace>
+    <AssemblyName>nanoGate.Core</AssemblyName>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <LangVersion>7.3</LangVersion>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <PackagesPath>$(MSBuildThisFileDirectory)..\packages\</PackagesPath>
+  </PropertyGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
+  <ItemGroup>
+    <Compile Include="Board.cs" />
+    <Compile Include="ByteTextUtil.cs" />
+    <Compile Include="DeviceNetwork.cs" />
+    <Compile Include="DeviceAuth.cs" />
+    <Compile Include="DeviceStorage.cs" />
+    <Compile Include="ErrorText.cs" />
+    <Compile Include="GatewayHost.cs" />
+    <Compile Include="NetworkForm.cs" />
+    <Compile Include="SetupDhcp.cs" />
+    <Compile Include="SetupButton.cs" />
+    <Compile Include="WebManagementServer.cs" />
+    <Compile Include="Controllers\StatusController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WebUi\**\*.nf.html" />
+    <None Include="WebUi\**\*.nf.js" />
+    <None Include="WebUi\**\*.nf.css" />
+    <None Include="WebUi\*.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <HintPath>$(PackagesPath)nanoFramework.CoreLibrary.1.17.11\lib\mscorlib.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="nanoFramework.Runtime.Native">
+      <HintPath>$(PackagesPath)nanoFramework.Runtime.Native.1.7.11\lib\nanoFramework.Runtime.Native.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Device.Gpio">
+      <HintPath>$(PackagesPath)nanoFramework.System.Device.Gpio.1.1.64\lib\System.Device.Gpio.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem">
+      <HintPath>$(PackagesPath)nanoFramework.System.IO.FileSystem.1.1.96\lib\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Streams">
+      <HintPath>$(PackagesPath)nanoFramework.System.IO.Streams.1.1.96\lib\System.IO.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net">
+      <HintPath>$(PackagesPath)nanoFramework.System.Net.1.11.66\lib\System.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>$(PackagesPath)nanoFramework.System.Threading.1.1.52\lib\System.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.System.Text">
+      <HintPath>$(PackagesPath)nanoFramework.System.Text.1.3.42\lib\nanoFramework.System.Text.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>$(PackagesPath)nanoFramework.System.Net.Http.Server.1.5.214\lib\System.Net.Http.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="nanoFramework.WebServer">
+      <HintPath>$(PackagesPath)nanoFramework.WebServer.1.2.162\lib\nanoFramework.WebServer.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="System.Collections">
+      <HintPath>$(PackagesPath)nanoFramework.System.Collections.1.5.75\lib\nanoFramework.System.Collections.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="VagabondK.nF.Web">
+      <HintPath>$(PackagesPath)VagabondK.nF.Web.0.1.0-preview.7\lib\VagabondK.nF.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
+  <!--
+    nanoFramework 클래스 라이브러리: 게이트웨이 3종이 ProjectReference로 참조합니다.
+    WebUi 페이지 코드생성은 게이트웨이 어셈블리에서 이뤄지므로 여기서 하지 않습니다.
+    게이트웨이는 부트스트랩에서 GatewayHost.ExtraControllers에 typeof(WebUiRoutes)를,
+    GatewayHost.LoginPagePath에 WebUiRoutes.LoginPath를 주입합니다(IGatewayProfile과 GatewayHost가 public이라 friend assembly가 필요 없습니다).
+  -->
+</Project>
