@@ -108,7 +108,7 @@ msbuild .\nanoGate.ModbusSerialToTcp\nanoGate.ModbusSerialToTcp.nfproj /t:Rebuil
 nanoff --nanodevice --serialport COM3 --deploy --image .\nanoGate.ModbusSerialToTcp\bin\Release\nanoGate.ModbusSerialToTcp.bin --reset
 ```
 
-`msbuild`는 Visual Studio 개발자 프롬프트에서 실행해야 경로에 잡힙니다. 다른 게이트웨이는 프로젝트 이름만 바꾸면 되고, VS에서 해당 프로젝트를 시작 프로젝트로 지정해 빌드·배포해도 됩니다. NuGet 복원은 nuget.org의 `VagabondK.nF 0.1.0-preview.7`와 nanoFramework 패키지를 사용합니다.
+`msbuild`는 Visual Studio 개발자 프롬프트에서 실행해야 경로에 잡힙니다. 다른 게이트웨이는 프로젝트 이름만 바꾸면 되고, VS에서 해당 프로젝트를 시작 프로젝트로 지정해 빌드·배포해도 됩니다. NuGet 복원은 nuget.org의 `VagabondK.nF 0.1.0-preview.8`와 nanoFramework 패키지를 사용합니다.
 
 ### 3. 처음 접속하기
 

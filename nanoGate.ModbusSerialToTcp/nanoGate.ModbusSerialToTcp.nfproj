@@ -99,25 +99,25 @@
       <Private>true</Private>
     </Reference>
     <Reference Include="VagabondK.nF.Modbus">
-      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.0.1.0-preview.7\lib\VagabondK.nF.Modbus.dll</HintPath>
+      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.0.1.0-preview.8\lib\VagabondK.nF.Modbus.dll</HintPath>
     </Reference>
     <Reference Include="VagabondK.nF.Modbus.Client">
-      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.Client.0.1.0-preview.7\lib\VagabondK.nF.Modbus.Client.dll</HintPath>
+      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.Client.0.1.0-preview.8\lib\VagabondK.nF.Modbus.Client.dll</HintPath>
     </Reference>
     <Reference Include="VagabondK.nF.Modbus.Server">
-      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.Server.0.1.0-preview.7\lib\VagabondK.nF.Modbus.Server.dll</HintPath>
+      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.Server.0.1.0-preview.8\lib\VagabondK.nF.Modbus.Server.dll</HintPath>
     </Reference>
     <Reference Include="VagabondK.nF.Modbus.RTU">
-      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.RTU.0.1.0-preview.7\lib\VagabondK.nF.Modbus.RTU.dll</HintPath>
+      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.RTU.0.1.0-preview.8\lib\VagabondK.nF.Modbus.RTU.dll</HintPath>
     </Reference>
     <Reference Include="VagabondK.nF.Modbus.ASCII">
-      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.ASCII.0.1.0-preview.7\lib\VagabondK.nF.Modbus.ASCII.dll</HintPath>
+      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.ASCII.0.1.0-preview.8\lib\VagabondK.nF.Modbus.ASCII.dll</HintPath>
     </Reference>
     <Reference Include="VagabondK.nF.Modbus.Serial">
-      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.Serial.0.1.0-preview.7\lib\VagabondK.nF.Modbus.Serial.dll</HintPath>
+      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.Serial.0.1.0-preview.8\lib\VagabondK.nF.Modbus.Serial.dll</HintPath>
     </Reference>
     <Reference Include="VagabondK.nF.Modbus.TCP">
-      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.TCP.0.1.0-preview.7\lib\VagabondK.nF.Modbus.TCP.dll</HintPath>
+      <HintPath>$(PackagesPath)VagabondK.nF.Modbus.TCP.0.1.0-preview.8\lib\VagabondK.nF.Modbus.TCP.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -128,7 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="VagabondK.nF.Web">
-      <HintPath>$(PackagesPath)VagabondK.nF.Web.0.1.0-preview.7\lib\VagabondK.nF.Web.dll</HintPath>
+      <HintPath>$(PackagesPath)VagabondK.nF.Web.0.1.0-preview.8\lib\VagabondK.nF.Web.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
