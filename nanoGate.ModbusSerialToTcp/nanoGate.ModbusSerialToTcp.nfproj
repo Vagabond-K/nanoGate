@@ -39,7 +39,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" />
     <None Include="WebUi\**\*.nf.html" />
     <None Include="WebUi\**\*.nf.js" />
     <None Include="WebUi\**\*.nf.css" />
