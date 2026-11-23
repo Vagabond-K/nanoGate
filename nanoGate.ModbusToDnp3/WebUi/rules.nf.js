@@ -225,17 +225,26 @@
           o: o || "0",
         });
       }
+      // wui-number는 value를 같은 값으로 지정해도 input 이벤트를 올린다.
+      // 아래 value="" 쓰기가 input→syncRuleDialog 재진입을 무한으로 되먹이므로 차단한다.
+      let ruleSyncing = false;
       function syncRuleDialog() {
-        const e = ruleForm();
-        e.rOrder.disabled = !is32(e.rKind.value);
-        const bit = isBit(e.rSpace.value);
-        $("rdScale").hidden = bit;
-        if (bit) {
-          e.rNum.value = "";
-          e.rDen.value = "";
-          e.rOff.value = "";
+        if (ruleSyncing) return;
+        ruleSyncing = true;
+        try {
+          const e = ruleForm();
+          e.rOrder.disabled = !is32(e.rKind.value);
+          const bit = isBit(e.rSpace.value);
+          $("rdScale").hidden = bit;
+          if (bit) {
+            if (e.rNum.value) e.rNum.value = "";
+            if (e.rDen.value) e.rDen.value = "";
+            if (e.rOff.value) e.rOff.value = "";
+          }
+          ruleFormula();
+        } finally {
+          ruleSyncing = false;
         }
-        ruleFormula();
       }
       function openRule(i) {
         if (!rules) return loadRules();
