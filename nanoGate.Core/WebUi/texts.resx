@@ -1743,19 +1743,19 @@
     <comment>Native RTS</comment>
   </data>
   <data name="static.203" xml:space="preserve">
-    <value>Auto transceiver: the module controls DE/RE by itself and no pin is used. Native RTS: the MCU drives the DE/RE pins of a MAX485/MAX3485-style chip.</value>
-    <comment>Auto transceiver: the module controls DE/RE by itself and no pin is used. Native RTS: the MCU drives the DE/RE pins of a MAX485/MAX3485-style chip.</comment>
+    <value>Auto transceiver: the module controls DE//RE by itself and no pin is used. Native RTS: the MCU drives the DE//RE pins of a MAX485/MAX3485-style chip.</value>
+    <comment>Auto transceiver: the module controls DE//RE by itself and no pin is used. Native RTS: the MCU drives the DE//RE pins of a MAX485/MAX3485-style chip.</comment>
   </data>
   <data name="static.204" xml:space="preserve">
-    <value>DE/RE (GPIO)</value>
-    <comment>DE/RE (GPIO)</comment>
+    <value>DE//RE (GPIO)</value>
+    <comment>DE//RE (GPIO)</comment>
   </data>
   <data name="static.205" xml:space="preserve">
     <value>The pin wired to both DE and /RE of the transceiver. It must differ from TX/RX.</value>
     <comment>The pin wired to both DE and /RE of the transceiver. It must differ from TX/RX.</comment>
   </data>
   <data name="static.206" xml:space="preserve">
-    <value>DE/RE pin</value>
-    <comment>DE/RE pin</comment>
+    <value>DE//RE pin</value>
+    <comment>DE//RE pin</comment>
   </data>
 </root>
