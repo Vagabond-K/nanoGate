@@ -130,46 +130,17 @@ namespace nanoGate.ModbusSerialToTcp
         {
             GatewaySettings settings = _settings;
             SerialPort port;
+            IModbusTransport serialTransport;
             try
             {
-                Configuration.SetPinFunction(settings.TxPin, DeviceFunction.COM2_TX);
-                Configuration.SetPinFunction(settings.RxPin, DeviceFunction.COM2_RX);
-                port = new SerialPort(
-                    "COM2",
-                    settings.BaudRate,
-                    settings.Parity,
-                    settings.DataBits,
-                    settings.StopBits == 2 ? StopBits.Two : StopBits.One);
-                if (settings.Rs485Mode == "rts")
-                {
-                    // 네이티브 RTS가 송신 중(마지막 정지 비트까지) DE/RE를 제어합니다.
-                    // 포트가 닫힌 상태에서 열기 전에 설정해야 합니다.
-                    Configuration.SetPinFunction(settings.Rs485DePin, DeviceFunction.COM2_RTS);
-                    port.Mode = SerialMode.RS485;
-                }
-                port.Open();
+                port = OpenPort(settings);
+                serialTransport = CreateTransport(settings, port);
             }
             catch (Exception error)
             {
                 GatewayHost.Error = "UART 초기화 실패: " + ErrorText.Describe(error);
                 Debug.WriteLine(GatewayHost.Error);
                 return;
-            }
-
-            var channel = new SerialPortChannel(port);
-            IModbusTransport serialTransport;
-            if (settings.Ascii)
-            {
-                serialTransport = new AsciiTransport(channel, settings.ResponseTimeout);
-            }
-            else
-            {
-                serialTransport = new RtuTransport(
-                    channel,
-                    settings.BaudRate,
-                    RtuReceiveMode.ResponseLength,
-                    settings.BitsPerCharacter,
-                    settings.ResponseTimeout);
             }
 
             var relay = new ModbusRelay(serialTransport, port);
@@ -192,6 +163,9 @@ namespace nanoGate.ModbusSerialToTcp
             Debug.WriteLine(
                 "nanoGate ready: Modbus TCP " + settings.TcpPort + " -> " + settings.ProtocolName + " " +
                 settings.BaudRate + " (TX " + settings.TxPin + ", RX " + settings.RxPin + "), multi-drop, all unit IDs.");
+
+            // 요청이 유예시간보다 오래 끝나지 않으면(드라이버 행업) COM2를 다시 엽니다.
+            new Thread(() => WatchdogLoop(relay, settings)).Start();
 
             while (true)
             {
@@ -218,6 +192,60 @@ namespace nanoGate.ModbusSerialToTcp
                 worker.Start();
             }
         }
+
+        // COM2를 설정에 맞게 엽니다. Run 초기화와 복구 워치독에서만 호출됩니다.
+        internal static SerialPort OpenPort(GatewaySettings settings)
+        {
+            Configuration.SetPinFunction(settings.TxPin, DeviceFunction.COM2_TX);
+            Configuration.SetPinFunction(settings.RxPin, DeviceFunction.COM2_RX);
+            var port = new SerialPort(
+                "COM2",
+                settings.BaudRate,
+                settings.Parity,
+                settings.DataBits,
+                settings.StopBits == 2 ? StopBits.Two : StopBits.One);
+            if (settings.Rs485Mode == "rts")
+            {
+                // 네이티브 RTS가 송신 중(마지막 정지 비트까지) DE/RE를 제어합니다.
+                // 포트가 닫힌 상태에서 열기 전에 설정해야 합니다.
+                Configuration.SetPinFunction(settings.Rs485DePin, DeviceFunction.COM2_RTS);
+                port.Mode = SerialMode.RS485;
+            }
+            port.Open();
+            return port;
+        }
+
+        internal static IModbusTransport CreateTransport(GatewaySettings settings, SerialPort port)
+        {
+            var channel = new SerialPortChannel(port);
+            if (settings.Ascii)
+                return new AsciiTransport(channel, settings.ResponseTimeout);
+            return new RtuTransport(
+                channel,
+                settings.BaudRate,
+                RtuReceiveMode.ResponseLength,
+                settings.BitsPerCharacter,
+                settings.ResponseTimeout);
+        }
+
+        private static void WatchdogLoop(ModbusRelay relay, GatewaySettings settings)
+        {
+            long grace = settings.ResponseTimeout + 30000;
+            if (grace < 45000)
+                grace = 45000;
+
+            while (true)
+            {
+                Thread.Sleep(WatchdogPeriodMilliseconds);
+                if (!GatewayHost.Ready)
+                    continue;
+
+                if (relay.PendingExchangeStalled(grace))
+                    relay.Recover(settings);
+            }
+        }
+
+        private const int WatchdogPeriodMilliseconds = 5000;
 
         // Modbus TCP 클라이언트 하나를 담당하며, 유휴 상태나 연결 해제, 잘못된 프레임 수신 시까지 처리합니다.
         // 각 연결은 별도의 스레드에서 실행되고, 공유 RS-485 버스는 ModbusRelay 내부에서 직렬화됩니다.

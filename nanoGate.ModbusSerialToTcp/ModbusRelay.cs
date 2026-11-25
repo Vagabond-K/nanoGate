@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
 using System.Text;
@@ -25,8 +26,17 @@ namespace nanoGate.ModbusSerialToTcp
         // 통계를 초기화한 이후 최소 한 번 응답한 적 있는 unit ID (index = unitId).
         private static readonly bool[] _seenUnits = new bool[248];
 
-        private readonly ModbusClient _client;
-        private readonly SerialPort _port;
+        // 드라이버 행업 시 워치독이 포트/클라이언트를 교체하므로 readonly가 아닙니다.
+        // 교체는 RecoverySync로, 실제 버스 사용 직렬화는 BusSync로 따로 합니다
+        // (행업 스레드가 BusSync를 영구 보유할 수 있어 복구 잠금과 분리).
+        private ModbusClient _client;
+        private SerialPort _port;
+        private readonly object _recoverySync = new object();
+
+        // 요청이 도착했으나 아직 끝나지 않은 상태(req > fin)가 유예시간을 넘으면 행업으로 봅니다.
+        // 링크가 유휴(요청 없음)이면 절대 트리거되지 않습니다.
+        private long _lastRequestTick;
+        private long _lastFinishTick;
         private readonly byte[] _discardBuffer = new byte[64];
 
         public ModbusRelay(IModbusTransport serialTransport, SerialPort port)
@@ -67,13 +77,28 @@ namespace nanoGate.ModbusSerialToTcp
             byte function = pdu[0];
             byte unitId = context.UnitId;
             GatewayStatistics.IncRequests();
+            _lastRequestTick = Environment.TickCount64;
+
+            ModbusClient client;
+            lock (_recoverySync)
+                client = _client;
+
+            if (client == null)
+            {
+                // 복구 워치독이 포트를 다시 여는 중입니다.
+                GatewayStatistics.SetLastError("UART 복구 진행 중 — 요청을 건너뛰었습니다");
+                _lastFinishTick = Environment.TickCount64;
+                pdu[0] = (byte)(function | 0x80);
+                pdu[1] = GatewayTargetFailedToRespond;
+                return 2;
+            }
 
             lock (BusSync)
             {
                 try
                 {
                     DiscardPendingInput();
-                    int responseLength = _client.ExchangePdu(unitId, pdu, requestLength);
+                    int responseLength = client.ExchangePdu(unitId, pdu, requestLength);
                     if (pdu[0] == function)
                     {
                         if (unitId >= 1 && unitId < _seenUnits.Length)
@@ -104,6 +129,16 @@ namespace nanoGate.ModbusSerialToTcp
                     GatewayStatistics.IncFrameErrors();
                     GatewayStatistics.SetLastError("시리얼 I/O 오류: " + ErrorText.Describe(error));
                 }
+                catch (ObjectDisposedException)
+                {
+                    // 복구 워치독이 행업된 포트를 강제로 닫은 것입니다.
+                    GatewayStatistics.IncFrameErrors();
+                    GatewayStatistics.SetLastError("정지 복구로 포트가 교체되었습니다");
+                }
+                finally
+                {
+                    _lastFinishTick = Environment.TickCount64;
+                }
 
                 // 방금 실패한 장치의 지연 응답이 다음 transaction의 응답으로 잘못 읽힐 수 있으므로,
                 // 버스를 해제하기 전에 라인이 조용해질 때까지 수신 데이터를 버립니다.
@@ -115,13 +150,63 @@ namespace nanoGate.ModbusSerialToTcp
             return 2;
         }
 
+        // 진행 중이던 교환이 유예시간보다 오래 끝나지 않았다면 true입니다.
+        public bool PendingExchangeStalled(long graceMilliseconds)
+        {
+            long req = _lastRequestTick;
+            return req != 0 && req > _lastFinishTick
+                && Environment.TickCount64 - req > graceMilliseconds;
+        }
+
+        // 행업 의심 시 COM2를 다시 열고 클라이언트를 교체합니다. BusSync를 기다리지
+        // 않아야 하므로 짧은 전용 잠금만 사용합니다. 행업 스레드는 Dispose로 깨어납니다.
+        public void Recover(GatewaySettings settings)
+        {
+            lock (_recoverySync)
+            {
+                Debug.WriteLine("Serial exchange stall detected; reopening COM2.");
+                SerialPort old = _port;
+                _port = null;
+                _client = null;
+                try
+                {
+                    if (old != null)
+                        old.Dispose();
+                }
+                catch
+                {
+                    // 행업 스레드가 깨지며 예외를 던지는 것이 정상입니다.
+                }
+
+                try
+                {
+                    SerialPort port = ModbusGatewayProfile.OpenPort(settings);
+                    _port = port;
+                    _client = new ModbusClient(ModbusGatewayProfile.CreateTransport(settings, port));
+                    GatewayStatistics.SetLastError("시리얼 정지 감지: COM2를 다시 열었습니다.");
+                }
+                catch (Exception error)
+                {
+                    GatewayHost.Error = "UART 복구 실패: " + ErrorText.Describe(error);
+                    Debug.WriteLine(GatewayHost.Error);
+                }
+
+                // 다음 시도까지 같은 유예를 줍니다.
+                _lastFinishTick = Environment.TickCount64;
+            }
+        }
+
         private int DiscardPendingInput()
         {
+            SerialPort port = _port;
+            if (port == null)
+                return 0; // 복구 중 — 포트가 곧 다시 열립니다.
+
             int discarded = 0;
-            int available = _port.BytesToRead;
+            int available = port.BytesToRead;
             while (available > 0)
             {
-                int read = _port.Read(
+                int read = port.Read(
                     _discardBuffer,
                     0,
                     available < _discardBuffer.Length ? available : _discardBuffer.Length);
@@ -129,7 +214,7 @@ namespace nanoGate.ModbusSerialToTcp
                     break;
 
                 discarded += read;
-                available = _port.BytesToRead;
+                available = port.BytesToRead;
             }
 
             return discarded;

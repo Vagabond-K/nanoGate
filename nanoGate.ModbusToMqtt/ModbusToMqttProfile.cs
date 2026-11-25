@@ -78,6 +78,13 @@ namespace nanoGate.ModbusToMqtt
 
         private static GatewaySettings _settings;
         private static ModbusClient _client;
+        // VagabondK.nF Modbus 문서가 호출자 책임으로 남긴 사후 복구 구현 (DNP3 프로필과 동일):
+        // 워치독이 드라이버 행업 시 _port/_client를 통째로 교체합니다.
+        private static SerialPort _port;
+        private static long _cycleTick;
+        private static readonly object PortSync = new object();
+
+        private const int WatchdogPeriodMilliseconds = 5000;
         private static MapPoint[] _map = new MapPoint[0];
         private static int _skipped;
         private static string _skipNote = string.Empty;
@@ -258,25 +265,13 @@ namespace nanoGate.ModbusToMqtt
         public void Run()
         {
             GatewaySettings settings = _settings;
-            SerialPort port;
             try
             {
-                Configuration.SetPinFunction(settings.TxPin, DeviceFunction.COM2_TX);
-                Configuration.SetPinFunction(settings.RxPin, DeviceFunction.COM2_RX);
-                port = new SerialPort(
-                    "COM2",
-                    settings.BaudRate,
-                    settings.Parity,
-                    settings.DataBits,
-                    settings.StopBits == 2 ? StopBits.Two : StopBits.One);
-                if (settings.Rs485Mode == "rts")
+                lock (PortSync)
                 {
-                    // 네이티브 RTS가 송신 중(마지막 정지 비트까지) DE/RE를 제어합니다.
-                    // 포트가 닫힌 상태에서 열기 전에 설정해야 합니다.
-                    Configuration.SetPinFunction(settings.Rs485DePin, DeviceFunction.COM2_RTS);
-                    port.Mode = SerialMode.RS485;
+                    _port = OpenPort(settings);
+                    _client = new ModbusClient(CreateTransport(settings, _port));
                 }
-                port.Open();
             }
             catch (Exception error)
             {
@@ -285,25 +280,11 @@ namespace nanoGate.ModbusToMqtt
                 return;
             }
 
-            var channel = new SerialPortChannel(port);
-            IModbusTransport serialTransport;
-            if (settings.Ascii)
-                serialTransport = new AsciiTransport(channel, settings.ResponseTimeout);
-            else
-                serialTransport = new RtuTransport(
-                    channel,
-                    settings.BaudRate,
-                    RtuReceiveMode.ResponseLength,
-                    settings.BitsPerCharacter,
-                    settings.ResponseTimeout);
-
-            var client = new ModbusClient(serialTransport);
-            _client = client;
-
             BuildMap();
 
-            var poller = new Thread(() => PollLoop(client));
-            poller.Start();
+            _cycleTick = Environment.TickCount64;
+            new Thread(PollLoop).Start();
+            new Thread(WatchdogLoop).Start();
 
             GatewayHost.Ready = true;
             Debug.WriteLine(
@@ -323,17 +304,24 @@ namespace nanoGate.ModbusToMqtt
         private static int _pollFailStreak;
 
         // 한 주기에 매핑된 모든 Modbus 포인트를 한 번씩 읽고 변경된 값에 dirty 표시를 합니다.
-        private static void PollLoop(object clientObject)
+        private static void PollLoop()
         {
-            var client = (ModbusClient)clientObject;
-
             while (true)
             {
                 long started = Environment.TickCount64;
                 long successesBefore = GatewayStatistics.Successes;
+                ModbusClient client = _client;
+                if (client == null)
+                {
+                    // 복구 워치독이 포트를 다시 여는 중입니다.
+                    Thread.Sleep(500);
+                    continue;
+                }
+
                 PollFile(client);
 
                 GatewayStatistics.IncPolls();
+                _cycleTick = Environment.TickCount64;
                 if (_map.Length == 0 || GatewayStatistics.Successes != successesBefore)
                     _pollFailStreak = 0;
                 else
@@ -352,6 +340,130 @@ namespace nanoGate.ModbusToMqtt
             }
         }
 
+        // COM2를 설정에 맞게 엽니다. 호출자 잠금(PortSync) 하에서만 실행됩니다.
+        private static SerialPort OpenPort(GatewaySettings settings)
+        {
+            Configuration.SetPinFunction(settings.TxPin, DeviceFunction.COM2_TX);
+            Configuration.SetPinFunction(settings.RxPin, DeviceFunction.COM2_RX);
+            var port = new SerialPort(
+                "COM2",
+                settings.BaudRate,
+                settings.Parity,
+                settings.DataBits,
+                settings.StopBits == 2 ? StopBits.Two : StopBits.One);
+            if (settings.Rs485Mode == "rts")
+            {
+                // 네이티브 RTS가 송신 중(마지막 정지 비트까지) DE/RE를 제어합니다.
+                // 포트가 닫힌 상태에서 열기 전에 설정해야 합니다.
+                Configuration.SetPinFunction(settings.Rs485DePin, DeviceFunction.COM2_RTS);
+                port.Mode = SerialMode.RS485;
+            }
+            port.Open();
+            return port;
+        }
+
+        private static IModbusTransport CreateTransport(GatewaySettings settings, SerialPort port)
+        {
+            var channel = new SerialPortChannel(port);
+            if (settings.Ascii)
+                return new AsciiTransport(channel, settings.ResponseTimeout);
+            return new RtuTransport(
+                channel,
+                settings.BaudRate,
+                RtuReceiveMode.ResponseLength,
+                settings.BitsPerCharacter,
+                settings.ResponseTimeout);
+        }
+
+        // 지연 도착한 응답이나 에코가 포트에 남아 다음 프레임을 망가뜨립니다.
+        // nanoFramework SerialPort에는 DiscardInBuffer가 없어 읽어서 버립니다.
+        private static readonly byte[] _sink = new byte[256];
+
+        private static void Drain()
+        {
+            SerialPort port = _port;
+            if (port == null)
+                return;
+            try
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    int available = port.BytesToRead;
+                    if (available == 0)
+                        return;
+                    port.Read(_sink, 0, available < _sink.Length ? available : _sink.Length);
+                }
+            }
+            catch
+            {
+                // 포트가 막 교체된 상태라면 무시. 복구 워치독이 수습합니다.
+            }
+        }
+
+        // 폴링 사이클이 유예시간을 넘기면 드라이버 행업으로 판단하고 포트를 다시 엽니다.
+        private static void WatchdogLoop()
+        {
+            while (true)
+            {
+                Thread.Sleep(WatchdogPeriodMilliseconds);
+                if (!GatewayHost.Ready)
+                    continue;
+
+                long grace = StallGraceMilliseconds();
+                if (Environment.TickCount64 - _cycleTick < grace)
+                    continue;
+
+                // 복구에 성공하든 실패하든 다음 시도까지 동일 유예를 줍니다.
+                _cycleTick = Environment.TickCount64;
+                RecoverPort();
+            }
+        }
+
+        private static void RecoverPort()
+        {
+            lock (PortSync)
+            {
+                Debug.WriteLine("Poll stall detected; reopening COM2.");
+                SerialPort old = _port;
+                _port = null;
+                _client = null;
+                try
+                {
+                    if (old != null)
+                        old.Dispose();
+                }
+                catch
+                {
+                    // 행업된 읽기 스레드가 깨지며 예외를 던지는 것이 정상입니다.
+                }
+
+                try
+                {
+                    GatewaySettings settings = _settings;
+                    _port = OpenPort(settings);
+                    _client = new ModbusClient(CreateTransport(settings, _port));
+                    GatewayStatistics.SetLastError("폴링 정지 감지: COM2를 다시 열었습니다.");
+                }
+                catch (Exception error)
+                {
+                    GatewayHost.Error = "UART 복구 실패: " + ErrorText.Describe(error);
+                    Debug.WriteLine(GatewayHost.Error);
+                }
+            }
+        }
+
+        // 한 주기가 정상적으로 걸릴 수 있는 최악 시간 + 여유.
+        private static long StallGraceMilliseconds()
+        {
+            long grace = (long)(_map.Length + 8) * (_settings.ResponseTimeout + 50)
+                + _settings.PollInterval + 20000;
+            if (grace < 45000)
+                grace = 45000;
+            if (grace > 300000)
+                grace = 300000;
+            return grace;
+        }
+
         private static void PollFile(ModbusClient client)
         {
             MapPoint[] map = _map;
@@ -367,7 +479,10 @@ namespace nanoGate.ModbusToMqtt
                 {
                     double value;
                     lock (GatewayHost.ConfigurationSync)
+                    {
+                        Drain();
                         value = ReadValue(client, p, bits, registers, bytes);
+                    }
 
                     value = value * p.Numerator / p.Denominator + p.Offset;
                     Publish(p, value, QualityGood);
@@ -573,7 +688,10 @@ namespace nanoGate.ModbusToMqtt
                 try
                 {
                     lock (GatewayHost.ConfigurationSync)
+                    {
+                        Drain();
                         WriteValue(p, value);
+                    }
                 }
                 catch (Exception error)
                 {
