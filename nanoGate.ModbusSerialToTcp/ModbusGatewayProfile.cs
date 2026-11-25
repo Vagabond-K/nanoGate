@@ -142,7 +142,7 @@ namespace nanoGate.ModbusSerialToTcp
                     settings.StopBits == 2 ? StopBits.Two : StopBits.One);
                 if (settings.Rs485Mode == "rts")
                 {
-                    // 네이티브 RTS가 송신 중(마지막 정지 비트까지) DE//RE를 제어합니다.
+                    // 네이티브 RTS가 송신 중(마지막 정지 비트까지) DE/RE를 제어합니다.
                     // 포트가 닫힌 상태에서 열기 전에 설정해야 합니다.
                     Configuration.SetPinFunction(settings.Rs485DePin, DeviceFunction.COM2_RTS);
                     port.Mode = SerialMode.RS485;

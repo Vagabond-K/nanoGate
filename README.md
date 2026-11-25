@@ -11,7 +11,7 @@ PC나 Linux 게이트웨이 없이 ESP32 보드 하나만으로 현장을 연결
 - **웹 관리 화면** — 대시보드·통신 설정·포인트 매핑·포인트 캐시(MQTT·DNP3)·네트워크·시스템 탭. 데스크톱과 모바일 폭 모두 지원
 - **관리 인증** — 비밀번호 해시 저장, 로그인 잠금, API 키와 리프레시 토큰, CSRF/Origin 검사, CSP 헤더
 - **포인트 매핑** — 논리 포인트 최대 32개, 주소 공간·스케일·접근 모드 편집, 프로필별 파일 격리
-- **RS-485 방향 제어** — 자동 제어 트랜시버(기본) 또는 MAX3485류 수동 트랜시버용 네이티브 RTS(DE//RE) 핀 제어
+- **RS-485 방향 제어** — 자동 제어 트랜시버(기본) 또는 MAX3485류 수동 트랜시버용 네이티브 RTS(DE/RE) 핀 제어
 - **설정 모드** — Wi-Fi 정보가 없으면 장치 자체 AP(`nanoGate-XXXX`)를 열어 브라우저에서 네트워크를 설정합니다. BOOT 버튼으로도 진입할 수 있습니다
 - **백업·복원** — 통신 설정과 포인트를 JSON 한 파일로 내보내고 가져옵니다. 자격 증명은 백업에 포함되지 않습니다
 
@@ -81,7 +81,7 @@ nanoGate.Modbus*  게이트웨이 3종 (각각 GatewaySettings + Profile + WebUi
 | Geekble Nano (ESP32-S3) | `ESP32_S3_QUAD` | GPIO17 / GPIO18 | 1, 2, 4~18, 21, 38~42, 47, 48 |
 | Geekble Mini (ESP32-C3) | `ESP32_C3` 계열 | GPIO6 / GPIO7 | 0, 1, 3~7 |
 
-- UART는 `COM2`를 사용하며 설정한 TX/RX 핀을 `SetPinFunction`으로 배정합니다. RS-485 DE//RE 핀은 기본 GPIO15입니다.
+- UART는 `COM2`를 사용하며 설정한 TX/RX 핀을 `SetPinFunction`으로 배정합니다. RS-485 DE/RE 핀은 기본 GPIO15입니다.
 - 보드는 `SystemInfo.TargetName`으로 자동 판별하고, 설정 화면의 핀 선택지와 검증에 같은 표를 사용합니다.
 - **WT32-ETH01**(유선 LAN, `ESP32_WT32_ETH01` 타깃)은 펌웨어 지원이 확인된 정식 대상입니다. nanoGate 쪽 Ethernet 초기화 분기는 아직 준비 중이라 현재 코드는 Wi-Fi 전용입니다.
 - C3는 스트래핑·플래시·USB·콘솔 핀이 제약되어 있어 위 표 밖의 GPIO는 설정할 수 없습니다.

@@ -41,7 +41,7 @@ namespace nanoGate.ModbusSerialToTcp
         public int RxPin;
         public int ResponseTimeout;
         public int TcpPort;
-        // "auto" = 송수신 자동 제어 모듈(핀 불필요), "rts" = 네이티브 RTS로 DE//RE 제어.
+        // "auto" = 송수신 자동 제어 모듈(핀 불필요), "rts" = 네이티브 RTS로 DE/RE 제어.
         public string Rs485Mode;
         public int Rs485DePin;
 

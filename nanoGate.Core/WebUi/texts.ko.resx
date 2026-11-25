@@ -1541,15 +1541,15 @@
     <value>네이티브 RTS</value>
   </data>
   <data name="static.203" xml:space="preserve">
-    <value>자동 모듈: 트랜시버가 DE//RE 방향을 스스로 제어하므로 핀을 사용하지 않습니다. 네이티브 RTS: MCU가 MAX485/MAX3485 계열 칩의 DE//RE 핀을 제어합니다.</value>
+    <value>자동 모듈: 트랜시버가 DE/RE 방향을 스스로 제어하므로 핀을 사용하지 않습니다. 네이티브 RTS: MCU가 MAX485/MAX3485 계열 칩의 DE/RE 핀을 제어합니다.</value>
   </data>
   <data name="static.204" xml:space="preserve">
-    <value>DE//RE (GPIO)</value>
+    <value>DE/RE (GPIO)</value>
   </data>
   <data name="static.205" xml:space="preserve">
     <value>트랜시버의 DE와 /RE 두 핀에 함께 연결한 GPIO입니다. TX/RX와 달라야 합니다.</value>
   </data>
   <data name="static.206" xml:space="preserve">
-    <value>DE//RE 핀</value>
+    <value>DE/RE 핀</value>
   </data>
 </root>
