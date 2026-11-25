@@ -176,7 +176,8 @@ namespace nanoGate.ModbusToDnp3
             {
                 byte flags = map[i].Flags;
                 bool online = (flags & 1) != 0;
-                string quality = online ? "Online" : ((flags & 16) != 0 ? "오류" : "Offline");
+                // 언어를 굳히지 않는 중립 토큰; UI가 gate.qual.* 키로 번역합니다.
+                string quality = online ? "online" : ((flags & 16) != 0 ? "error" : "offline");
                 w.BeginObject()
                     .Prop("id", map[i].Id)
                     .Prop("v", NumberText(map[i].Last))

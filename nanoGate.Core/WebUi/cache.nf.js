@@ -43,6 +43,15 @@ WebUi.component("cacheRow", function (a) {
   });
 });
 
+// /api/cache의 q는 언어 중립 토큰입니다. 낡은 서버가 문자열을 그대로 주면 그대로 표시합니다.
+function qualText(q) {
+  if (q === "online") return uiText("gate.qual.online");
+  if (q === "offline") return uiText("gate.qual.offline");
+  if (q === "error") return uiText("gate.qual.error");
+  if (q === "good") return uiText("gate.qual.good");
+  return q;
+}
+
 function renderCache() {
   const q = $("cq").value.trim().toLowerCase();
   const pts = cache ? cache.points : [];
@@ -87,7 +96,7 @@ function renderCache() {
         node(
           "td",
           {},
-          node("span", { className: "pill " + (p.ok ? "ok" : "bad"), text: p.q }),
+          node("span", { className: "pill " + (p.ok ? "ok" : "bad"), text: qualText(p.q) }),
         ),
       ),
     );

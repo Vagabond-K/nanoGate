@@ -88,6 +88,18 @@
   <data name="gate.cc.val" xml:space="preserve">
     <value>Value</value>
   </data>
+  <data name="gate.qual.online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="gate.qual.offline" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="gate.qual.error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="gate.qual.good" xml:space="preserve">
+    <value>Good</value>
+  </data>
   <data name="gate.iot.badBaud" xml:space="preserve">
     <value>Unsupported baud rate.</value>
   </data>

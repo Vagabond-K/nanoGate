@@ -210,7 +210,7 @@ namespace nanoGate.ModbusToMqtt
                 w.BeginObject()
                     .Prop("id", map[i].Id)
                     .Prop("v", NumberText(map[i].Last))
-                    .Prop("q", good ? "양호" : "오류")
+                    .Prop("q", good ? "good" : "error")
                     .Prop("ok", good)
                     .EndObject();
             }

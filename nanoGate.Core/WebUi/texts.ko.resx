@@ -88,6 +88,18 @@
   <data name="gate.cc.val" xml:space="preserve">
     <value>값</value>
   </data>
+  <data name="gate.qual.online" xml:space="preserve">
+    <value>온라인</value>
+  </data>
+  <data name="gate.qual.offline" xml:space="preserve">
+    <value>오프라인</value>
+  </data>
+  <data name="gate.qual.error" xml:space="preserve">
+    <value>오류</value>
+  </data>
+  <data name="gate.qual.good" xml:space="preserve">
+    <value>양호</value>
+  </data>
   <data name="gate.iot.badBaud" xml:space="preserve">
     <value>지원하지 않는 통신 속도입니다.</value>
   </data>
