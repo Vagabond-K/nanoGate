@@ -81,6 +81,8 @@ namespace nanoGate.ModbusToDnp3
             // 상태 페이지를 위해 폴러가 작성하는 마지막 스케일 적용 값과 quality.
             public double Last;
             public byte Flags;
+            // 최근 읽기 실패가 응답 없음(true=offline)이면 offline, 응답은 왔지만 문제면 error로 표시합니다. 아직 polled되지 않은 초기값도 offline입니다.
+            public bool FailOffline = true;
         }
 
         private static GatewaySettings _settings;
@@ -174,10 +176,9 @@ namespace nanoGate.ModbusToDnp3
             MapPoint[] map = _map;
             for (int i = 0; i < map.Length; i++)
             {
-                byte flags = map[i].Flags;
-                bool online = (flags & 1) != 0;
-                // 언어를 굳히지 않는 중립 토큰; UI가 gate.qual.* 키로 번역합니다.
-                string quality = online ? "online" : ((flags & 16) != 0 ? "error" : "offline");
+                bool online = (map[i].Flags & 1) != 0;
+                // 언어를 굳히지 않는 중립 토큰; UI가 gate.qual.* 키로 번역합니다. 실패 사유 기반: 타임아웃=offline, 그 밖=error.
+                string quality = online ? "online" : (map[i].FailOffline ? "offline" : "error");
                 w.BeginObject()
                     .Prop("id", map[i].Id)
                     .Prop("v", NumberText(map[i].Last))
@@ -611,23 +612,24 @@ namespace nanoGate.ModbusToDnp3
                     value = value * p.Numerator / p.Denominator + p.Offset;
                     p.Last = value;
                     p.Flags = FlagOnline;
+                    p.FailOffline = false;
                     Publish(p, value, FlagOnline);
                     GatewayStatistics.IncSuccesses();
                 }
                 catch (ModbusException error)
                 {
                     GatewayStatistics.IncDeviceExceptions();
-                    MarkFailed(p, "포인트 " + p.Id + " 장치 예외: " + error.Message);
+                    MarkFailed(p, "포인트 " + p.Id + " 장치 예외: " + error.Message, false);
                 }
                 catch (TimeoutException)
                 {
                     GatewayStatistics.IncTimeouts();
-                    MarkFailed(p, "포인트 " + p.Id + " 응답 없음");
+                    MarkFailed(p, "포인트 " + p.Id + " 응답 없음", true);
                 }
                 catch (Exception error)
                 {
                     GatewayStatistics.IncFrameErrors();
-                    MarkFailed(p, "포인트 " + p.Id + " 오류: " + ErrorText.Describe(error));
+                    MarkFailed(p, "포인트 " + p.Id + " 오류: " + ErrorText.Describe(error), false);
                 }
             }
         }
@@ -683,6 +685,7 @@ namespace nanoGate.ModbusToDnp3
                     MapPoint p = map[start + i];
                     p.Last = values[i] ? 1 : 0;
                     p.Flags = FlagOnline;
+                    p.FailOffline = false;
                     Publish(p, p.Last, FlagOnline);
                 }
             }
@@ -731,6 +734,7 @@ namespace nanoGate.ModbusToDnp3
                     value = value * p.Numerator / p.Denominator + p.Offset;
                     p.Last = value;
                     p.Flags = FlagOnline;
+                    p.FailOffline = false;
                     Publish(p, value, FlagOnline);
                 }
             }
@@ -752,7 +756,7 @@ namespace nanoGate.ModbusToDnp3
                 GatewayStatistics.IncFrameErrors();
 
             for (int i = 0; i < count; i++)
-                MarkFailed(map[start + i], "범위 규칙 " + area + " 영역 읽기 실패: " + ErrorText.Describe(error));
+                MarkFailed(map[start + i], "범위 규칙 " + area + " 영역 읽기 실패: " + ErrorText.Describe(error), error is TimeoutException);
         }
 
         private static double ReadValue(ModbusClient client, byte unitId, MapPoint p, bool[] bits, ushort[] registers, byte[] bytes)
@@ -904,10 +908,11 @@ namespace nanoGate.ModbusToDnp3
             _database.Update(p.Type, p.Index, pointValue);
         }
 
-        private static void MarkFailed(MapPoint p, string message)
+        private static void MarkFailed(MapPoint p, string message, bool offline)
         {
             p.Flags = p.Type == Dnp3PointType.Analog || p.Type == Dnp3PointType.AnalogOutputStatus
                 ? FlagErrorAnalog : (byte)0;
+            p.FailOffline = offline;
             Publish(p, p.Last, p.Flags);
             GatewayStatistics.SetLastError(message);
         }
@@ -1156,6 +1161,7 @@ namespace nanoGate.ModbusToDnp3
 
                 point.Last = value;
                 point.Flags = FlagOnline;
+                point.FailOffline = false;
                 Publish(point, value, FlagOnline);
                 return Dnp3CommandStatus.Success;
             }
