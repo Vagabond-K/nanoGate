@@ -280,10 +280,13 @@ var CFG = {
         if (v === "cache") loadCache();
       }
       addEventListener("hashchange", route);
+      var refreshing = false;
       async function refresh() {
-        if (rebooting) return;
+        if (rebooting || refreshing) return;
+        refreshing = true;
         try {
-          st = await api("/api/status", null, 5000);
+          // 전역 GC 정지가 2~3초까지 갈 수 있어 타임아웃을 넉넉히 둔다 (5초마다 재시작).
+          st = await api("/api/status", null, 12000);
           seenAt = Date.now();
           failures = 0;
           WebUi.caps(st.capabilities); // feat()가 capabilities를 보게 하는 연결(features→capabilities 마이그레이션 후 누락분)
@@ -298,6 +301,8 @@ var CFG = {
             $("hState").textContent = uiText("gate.ui.disconnected");
             $("hState").className = "pill bad";
           }
+        } finally {
+          refreshing = false;
         }
       }
       function tick() {
