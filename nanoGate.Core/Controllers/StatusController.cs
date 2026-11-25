@@ -15,8 +15,8 @@ namespace nanoGate.Core.Controllers
     internal sealed class StatusController
     {
         // GC.Run(false)은 전체 GC를 블로킹으로 수행해, 폴러가 동작 중이면 1초 이상 걸립니다.
-        // 5초 주기 status가 매번 GC를 유발하면 응답 지연이 UI 타임아웃(5초)에 근접하므로
-        // 남은 힙 값을 30초마다만 새로 재고 나머지는 캐시를 돌려줍니다.
+        // 따라서 GC는 #system 탭이 열릴 때만(30초 간격) 실행하고 status는 이 캐시를 읽기만 합니다.
+        // 이전 값이 0이면 아직 GC를 한 번도 하지 않은 것이라 표시용(시스템 탭)에만 의미가 있습니다.
         private const long FreeMemoryRefreshMilliseconds = 30000;
         private static long _freeMemoryBytes;
         private static long _freeMemoryAtTicks;
@@ -89,7 +89,8 @@ namespace nanoGate.Core.Controllers
                 .Prop("settingsSource", GatewayHost.SettingsSource)
                 .Prop("settingsError", GatewayHost.SettingsError)
                 .Prop("uptime", Environment.TickCount64 / 1000)
-                .Prop("freeMemory", FreeMemory());
+                // freeMemory는 #system 탭만 소비: status는 절대 GC를 유발하지 않고 캐시만 노출.
+                .Prop("freeMemory", _freeMemoryBytes);
             GatewayHost.Profile.WriteStatus(w);
             // 서버 자기서술: capabilities는 manifest.features의 최종 고향, settingsKeys는 실제로 받는 설정 키.
             w.Prop("limits");
