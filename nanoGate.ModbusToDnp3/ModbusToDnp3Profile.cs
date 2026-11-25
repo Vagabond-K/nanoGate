@@ -53,6 +53,17 @@ namespace nanoGate.ModbusToDnp3
         private const int Dnp3IdleTimeoutMilliseconds = 120000;
         private const int SocketPollMicroseconds = 20000;
 
+        // VagabondK.nF.Modbus 문서는 "요청 실패 이후의 연결 복구와 잔여 데이터 처리는
+        // 호출자 책임"이라고 명시합니다. 아래 정적 인스턴스들이 그 책임을 수행합니다:
+        // 폴러/제어 핸들러는 매 사이클 _client를 새로 읽고, 복구 워치독이 드라이버
+        // 행업 시 _port와 _client를 통째로 교체합니다.
+        private static ModbusClient _client;
+        private static SerialPort _port;
+        private static long _cycleTick;
+        private static readonly object PortSync = new object();
+
+        private const int WatchdogPeriodMilliseconds = 5000;
+
         private sealed class MapPoint
         {
             public string Id;
@@ -256,25 +267,13 @@ namespace nanoGate.ModbusToDnp3
         public void Run()
         {
             GatewaySettings settings = _settings;
-            SerialPort port;
             try
             {
-                Configuration.SetPinFunction(settings.TxPin, DeviceFunction.COM2_TX);
-                Configuration.SetPinFunction(settings.RxPin, DeviceFunction.COM2_RX);
-                port = new SerialPort(
-                    "COM2",
-                    settings.BaudRate,
-                    settings.Parity,
-                    settings.DataBits,
-                    settings.StopBits == 2 ? StopBits.Two : StopBits.One);
-                if (settings.Rs485Mode == "rts")
+                lock (PortSync)
                 {
-                    // 네이티브 RTS가 송신 중(마지막 정지 비트까지) DE/RE를 제어합니다.
-                    // 포트가 닫힌 상태에서 열기 전에 설정해야 합니다.
-                    Configuration.SetPinFunction(settings.Rs485DePin, DeviceFunction.COM2_RTS);
-                    port.Mode = SerialMode.RS485;
+                    _port = OpenPort(settings);
+                    _client = new ModbusClient(CreateTransport(settings, _port));
                 }
-                port.Open();
             }
             catch (Exception error)
             {
@@ -282,20 +281,6 @@ namespace nanoGate.ModbusToDnp3
                 Debug.WriteLine(GatewayHost.Error);
                 return;
             }
-
-            var channel = new SerialPortChannel(port);
-            IModbusTransport serialTransport;
-            if (settings.Ascii)
-                serialTransport = new AsciiTransport(channel, settings.ResponseTimeout);
-            else
-                serialTransport = new RtuTransport(
-                    channel,
-                    settings.BaudRate,
-                    RtuReceiveMode.ResponseLength,
-                    settings.BitsPerCharacter,
-                    settings.ResponseTimeout);
-
-            var client = new ModbusClient(serialTransport);
 
             BuildMap();
             var definitions = new Dnp3PointDefinition[_map.Length];
@@ -313,7 +298,7 @@ namespace nanoGate.ModbusToDnp3
                 _database,
                 (ushort)settings.LocalAddress,
                 (ushort)settings.MasterAddress,
-                new ControlHandler(client),
+                new ControlHandler(),
                 null,
                 256,
                 30000,
@@ -335,8 +320,9 @@ namespace nanoGate.ModbusToDnp3
                 return;
             }
 
-            var poller = new Thread(() => PollLoop(client));
-            poller.Start();
+            _cycleTick = Environment.TickCount64;
+            new Thread(PollLoop).Start();
+            new Thread(WatchdogLoop).Start();
 
             GatewayHost.Ready = true;
             Debug.WriteLine(
@@ -419,17 +405,23 @@ namespace nanoGate.ModbusToDnp3
         private static int _pollFailStreak;
 
         // 매 주기마다 매핑된 Modbus 포인트를 한 번씩 읽어 DNP3 데이터베이스를 갱신합니다.
-        private static void PollLoop(object clientObject)
+        private static void PollLoop()
         {
-            var client = (ModbusClient)clientObject;
-
             while (true)
             {
                 long started = Environment.TickCount64;
                 long successesBefore = GatewayStatistics.Successes;
+                ModbusClient client = _client;
                 // 주기 예외가 절대 루프를 종료시키면 안 되며, 대신 상태 페이지에 표시합니다.
                 try
                 {
+                    if (client == null)
+                    {
+                        // 복구 워치독이 포트를 다시 여는 중입니다.
+                        Thread.Sleep(500);
+                        continue;
+                    }
+
                     PollRules(client);
                     PollFile(client);
                 }
@@ -440,6 +432,7 @@ namespace nanoGate.ModbusToDnp3
                 }
 
                 GatewayStatistics.IncPolls();
+                _cycleTick = Environment.TickCount64;
                 bool hasWork = _rules.Length > 0 || _map.Length > _rulePoints;
                 if (!hasWork || GatewayStatistics.Successes != successesBefore)
                     _pollFailStreak = 0;
@@ -457,6 +450,134 @@ namespace nanoGate.ModbusToDnp3
                 int wait = interval - (int)elapsed;
                 Thread.Sleep(wait < 50 ? 50 : wait);
             }
+        }
+
+        // COM2를 설정에 맞게 엽니다. 호출자 잠금(PortSync) 하에서만 실행됩니다.
+        private static SerialPort OpenPort(GatewaySettings settings)
+        {
+            Configuration.SetPinFunction(settings.TxPin, DeviceFunction.COM2_TX);
+            Configuration.SetPinFunction(settings.RxPin, DeviceFunction.COM2_RX);
+            var port = new SerialPort(
+                "COM2",
+                settings.BaudRate,
+                settings.Parity,
+                settings.DataBits,
+                settings.StopBits == 2 ? StopBits.Two : StopBits.One);
+            if (settings.Rs485Mode == "rts")
+            {
+                // 네이티브 RTS가 송신 중(마지막 정지 비트까지) DE/RE를 제어합니다.
+                // 포트가 닫힌 상태에서 열기 전에 설정해야 합니다.
+                Configuration.SetPinFunction(settings.Rs485DePin, DeviceFunction.COM2_RTS);
+                port.Mode = SerialMode.RS485;
+            }
+            port.Open();
+            return port;
+        }
+
+        private static IModbusTransport CreateTransport(GatewaySettings settings, SerialPort port)
+        {
+            var channel = new SerialPortChannel(port);
+            if (settings.Ascii)
+                return new AsciiTransport(channel, settings.ResponseTimeout);
+            return new RtuTransport(
+                channel,
+                settings.BaudRate,
+                RtuReceiveMode.ResponseLength,
+                settings.BitsPerCharacter,
+                settings.ResponseTimeout);
+        }
+
+        // 지연 도착한 응답이나 에코가 포트에 남아 다음 프레임을 망가뜨립니다.
+        // 트랜잭션 직전에 수신 버퍼를 비워 항상 새 프레임부터 받도록 합니다.
+        // nanoFramework SerialPort에는 DiscardInBuffer가 없어 읽어서 버립니다.
+        private static readonly byte[] _sink = new byte[256];
+
+        private static void Drain()
+        {
+            SerialPort port = _port;
+            if (port == null)
+                return;
+            try
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    int available = port.BytesToRead;
+                    if (available == 0)
+                        return;
+                    port.Read(_sink, 0, available < _sink.Length ? available : _sink.Length);
+                }
+            }
+            catch
+            {
+                // 포트가 막 교체된 상태라면 무시. 곧 복구 워치독이 수습합니다.
+            }
+        }
+
+        // 폴링 사이클이 합리적 상한보다 오래 끝나지 않으면 드라이버 행업으로 판단하고
+        // 포트를 다시 엽니다. PollLoop가 _cycleTick을 매 주기 갱신합니다.
+        private static void WatchdogLoop()
+        {
+            while (true)
+            {
+                Thread.Sleep(WatchdogPeriodMilliseconds);
+                if (!GatewayHost.Ready)
+                    continue;
+
+                long grace = StallGraceMilliseconds();
+                if (Environment.TickCount64 - _cycleTick < grace)
+                    continue;
+
+                // 복구에 성공하든 실패하든 다음 시도까지 동일 유예를 줍니다.
+                _cycleTick = Environment.TickCount64;
+                RecoverPort();
+            }
+        }
+
+        private static void RecoverPort()
+        {
+            lock (PortSync)
+            {
+                Debug.WriteLine("Poll stall detected; reopening COM2.");
+                SerialPort old = _port;
+                _port = null;
+                _client = null;
+                try
+                {
+                    if (old != null)
+                        old.Dispose();
+                }
+                catch
+                {
+                    // 행업된 읽기 스레드가 깨지며 예외를 던지는 것이 정상입니다.
+                }
+
+                try
+                {
+                    GatewaySettings settings = _settings;
+                    _port = OpenPort(settings);
+                    _client = new ModbusClient(CreateTransport(settings, _port));
+                    GatewayStatistics.SetLastError("폴링 정지 감지: COM2를 다시 열었습니다.");
+                }
+                catch (Exception error)
+                {
+                    GatewayHost.Error = "UART 복구 실패: " + ErrorText.Describe(error);
+                    Debug.WriteLine(GatewayHost.Error);
+                }
+            }
+        }
+
+        // 한 주기가 정상적으로 걸릴 수 있는 최악 시간 + 여유. 오탐으로 포트를
+        // 불필요하게 재오픈하지 않도록 거래 수와 타임아웃에서 계산합니다.
+        private static long StallGraceMilliseconds()
+        {
+            int transactions = _map.Length + _rules.Length * 8 + 8;
+            long grace = (long)transactions * (_settings.ResponseTimeout + 50)
+                + _settings.PollInterval + 20000;
+            if (grace < 45000)
+                grace = 45000;
+            if (grace > 300000)
+                grace = 300000;
+            return grace;
         }
 
         // unit이 0인 포인트는 레거시 "동적" 행입니다. 게이트웨이 unit-id 설정이 폐기되었으므로,
@@ -481,7 +602,10 @@ namespace nanoGate.ModbusToDnp3
                 {
                     double value;
                     lock (GatewayHost.ConfigurationSync)
+                    {
+                        Drain();
                         value = ReadValue(client, UnitOf(p), p, bits, registers, bytes);
+                    }
 
                     value = value * p.Numerator / p.Denominator + p.Offset;
                     p.Last = value;
@@ -543,6 +667,7 @@ namespace nanoGate.ModbusToDnp3
                     GatewayStatistics.IncRequests();
                     lock (GatewayHost.ConfigurationSync)
                     {
+                        Drain();
                         if (coils)
                             client.ReadCoils(unit, (ushort)(rule.From + at), (ushort)chunk, values, at);
                         else
@@ -588,6 +713,7 @@ namespace nanoGate.ModbusToDnp3
                     GatewayStatistics.IncRequests();
                     lock (GatewayHost.ConfigurationSync)
                     {
+                        Drain();
                         if (inputs)
                             client.ReadInputRegisters(unit, (ushort)(rule.From + at), (ushort)chunk, registers, at);
                         else
@@ -970,13 +1096,7 @@ namespace nanoGate.ModbusToDnp3
         // DNP3 연결 스레드에서 동작하며, 버스 락이 폴러와의 직렬화를 보장합니다.
         private sealed class ControlHandler : IDnp3ControlHandler
         {
-            private readonly ModbusClient _client;
-
-            public ControlHandler(ModbusClient client)
-            {
-                _client = client;
-            }
-
+            // ModbusToDnp3Profile._client를 매 호출 시 읽어서 복구 스왑을 자동으로 따라갑니다.
             public Dnp3CommandStatus Validate(Dnp3Command command)
             {
                 MapPoint point = Find(command);
@@ -1008,6 +1128,7 @@ namespace nanoGate.ModbusToDnp3
                 {
                     lock (GatewayHost.ConfigurationSync)
                     {
+                        Drain();
                         if (command.Group == 12)
                         {
                             // 펄스 코드는 레벨을 한 번만 쓰며, 시간 기반 재펄스는 에뮬레이션하지 않습니다.
